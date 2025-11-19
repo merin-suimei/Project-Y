@@ -1,5 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="bg" style="flex-grow: 1; background-color: rgb(68, 10, 10);">
-        <ui:ScrollView name="Credits-scrollview" style="width: 50%; height: 100%; align-items: stretch; align-self: center;" />
-    </ui:VisualElement>
-</ui:UXML>

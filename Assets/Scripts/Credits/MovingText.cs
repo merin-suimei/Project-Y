@@ -1,56 +1,61 @@
-using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using TMPro;
 
 public class MovingText : MonoBehaviour
 {
-    public string linkToMainMenu = "Assets/Scenes/Prototype2.unity";
-    public string pathToCreditsText = "Assets/Scripts/creditsPlaceholder.txt";
-    private Scene mainMenuScene;
+    [Header("Text")]
+    public TMP_Text creditsText;
+    public TextAsset creditsTextAsset;
+    public ScrollRect scrollRect;
 
-    public void Start()
+    [Header("Scroll Settings")]
+    public float scrollSpeed = 50f;
+    public bool loop = false;
+    public float endDelay = 3f;
+
+    private bool isScrolling = true;
+    private float endTimer = 0f;
+
+    void Start()
     {
-        mainMenuScene = SceneManager.GetSceneByPath(linkToMainMenu);
 
-        if (!File.Exists(pathToCreditsText))
+        if (scrollRect)
         {
-            Debug.LogError("Credits were not loaded!");
-            return;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(scrollRect.content);
+            scrollRect.verticalNormalizedPosition = 1f;
         }
-        string creditsText = File.ReadAllText(pathToCreditsText);
-
-        UIDocument uiDocument = GetComponent<UIDocument>();
-        if (uiDocument == null)
-        {
-            Debug.LogError("UIDocument component not found!");
-            return;
-        }
-
-        ScrollView scrollView = uiDocument.rootVisualElement.Q<ScrollView>();
-        if (scrollView == null)
-        {
-            Debug.LogError("ScrollView not found!");
-            return;
-        }
-        scrollView.Clear();
-        Label textLabel = new Label(creditsText);
-        // TODO: better to just add style to it written in uss but whatever
-        textLabel.style.whiteSpace = WhiteSpace.Normal;
-        textLabel.style.color = Color.white;
-        textLabel.style.fontSize = 14;
-        textLabel.style.unityTextAlign = TextAnchor.UpperLeft;
-        textLabel.style.marginLeft = 10f;
-        textLabel.style.marginRight = 10f;
-        textLabel.style.marginTop = 10f;
-        textLabel.style.marginBottom = 10f;
-
-        scrollView.Add(textLabel);
     }
 
-    private void onDestroy()
+    void endCredits()
     {
-        SceneManager.UnloadSceneAsync(mainMenuScene);
+        if(loop)
+        {
+            scrollRect.content.anchoredPosition -= new Vector2(0, scrollRect.content.rect.height);
+        } else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
+    void Update()
+    {
+        if (!isScrolling)
+        {
+            endTimer += Time.deltaTime;
+            if (endTimer >= endDelay)
+                endCredits();
+            return;
+        }
+
+        scrollRect.content.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
+        float contentHeight = scrollRect.content.rect.height;
+        float viewportHeight = scrollRect.viewport.rect.height;
+
+        if (scrollRect.verticalNormalizedPosition <= 0f)
+        {
+            endCredits();
+        }
+    }
 }
