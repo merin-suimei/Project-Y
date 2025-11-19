@@ -32,12 +32,13 @@ public class MovingText : MonoBehaviour
         }
     }
 
-    void endCredits()
+    void EndCredits()
     {
-        if(loop)
+        if (loop)
         {
             scrollRect.content.anchoredPosition -= new Vector2(0, scrollRect.content.rect.height);
-        } else
+        }
+        else
         {
             SceneManager.LoadScene("MainMenu");
         }
@@ -49,7 +50,7 @@ public class MovingText : MonoBehaviour
         {
             endTimer += Time.deltaTime;
             if (endTimer >= endDelay)
-                endCredits();
+                EndCredits();
             return;
         }
 
@@ -59,7 +60,7 @@ public class MovingText : MonoBehaviour
 
         if (scrollRect.verticalNormalizedPosition <= 0f)
         {
-            endCredits();
+            EndCredits();
         }
     }
 }
