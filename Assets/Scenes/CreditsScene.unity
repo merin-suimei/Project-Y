@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd978d18427b807459657b18cb498cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 102900000, guid: 093f513d7b6f9114589d223f7d6cb5b4, type: 3}
   creditsText: {fileID: 763265805}
   creditsTextAsset: {fileID: 4900000, guid: dc049b7a7c4dd6246ac004702713ebec, type: 3}
   scrollRect: {fileID: 417505675}
@@ -1678,6 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd978d18427b807459657b18cb498cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
   creditsText: {fileID: 0}
   creditsTextAsset: {fileID: 0}
   scrollRect: {fileID: 0}
