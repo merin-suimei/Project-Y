@@ -935,7 +935,7 @@ MonoBehaviour:
   authorsButton: {fileID: 1351144307}
   exitButton: {fileID: 1422721428}
   gameScene: {fileID: 102900000, guid: 70f83f85ebdac2a40af2462529b59bc6, type: 3}
-  subtitleScene: {fileID: 0}
+  subtitleScene: {fileID: 102900000, guid: d85040fb4a8e5db4ca02ef3ce45cea1b, type: 3}
 --- !u!1 &1422721426
 GameObject:
   m_ObjectHideFlags: 0
