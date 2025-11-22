@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float sightRange;
-    [SerializeField, Tooltip("Точки для патрулирования")] private Transform[] walkPoints; 
+    [SerializeField, Tooltip("РўРѕС‡РєРё РґР»СЏ РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёСЏ")] private Transform[] walkPoints; 
     [SerializeField] private float detectingTimer;
     [SerializeField] private float maxDetectingTimer;
     [SerializeField]private LayerMask playerMask;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player").transform; //пока что взяла трансформ так, потому что нет скрипта игрока
+        player = GameObject.Find("Player").transform; //РїРѕРєР° С‡С‚Рѕ РІР·СЏР»Р° С‚СЂР°РЅСЃС„РѕСЂРј С‚Р°Рє, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РЅРµС‚ СЃРєСЂРёРїС‚Р° РёРіСЂРѕРєР°
     }
 
     void Start()
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         detectingTimer = maxDetectingTimer;
         currentWalkPoint = walkPoints[0].position;
         isWalkPointSet = true;
-        //берем здесь из game manager игрока  player = GameManager.Instance.player.transform; 
+        //Р±РµСЂРµРј Р·РґРµСЃСЊ РёР· game manager РёРіСЂРѕРєР° player = GameManager.Instance.player.transform; 
     }
 
     
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
         if (agent.remainingDistance <= 0.1f)
         {
             isChasePointSet = false;
-            //входим в состояние атаки
+            //РІС…РѕРґРёРј РІ СЃРѕСЃС‚РѕСЏРЅРёРµ Р°С‚Р°РєРё
         }
 
         if(detectingTimer <= 0)
