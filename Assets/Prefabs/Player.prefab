@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7865039802177996874}
-  - component: {fileID: 6517084784329917219}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7485550560070996617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +93,7 @@ GameObject:
   - component: {fileID: 802587806408790063}
   - component: {fileID: 3028687419039610312}
   - component: {fileID: 2509841343042751546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +203,7 @@ GameObject:
   - component: {fileID: 7781749918701273843}
   - component: {fileID: 1622339356042167200}
   - component: {fileID: 7476561379767474215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -436,8 +435,7 @@ GameObject:
   - component: {fileID: 7911845357055588301}
   - component: {fileID: 7493957118092609487}
   - component: {fileID: 6378679724186827499}
-  - component: {fileID: 315986077355650359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
