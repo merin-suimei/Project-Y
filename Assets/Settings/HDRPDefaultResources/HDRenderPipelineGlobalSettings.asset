@@ -156,6 +156,7 @@ MonoBehaviour:
       sssCustomDownsampleSteps: 0
       msaaMode: 1
       materialQuality: 0
+  m_Version: 14
   m_Settings:
     m_SettingsList:
       m_List:
@@ -195,7 +196,26 @@ MonoBehaviour:
       - rid: 5316489893741854720
       - rid: 5316489893741854721
     m_RuntimeSettings:
-      m_List: []
+      m_List:
+      - rid: 8556427327610290176
+      - rid: 8556427327610290180
+      - rid: 2212155077343576064
+      - rid: 2212155077343576066
+      - rid: 2212155077343576067
+      - rid: 2212155077343576070
+      - rid: 2212155077343576071
+      - rid: 2212155077343576072
+      - rid: 2212155077343576073
+      - rid: 2212155077343576076
+      - rid: 2212155077343576077
+      - rid: 2212155077343576078
+      - rid: 2212155077343576079
+      - rid: 2212155077343576081
+      - rid: 2212155077343576082
+      - rid: 2212155077343576084
+      - rid: 2212155077343576085
+      - rid: 2212155077343576086
+      - rid: 2212155077343576088
   renderingLayerNames:
   - Light Layer default
   - Light Layer 1
@@ -236,10 +256,11 @@ MonoBehaviour:
     obsoleteHasProbeVolumes:
       m_Keys: []
       m_Values: 
-  m_Version: 14
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 2212155077343576064
       type: {class: WaterSystemGlobalSettings, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:

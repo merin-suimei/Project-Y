@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -13,8 +12,8 @@ public class MainMenuScript : MonoBehaviour
     [Space(10)]
     [Header("Сцены")]
     [Tooltip("Перед тем как перетащить сцену, добавьте её в File → Build Profiles → Scene List.")]
-    [SerializeField] public SceneAsset gameScene;
-    [SerializeField] public SceneAsset subtitleScene;
+    [SerializeField] private SceneField gameScene;
+    [SerializeField] private SceneField creditsScene;
 
     private void Awake()
     {
@@ -30,17 +29,17 @@ public class MainMenuScript : MonoBehaviour
             Debug.Log("gameScene не установлена в инспекторе");
             return;
         }
-        SceneManager.LoadScene(gameScene.name);
+        SceneManager.LoadScene(gameScene);
     }
 
     private void AuthorsClick()
     {
-        if (subtitleScene == null)
+        if (creditsScene == null)
         {
             Debug.Log("subtitleScene не установлена в инспекторе");
             return;
         }
-        SceneManager.LoadScene(subtitleScene.name);
+        SceneManager.LoadScene(creditsScene);
     }
 
     private void ExitClick()
