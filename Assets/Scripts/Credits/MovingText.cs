@@ -2,12 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEditor;
 
 public class MovingText : MonoBehaviour
 {
     [Header("Scene")]
-    public SceneAsset mainMenu;
+    [SerializeField] private SceneField mainMenu;
     
     [Header("Text")]
     public TMP_Text creditsText;
@@ -40,7 +39,7 @@ public class MovingText : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(mainMenu);
         }
     }
 
