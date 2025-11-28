@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 186893354889440463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: 0.27, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0.27, z: 0.224}
   m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -154,14 +154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee8690ceea0731429533de51a4221d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 1.27
+  detectionRange: 10
+  detectionDistance: 3
+  detectionSemiconeAngle: 45
+  enemyEye: {fileID: 3756311988425602384}
   walkPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  detectingTimer: 0
-  maxDetectingTimer: 5
   playerMask:
     serializedVersion: 2
     m_Bits: 64

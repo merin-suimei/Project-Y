@@ -1,46 +1,49 @@
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections.Generic;
+
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float sightRange;
-    [SerializeField, Tooltip("Точки для патрулирования")] private Transform[] walkPoints; 
-    [SerializeField] private float detectingTimer;
-    [SerializeField] private float maxDetectingTimer;
-    [SerializeField]private LayerMask playerMask;
+    [Header("")]
+    [Tooltip("Range to detect possible collision")]
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float detectionDistance = 3f;
+    [Tooltip("Semicon angle for detection (in degrees)")]
+    [UnityEngine.Range(0f, 90f)]
+    [SerializeField] private float detectionSemiconeAngle = 45f;
+    [SerializeField] private Transform enemyEye;
+
+
+
+    [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
+    [SerializeField] private LayerMask playerMask;
 
     private NavMeshAgent agent;
     private Transform player;
     private Vector3 currentWalkPoint;
 
     private bool isWalkPointSet;
-    private bool isPlayerDetected;
-    private bool isChasePointSet;
 
 
-
-
-    void Awake()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player").transform; //пока что взяла трансформ так, потому что нет скрипта игрока
     }
 
-    void Start()
+    private void Start()
     {
-        detectingTimer = maxDetectingTimer;
-        currentWalkPoint = walkPoints[0].position;
-        isWalkPointSet = true;
-        //берем здесь из game manager игрока player = GameManager.Instance.player.transform; 
+        player = GameManager.instance.player.transform;
+        if (walkPoints.Length > 0)
+            agent.SetDestination(walkPoints[0].position);
     }
 
-    
     private void Update()
     {
-        isPlayerDetected = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        if (player == null) return;
 
-        if (isPlayerDetected)
+        float dist = Vector3.Distance(transform.position, player.position);
+
+        if (IsPlayerVisible() || dist <= detectionDistance)
         {
             ChasePlayer();
         }
@@ -50,45 +53,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Patrol()
+    private bool IsPlayerVisible()
     {
-        if (!isWalkPointSet)
+        Vector3 dir = (player.position - enemyEye.position).normalized;
+
+        if (Vector3.Angle(enemyEye.forward, dir) > detectionSemiconeAngle)
+            return false;
+        if (Vector3.Distance(enemyEye.position, player.position) > detectionRange)
+            return false;
+        if (Physics.Raycast(enemyEye.position, dir, out RaycastHit hit, detectionRange))
         {
-            currentWalkPoint = GetNewWalkPoint();
-            agent.SetDestination(currentWalkPoint);
-            isWalkPointSet = true;
+            if (hit.transform == player)
+                return true;
         }
 
-        if (agent.remainingDistance <= 0.1f)
-        {
-            isWalkPointSet = false;
-        }
+        return false;
     }
-
 
     private void ChasePlayer()
     {
-        detectingTimer -= Time.deltaTime;
-
-        if (!isChasePointSet) { 
-            agent.ResetPath();
-            agent.SetDestination(player.position);
-            isChasePointSet = true;
-        }
-
-        if (agent.remainingDistance <= 0.1f)
-        {
-            isChasePointSet = false;
-            //входим в состояние атаки
-        }
-
-        if(detectingTimer <= 0)
-        {
-            Debug.Log("ChasePlayer");
-            detectingTimer = maxDetectingTimer;
-        }
-
+        agent.SetDestination(player.position);
     }
+
 
     private Vector3 GetNewWalkPoint()
     {
@@ -114,18 +100,50 @@ public class Enemy : MonoBehaviour
             availableWalkPoints.AddRange(walkPoints);
         }
 
-        
+
         int randomIndex = Random.Range(0, availableWalkPoints.Count);
         Vector3 newWalkPoint = availableWalkPoints[randomIndex].position;
 
         return newWalkPoint;
     }
-
-    private void OnDrawGizmosSelected()
+    private void Patrol()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        if (!isWalkPointSet)
+        {
+            currentWalkPoint = GetNewWalkPoint();
+            agent.SetDestination(currentWalkPoint);
+            isWalkPointSet = true;
+        }
 
+        if (agent.remainingDistance <= 0.1f)
+        {
+            isWalkPointSet = false;
+        }
     }
+
+    void OnDrawGizmos()
+    {
+        DrawVisionConeGizmos();
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionDistance);
+    }
+
+    private void DrawVisionConeGizmos()
+    {
+        if (enemyEye == null) return;
+
+        Vector3 leftRay = enemyEye.position +
+            Quaternion.Euler(0, detectionSemiconeAngle, 0) *
+            (enemyEye.forward * detectionRange);
+
+        Vector3 rightRay = enemyEye.position +
+            Quaternion.Euler(0, -detectionSemiconeAngle, 0) *
+            (enemyEye.forward * detectionRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(enemyEye.position, leftRay);
+        Gizmos.DrawLine(enemyEye.position, rightRay);
+    }
+
 
 }
