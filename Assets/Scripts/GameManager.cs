@@ -4,18 +4,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     //public Player player;
+    public GameObject player;
     private void Awake()
     {
         instance = this;
-    }
-    void Start()
-    {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
