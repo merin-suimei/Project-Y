@@ -7,22 +7,39 @@ public class PlayerStateMachine : MonoBehaviour
         Idle,
         Move
     }
+
     private PlayerState state = PlayerState.Idle;
 
     // For movement
     [SerializeField] private Camera cameraMain;
     [SerializeField] private Rigidbody rb;
+
+    // Input
+    [SerializeField] private MonoBehaviour inputSource;
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float turnSpeed = 720f;
-    private Vector3 inputVector;
-    private Vector3 camForward;
-    private Vector3 camRight;
+
+
+    private IPlayerInput _input;
     private Vector3 moveDir;
+
+    private void Awake()
+    {
+        _input = inputSource as IPlayerInput;
+        if (_input == null)
+        {
+            Debug.LogError("inputSource does not implement IPlayerInput!");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        GatherInput();
+        if (_input != null)
+        {
+            moveDir = _input.MoveDirection;
+        }
 
         switch (state)
         {
@@ -34,29 +51,7 @@ public class PlayerStateMachine : MonoBehaviour
                 break;
         }
 
-        AimAtMouse();
-
-    }
-    void ChangeState(PlayerState newState)
-    {
-        state = newState;
-    }
-
-    void GatherInput()
-    {
-        inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        inputVector = inputVector.normalized;
-
-        camForward = cameraMain.transform.forward;
-        camRight = cameraMain.transform.right;
-
-        camForward.y = 0;
-        camRight.y = 0;
-
-        camForward.Normalize();
-        camRight.Normalize();
-
-        moveDir = camForward * inputVector.z + camRight * inputVector.x;
+        RotateToAim();
     }
 
     private void FixedUpdate()
@@ -65,7 +60,15 @@ public class PlayerStateMachine : MonoBehaviour
         {
             rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
         }
-        rb.linearVelocity = Vector3.zero;
+        var v = rb.linearVelocity;
+        v.x = 0f;
+        v.z = 0f;
+        rb.linearVelocity = v;
+    }
+
+    void ChangeState(PlayerState newState)
+    {
+        state = newState;
     }
 
     void UpdateMove()
@@ -80,30 +83,26 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(PlayerState.Move);
     }
 
-    void AimAtMouse()
+    private void RotateToAim()
     {
-        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        if (_input == null) return;
+        Vector3 originPos = rb != null ? rb.position : transform.position;
 
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
+        Vector3 aim = _input.AimWorldPoint;
+        Vector3 lookDir = aim - originPos;
+        lookDir.y = 0;
 
-        if (groundPlane.Raycast(ray, out float distance))
+        if (lookDir.sqrMagnitude > 0.001f)
         {
-            Vector3 hitPoint = ray.GetPoint(distance);
-            Vector3 lookDir = hitPoint - transform.position;
-            lookDir.y = 0;
+            Quaternion targetRot = Quaternion.LookRotation(lookDir, Vector3.up);
 
-            if (lookDir.sqrMagnitude > 0.001f)
-            {
-                Quaternion targetRot = Quaternion.LookRotation(lookDir, Vector3.up);
+            Quaternion newRot = Quaternion.RotateTowards(
+                rb.rotation,
+                targetRot,
+                turnSpeed * Time.deltaTime
+            );
 
-                Quaternion newRot = Quaternion.RotateTowards(
-                    rb.rotation,
-                    targetRot,
-                    turnSpeed * Time.deltaTime
-                );
-
-                rb.MoveRotation(newRot); // или transform.rotation = newRot;
-            }
+            rb.MoveRotation(newRot);
         }
     }
 }
