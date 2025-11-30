@@ -7,7 +7,7 @@ public class MovingText : MonoBehaviour
 {
     [Header("Scene")]
     [SerializeField] private SceneField mainMenu;
-    
+
     [Header("Text")]
     public TMP_Text creditsText;
     public TextAsset creditsTextAsset;
