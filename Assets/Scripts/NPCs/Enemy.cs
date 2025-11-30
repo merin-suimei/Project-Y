@@ -121,12 +121,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     void OnDrawGizmos()
     {
         DrawVisionConeGizmos();
         UnityEditor.Handles.color = Color.red;
         UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionDistance);
     }
+    #endif
 
     private void DrawVisionConeGizmos()
     {
