@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class KeyboardMouseInput : MonoBehaviour, IPlayerInput
+public class InputSystemListener : MonoBehaviour, IPlayerInput
 {
+    private InputsTypes _input;
     private Vector3 _moveDirection;
     private Vector3 _aimWorldPoint;
 
@@ -15,9 +17,13 @@ public class KeyboardMouseInput : MonoBehaviour, IPlayerInput
 
     private void Awake()
     {
+        _input = new InputsTypes();
         if (aimOrigin == null)
             aimOrigin = transform;
     }
+
+    private void OnEnable() => _input.Enable();
+    private void OnDisable() => _input.Disable();
 
     void Update()
     {
@@ -27,8 +33,8 @@ public class KeyboardMouseInput : MonoBehaviour, IPlayerInput
 
     void ReadMovement()
     {
-        Vector3  inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        inputVector = inputVector.normalized;
+        Vector2 _move = _input.Player.Move.ReadValue<Vector2>();
+        Vector3  inputVector = new Vector3(_move.x, 0, _move.y);
 
         Vector3 camForward = cameraMain.transform.forward;
         Vector3 camRight = cameraMain.transform.right;
@@ -44,7 +50,8 @@ public class KeyboardMouseInput : MonoBehaviour, IPlayerInput
 
     private void ReadAim()
     {
-        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        Vector2 mousePos = _input.Player.Look.ReadValue<Vector2>();
+        Ray ray = cameraMain.ScreenPointToRay(mousePos);
 
         Plane groundPlane = new Plane(Vector3.up, aimOrigin.position);
 
