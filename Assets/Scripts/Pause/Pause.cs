@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseManager : MonoBehaviour
 {
+    private InputsTypes _input;
     [Header("Scene")]
     [SerializeField]
     private SceneField mainMenu;
@@ -10,23 +12,37 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
 
+    private void Awake()
+    {
+        _input = new InputsTypes();
+    }
+
+    private void OnEnable()
+    {
+        _input.Enable();
+        _input.Player.Pause.performed += OnPause;
+    }
+
+    private void OnDisable()
+    {
+        _input.Player.Pause.performed -= OnPause;
+        _input.Disable();
+    }
+
     void Start()
     {
         Resume();
     }
 
-    void Update()
+    private void OnPause(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isPaused)
         {
-            if (!isPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Resume();
-            }
+            Pause();
+        }
+        else
+        {
+            Resume();
         }
     }
 

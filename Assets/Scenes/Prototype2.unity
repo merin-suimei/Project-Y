@@ -640,10 +640,6 @@ PrefabInstance:
       propertyPath: cameraMain
       value: 
       objectReference: {fileID: 1378662561}
-    - target: {fileID: 5584024951016378770, guid: 8778b925a3521228581ab330e8ed885e, type: 3}
-      propertyPath: Lens.OrthographicSize
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6517084784329917219, guid: 8778b925a3521228581ab330e8ed885e, type: 3}
       propertyPath: cameraMain
       value: 
