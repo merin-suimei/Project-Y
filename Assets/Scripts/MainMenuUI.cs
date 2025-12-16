@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -20,6 +21,20 @@ public class MainMenuScript : MonoBehaviour
         playButton.onClick.AddListener(PlayClick);
         authorsButton.onClick.AddListener(AuthorsClick);
         exitButton.onClick.AddListener(ExitClick);
+    }
+
+    private void OnEnable()
+    {
+        var es = EventSystem.current;
+        if (es == null) return;
+
+        es.SetSelectedGameObject(null);
+
+        Debug.Log($"FirstSelected: {es?.firstSelectedGameObject?.name}");
+        Debug.Log($"CurrentSelected: {es?.currentSelectedGameObject?.name}");
+
+        if (es.firstSelectedGameObject != null)
+            es.SetSelectedGameObject(es.firstSelectedGameObject);
     }
 
     private void PlayClick()

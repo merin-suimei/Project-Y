@@ -43,6 +43,11 @@ public class MovingText : MonoBehaviour
         }
     }
 
+    public void SkipCredits()
+    {
+        SceneManager.LoadScene(mainMenu);
+    }
+
     void Update()
     {
         if (!isScrolling)
@@ -62,4 +67,6 @@ public class MovingText : MonoBehaviour
             EndCredits();
         }
     }
+
+    
 }
