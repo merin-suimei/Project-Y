@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     private SceneField mainMenu;
     public GameObject pauseMenuUI;
+    private GameObject firstSelectedButton;
 
     private bool isPaused = false;
 
     private void Awake()
     {
         _input = new InputsTypes();
+
     }
 
     private void OnEnable()
@@ -31,6 +34,11 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
+        if (EventSystem.current != null)
+        {
+            firstSelectedButton = EventSystem.current.firstSelectedGameObject;
+        }
+
         Resume();
     }
 
@@ -51,6 +59,8 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Pause()
@@ -58,6 +68,15 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        var es = EventSystem.current;
+        if (es == null) return;
+
+        es.SetSelectedGameObject(null);
+        if (firstSelectedButton != null)
+        {
+            es.SetSelectedGameObject(firstSelectedButton);
+        }
     }
 
     public void Continue()
