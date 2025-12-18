@@ -13,6 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
     // For movement
     [SerializeField] private Camera cameraMain;
     [SerializeField] private Rigidbody rb;
+    public Rigidbody Body => rb;
 
     // Input
     [SerializeField] private MonoBehaviour inputSource;
