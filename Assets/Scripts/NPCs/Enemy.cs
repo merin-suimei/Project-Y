@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,33 +14,46 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionSemiconeAngle = 45f;
     [SerializeField] private Transform enemyEye;
 
-
-
     [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
     [SerializeField] private LayerMask playerMask;
 
-    private NavMeshAgent agent;
-    private Transform player;
-    private Vector3 currentWalkPoint;
+    public EnemyStateMachine stateMachine { get; private set; }
+    public EnemyStatePatrol patrolState { get; private set; }
+    public EnemyStateChase chaseState { get; private set; }
+    public EnemyStateDetect detectState { get; private set; }
 
-    private bool isWalkPointSet;
+    public NavMeshAgent agent {  get; private set; }    
+    public Transform player {  get; private set; }  
+    public Vector3 currentWalkPoint {  get; private set; }
 
+    public bool isWalkPointSet {  get; private set; }
+
+    [SerializeField] private Image detectImage;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        stateMachine = new EnemyStateMachine();
+        patrolState = new EnemyStatePatrol(this, stateMachine, "IsPatrol");
+        chaseState = new EnemyStateChase(this, stateMachine, "IsChase");
+        detectState = new EnemyStateDetect(this, stateMachine, "IsDetect");
     }
 
     private void Start()
     {
-        player = GameManager.instance.player.Body.transform;
+        player = GameManager.instance.player.transform;
         if (walkPoints.Length > 0)
             agent.SetDestination(walkPoints[0].position);
+
+        stateMachine.Initialize(patrolState);
+        HideDetectImage();
     }
 
     private void Update()
     {
-        if (player == null) return;
+        stateMachine.GetCurrentState().Update();
+      /*  if (player == null) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
 
@@ -50,7 +64,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Patrol();
-        }
+        }*/
     }
 
     private bool IsPlayerVisible()
@@ -70,13 +84,18 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
+    public bool IsPlayerReachable()
+    {
+        float dist = Vector3.Distance(transform.position, player.position);
+        return IsPlayerVisible() && dist <= detectionDistance;
+    }
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
 
 
-    private Vector3 GetNewWalkPoint()
+    public Vector3 GetNewWalkPoint()
     {
 
         List<Transform> availableWalkPoints = new List<Transform>();
@@ -119,6 +138,16 @@ public class Enemy : MonoBehaviour
         {
             isWalkPointSet = false;
         }
+    }
+
+    public void ShowDetectImage()
+    {
+        Debug.Log("SHOW");
+        detectImage.gameObject.SetActive(true);
+    }
+    public void HideDetectImage()
+    {
+        detectImage.gameObject.SetActive(false);
     }
 
     #if UNITY_EDITOR
