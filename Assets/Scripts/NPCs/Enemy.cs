@@ -1,33 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     [Header("")]
     [Tooltip("Range to detect possible collision")]
     [SerializeField] private float detectionRange = 10f;
-    [SerializeField] private float detectionDistance = 3f;
     [Tooltip("Semicon angle for detection (in degrees)")]
-    [UnityEngine.Range(0f, 90f)]
+    [Range(0f, 90f)]
     [SerializeField] private float detectionSemiconeAngle = 45f;
     [SerializeField] private Transform enemyEye;
-
-
 
     [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
     [SerializeField] private LayerMask playerMask;
 
-    private NavMeshAgent agent;
-    private Transform player;
-    private Vector3 currentWalkPoint;
+    public EnemyStateMachine stateMachine { get; private set; }
+    public EnemyStatePatrol patrolState { get; private set; }
+    public EnemyStateChase chaseState { get; private set; }
+    public EnemyStateDetect detectState { get; private set; }
 
-    private bool isWalkPointSet;
+    public NavMeshAgent agent {  get; private set; }    
+    public Transform player {  get; private set; }  
+    public Vector3 currentWalkPoint {  get; private set; }
 
+    [SerializeField] private Image detectImage;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        stateMachine = new EnemyStateMachine();
+        patrolState = new EnemyStatePatrol(this, stateMachine, "IsPatrol");
+        chaseState = new EnemyStateChase(this, stateMachine, "IsChase");
+        detectState = new EnemyStateDetect(this, stateMachine, "IsDetect");
     }
 
     private void Start()
@@ -35,25 +43,17 @@ public class Enemy : MonoBehaviour
         player = GameManager.instance.player.Body.transform;
         if (walkPoints.Length > 0)
             agent.SetDestination(walkPoints[0].position);
+
+        stateMachine.Initialize(patrolState);
+        ShowDetectImage(false);
     }
 
     private void Update()
     {
-        if (player == null) return;
-
-        float dist = Vector3.Distance(transform.position, player.position);
-
-        if (IsPlayerVisible() || dist <= detectionDistance)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            Patrol();
-        }
+        stateMachine.CurrentState.StateUpdate();
     }
 
-    private bool IsPlayerVisible()
+    public bool IsPlayerVisible()
     {
         Vector3 dir = (player.position - enemyEye.position).normalized;
 
@@ -70,13 +70,10 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    private void ChasePlayer()
-    {
-        agent.SetDestination(player.position);
-    }
+    public bool IsPlayerChaseable() =>
+        Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
 
-
-    private Vector3 GetNewWalkPoint()
+    public Vector3 GetNewWalkPoint()
     {
 
         List<Transform> availableWalkPoints = new List<Transform>();
@@ -106,19 +103,16 @@ public class Enemy : MonoBehaviour
 
         return newWalkPoint;
     }
-    private void Patrol()
-    {
-        if (!isWalkPointSet)
-        {
-            currentWalkPoint = GetNewWalkPoint();
-            agent.SetDestination(currentWalkPoint);
-            isWalkPointSet = true;
-        }
 
-        if (agent.remainingDistance <= 0.1f)
-        {
-            isWalkPointSet = false;
-        }
+    public void SetWalkPoint(Vector3 nextWalkPoint)
+    {
+        currentWalkPoint = nextWalkPoint;
+        agent.SetDestination(currentWalkPoint);
+    }
+
+    public void ShowDetectImage(bool value)
+    {
+        detectImage.gameObject.SetActive(value);
     }
 
     #if UNITY_EDITOR
@@ -126,26 +120,22 @@ public class Enemy : MonoBehaviour
     {
         DrawVisionConeGizmos();
         UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionDistance);
+        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionRange);
     }
-    #endif
 
     private void DrawVisionConeGizmos()
     {
-        if (enemyEye == null) return;
-
-        Vector3 leftRay = enemyEye.position +
+        Vector3 leftRay = transform.position +
             Quaternion.Euler(0, detectionSemiconeAngle, 0) *
-            (enemyEye.forward * detectionRange);
+            (transform.forward * detectionRange);
 
-        Vector3 rightRay = enemyEye.position +
+        Vector3 rightRay = transform.position +
             Quaternion.Euler(0, -detectionSemiconeAngle, 0) *
-            (enemyEye.forward * detectionRange);
+            (transform.forward * detectionRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(enemyEye.position, leftRay);
-        Gizmos.DrawLine(enemyEye.position, rightRay);
+        Gizmos.DrawLine(transform.position, leftRay);
+        Gizmos.DrawLine(transform.position, rightRay);
     }
-
-
+    #endif
 }
