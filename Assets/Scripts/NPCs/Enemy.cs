@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.instance.player.transform;
+        player = GameManager.instance.player.Body.transform;
         if (walkPoints.Length > 0)
             agent.SetDestination(walkPoints[0].position);
 
