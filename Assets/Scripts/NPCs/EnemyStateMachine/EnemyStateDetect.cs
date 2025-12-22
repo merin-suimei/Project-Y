@@ -1,38 +1,43 @@
 using UnityEngine;
-using System; 
 public class EnemyStateDetect : EnemyState
 {
-    float detectingTimer;
-    float detectImageTimer;
-    public EnemyStateDetect(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
-    {
-    }
+    float detectDelay;
+    float detectProgress;
+    float decaySpeed;
+
+    public EnemyStateDetect(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
-        detectingTimer = 3.0f;
-        detectImageTimer = 0.5f;
+
+        enemy.ShowDetectImage(true);
+
+        detectDelay = 1.5f;
+        detectProgress = 0f;
+        decaySpeed = 1f;
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
-        base.Update();
-        detectingTimer -= Time.deltaTime;
-        if (enemy.IsPlayerReachable() && detectingTimer <= 0) 
-        {
-            enemy.ShowDetectImage();
-            detectImageTimer -= Time.deltaTime;
-            if (detectImageTimer <= 0) 
-            {
-                enemy.HideDetectImage();
-                enemy.stateMachine.ChangeState(enemy.chaseState);
-            }
-        }
+        base.StateUpdate();
+
+        if (enemy.IsPlayerVisible())
+            detectProgress += Time.deltaTime;
+        else
+            detectProgress -= Time.deltaTime * decaySpeed;
+
+        if (detectProgress <= 0)
+            enemy.stateMachine.ChangeState(enemy.patrolState);
+        else if (detectProgress >= detectDelay)
+            enemy.stateMachine.ChangeState(enemy.chaseState);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        enemy.ShowDetectImage(false);
     }
 }

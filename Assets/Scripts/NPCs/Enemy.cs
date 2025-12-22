@@ -47,12 +47,12 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(walkPoints[0].position);
 
         stateMachine.Initialize(patrolState);
-        HideDetectImage();
+        ShowDetectImage(false);
     }
 
     private void Update()
     {
-        stateMachine.GetCurrentState().Update();
+        stateMachine.CurrentState.StateUpdate();
       /*  if (player == null) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         }*/
     }
 
-    private bool IsPlayerVisible()
+    public bool IsPlayerVisible()
     {
         Vector3 dir = (player.position - enemyEye.position).normalized;
 
@@ -84,11 +84,9 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public bool IsPlayerReachable()
-    {
-        float dist = Vector3.Distance(transform.position, player.position);
-        return IsPlayerVisible() && dist <= detectionDistance;
-    }
+    public bool IsPlayerChaseable() =>
+        Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
+
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
@@ -125,6 +123,13 @@ public class Enemy : MonoBehaviour
 
         return newWalkPoint;
     }
+
+    public void SetWalkPoint(Vector3 nextWalkPoint)
+    {
+        currentWalkPoint = nextWalkPoint;
+        agent.SetDestination(currentWalkPoint);
+    }
+
     private void Patrol()
     {
         if (!isWalkPointSet)
@@ -140,14 +145,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ShowDetectImage()
+    public void ShowDetectImage(bool value)
     {
-        Debug.Log("SHOW");
-        detectImage.gameObject.SetActive(true);
-    }
-    public void HideDetectImage()
-    {
-        detectImage.gameObject.SetActive(false);
+        detectImage.gameObject.SetActive(value);
     }
 
     #if UNITY_EDITOR

@@ -1,20 +1,21 @@
-using UnityEngine;
-
 public class EnemyStateChase : EnemyState
 {
-    public EnemyStateChase(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
-    {
-    }
+    public EnemyStateChase(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
-        base .Update();
-        enemy.agent.SetDestination(enemy.player.position);
+        base.StateUpdate();
+
+        if (enemy.IsPlayerChaseable())
+            enemy.agent.SetDestination(enemy.player.position);
+        else
+            enemy.stateMachine.ChangeState(enemy.patrolState);
     }
 
     public override void Exit()

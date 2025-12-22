@@ -1,23 +1,16 @@
-using UnityEngine;
-
 public class EnemyStateMachine
 {
-    EnemyState currentState;
+    public EnemyState CurrentState { get; private set; }
     public void Initialize(EnemyState initState)
     {
-        currentState = initState;
-        currentState.Enter();
+        CurrentState = initState;
+        CurrentState.Enter();
     }
 
     public void ChangeState(EnemyState newState) 
     {
-        currentState.Exit();
-        currentState = newState;
-        currentState.Enter();
-    }
-
-    public EnemyState GetCurrentState()
-    {
-        return currentState;
+        CurrentState.Exit();
+        CurrentState = newState;
+        CurrentState.Enter();
     }
 }

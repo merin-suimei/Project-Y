@@ -1,37 +1,26 @@
-using UnityEngine;
-
 public class EnemyStatePatrol : EnemyState
 {
-    bool isWalkPointSet = false;
-    Vector3 currentWalkPoint;
-    public EnemyStatePatrol(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
-    {
-    }
+    private bool isWalkPointSet = false;
+
+    public EnemyStatePatrol(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
     }
 
-    public override void Update()
+    public override void StateUpdate()
     {
-        base.Update();
-        if (enemy.IsPlayerReachable())
-        {
+        base.StateUpdate();
+        if (enemy.IsPlayerVisible())
             enemy.stateMachine.ChangeState(enemy.detectState);
-        }
 
-        if (!enemy.isWalkPointSet)
-        {
-            currentWalkPoint = enemy.GetNewWalkPoint();
-            enemy.agent.SetDestination(enemy.currentWalkPoint);
-            isWalkPointSet = true;
-        }
+        if (!isWalkPointSet)
+            enemy.SetWalkPoint(enemy.GetNewWalkPoint());
 
-        if (enemy.agent.remainingDistance <= 0.1f)
-        {
+        if (isWalkPointSet && enemy.agent.remainingDistance <= 0.1f)
             isWalkPointSet = false;
-        }
     }
 
     public override void Exit()

@@ -1,6 +1,4 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-public class EnemyState : MonoBehaviour
+public class EnemyState
 {
     protected EnemyStateMachine stateMachine;
     protected string animBoolName;
@@ -12,12 +10,13 @@ public class EnemyState : MonoBehaviour
         this.enemy = enemy;
         this.animBoolName = animBoolName;   
     }
+
     public virtual void Enter()
     {
         //enemy.animator.SetAnimation(0, animBoolName, true); 
     }
 
-    public virtual void Update()
+    public virtual void StateUpdate()
     {
         
     }
