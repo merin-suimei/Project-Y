@@ -1,6 +1,6 @@
-public class EnemyStateChase : EnemyState
+public class EnemyChaseState : EnemyState
 {
-    public EnemyStateChase(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+    public EnemyChaseState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()

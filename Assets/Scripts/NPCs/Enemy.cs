@@ -17,10 +17,10 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
     [SerializeField] private LayerMask playerMask;
 
-    public EnemyStateMachine stateMachine { get; private set; }
-    public EnemyStatePatrol patrolState { get; private set; }
-    public EnemyStateChase chaseState { get; private set; }
-    public EnemyStateDetect detectState { get; private set; }
+    public StateMachine stateMachine { get; private set; }
+    public EnemyPatrolState patrolState { get; private set; }
+    public EnemyChaseState chaseState { get; private set; }
+    public EnemyDetectState detectState { get; private set; }
 
     public NavMeshAgent agent {  get; private set; }    
     public Transform player {  get; private set; }  
@@ -32,15 +32,15 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        stateMachine = new EnemyStateMachine();
-        patrolState = new EnemyStatePatrol(this, stateMachine, "IsPatrol");
-        chaseState = new EnemyStateChase(this, stateMachine, "IsChase");
-        detectState = new EnemyStateDetect(this, stateMachine, "IsDetect");
+        stateMachine = new StateMachine();
+        patrolState = new EnemyPatrolState(this, stateMachine, "IsPatrol");
+        chaseState = new EnemyChaseState(this, stateMachine, "IsChase");
+        detectState = new EnemyDetectState(this, stateMachine, "IsDetect");
     }
 
     private void Start()
     {
-        player = GameManager.instance.player.Body.transform;
+        player = GameManager.instance.player.rb.transform;
         if (walkPoints.Length > 0)
             agent.SetDestination(walkPoints[0].position);
 
