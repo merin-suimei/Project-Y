@@ -1,8 +1,8 @@
-public class EnemyStatePatrol : EnemyState
+public class EnemyPatrolState : EnemyState
 {
     private bool isWalkPointSet = false;
 
-    public EnemyStatePatrol(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+    public EnemyPatrolState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()

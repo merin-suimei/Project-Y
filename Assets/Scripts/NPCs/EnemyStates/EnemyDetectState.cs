@@ -1,11 +1,11 @@
 using UnityEngine;
-public class EnemyStateDetect : EnemyState
+public class EnemyDetectState : EnemyState
 {
     float detectDelay;
     float detectProgress;
     float decaySpeed;
 
-    public EnemyStateDetect(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+    public EnemyDetectState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
