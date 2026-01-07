@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - ExitDoor
+  - Checkpoint
+  - StuckZone
   layers:
   - Default
   - TransparentFX
