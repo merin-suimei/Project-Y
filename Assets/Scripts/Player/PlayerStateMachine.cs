@@ -5,7 +5,8 @@ public class PlayerStateMachine : MonoBehaviour
     private enum PlayerState
     {
         Idle,
-        Move
+        Move,
+        Stuck
     }
 
     private PlayerState state = PlayerState.Idle;
@@ -24,6 +25,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private IPlayerInput _input;
     private Vector3 moveDir;
+    
+    private Vector3 _lastCheckpointPosition;
 
     private void Awake()
     {
@@ -32,6 +35,11 @@ public class PlayerStateMachine : MonoBehaviour
         {
             Debug.LogError("inputSource does not implement IPlayerInput!");
         }
+
+        if (rb != null) 
+            _lastCheckpointPosition = rb.position;
+        else 
+            _lastCheckpointPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -49,6 +57,9 @@ public class PlayerStateMachine : MonoBehaviour
                 break;
             case PlayerState.Move:
                 UpdateMove();
+                break;
+            case PlayerState.Stuck:
+                UpdateStuck();
                 break;
         }
 
@@ -70,6 +81,11 @@ public class PlayerStateMachine : MonoBehaviour
     void ChangeState(PlayerState newState)
     {
         state = newState;
+        
+        if (state == PlayerState.Stuck)
+        {
+            TeleportToCheckpoint();
+        }
     }
 
     void UpdateMove()
@@ -82,6 +98,11 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (moveDir.sqrMagnitude > 0.001f)
             ChangeState(PlayerState.Move);
+    }
+
+    void UpdateStuck()
+    {
+        ChangeState(PlayerState.Idle);
     }
 
     private void RotateToAim()
@@ -106,4 +127,44 @@ public class PlayerStateMachine : MonoBehaviour
             rb.MoveRotation(newRot);
         }
     }
+
+    private void TeleportToCheckpoint()
+    {
+        //Debug.Log("Teleporting to checkpoint...");
+        
+        //rb.isKinematic = true; 
+
+        rb.position = _lastCheckpointPosition + Vector3.up * 0.1f;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        //rb.isKinematic = false;
+    }
+
+    public void OnChildTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("StuckZone"))
+        {
+            ChangeState(PlayerState.Stuck);
+        }
+
+        if (other.CompareTag("Checkpoint"))
+        {
+            _lastCheckpointPosition = new Vector3(
+                other.transform.position.x, 
+                rb.position.y,
+                other.transform.position.z
+            );
+            //Debug.Log($"Checkpoint updated: {_lastCheckpointPosition}");
+        }
+    }
+
+    public void ForceUnstuck()
+    {
+        if (state != PlayerState.Stuck)
+        {
+            ChangeState(PlayerState.Stuck);
+        }
+    }
+
 }

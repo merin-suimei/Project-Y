@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    [Header("Player Reference")] 
+    [SerializeField] private PlayerStateMachine player;
     private InputsTypes _input;
     [Header("Scene")]
     [SerializeField]
@@ -82,6 +84,19 @@ public class PauseManager : MonoBehaviour
     public void Continue()
     {
         Resume();
+    }
+
+    public void OnStuckButton()
+    {
+        if (player != null)
+        {
+            player.ForceUnstuck();
+            Resume();    
+        }
+        else
+        {
+            Debug.LogError("PlayerStateMachine не привязан в инспекторе PauseManager!");
+        }
     }
 
     public void ExitToMainMenu()
