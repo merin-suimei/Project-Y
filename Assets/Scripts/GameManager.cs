@@ -3,12 +3,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    //public Player player;
-    public GameObject player;
+    public Player player;
+    public Enemy enemy;
     private void Awake()
     {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("Player");
     }
-
 }

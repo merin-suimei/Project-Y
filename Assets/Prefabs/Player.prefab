@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7865039802177996874}
-  - component: {fileID: 6517084784329917219}
   - component: {fileID: 5272210854209888924}
+  - component: {fileID: 779895698949828518}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -117,23 +117,6 @@ Transform:
   - {fileID: 8042932032142822192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6517084784329917219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084147961149905125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8c00c07681b79488d9cd2de28f4828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraMain: {fileID: 0}
-  rb: {fileID: 315986077355650359}
-  inputSource: {fileID: 5272210854209888924}
-  moveSpeed: 5
-  turnSpeed: 360
 --- !u!114 &5272210854209888924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +131,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMain: {fileID: 0}
   aimOrigin: {fileID: 8042932032142822192}
+--- !u!114 &779895698949828518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084147961149905125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8db1bb1e21be8499c6121a4b315ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMain: {fileID: 0}
+  isometricCam: {fileID: 1012535744780888308}
+  inputSource: {fileID: 5272210854209888924}
+  moveSpeed: 7
+  turnSpeed: 720
 --- !u!1 &2941047824014550479
 GameObject:
   m_ObjectHideFlags: 0
