@@ -156,16 +156,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 10
-  detectionDistance: 3
   detectionSemiconeAngle: 45
   enemyEye: {fileID: 3756311988425602384}
   walkPoints: []
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  patrolState: {fileID: 0}
-  chaseState: {fileID: 0}
-  detectState: {fileID: 0}
   detectImage: {fileID: 0}
 --- !u!1 &5633757746636334352
 GameObject:
