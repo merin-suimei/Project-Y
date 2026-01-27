@@ -1,7 +1,10 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Splines.Interpolators;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
@@ -14,9 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionSemiconeAngle = 45f;
     [SerializeField] private Transform enemyEye;
 
-    [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
     [SerializeField] private LayerMask playerMask;
-
     public StateMachine stateMachine { get; private set; }
     public EnemyPatrolState patrolState { get; private set; }
     public EnemyChaseState chaseState { get; private set; }
@@ -24,9 +25,13 @@ public class Enemy : MonoBehaviour
 
     public NavMeshAgent agent {  get; private set; }    
     public Transform player {  get; private set; }  
-    public Vector3 currentWalkPoint {  get; private set; }
 
     [SerializeField] private Image detectImage;
+
+
+    [SerializeField] private EnemyWalkPoint[] enemyWalkPoints;
+    public EnemyWalkPoint currentEnemyWalkPoint { get; private set; }
+
 
     private void Awake()
     {
@@ -41,8 +46,12 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameManager.instance.player.rb.transform;
-        if (walkPoints.Length > 0)
-            agent.SetDestination(walkPoints[0].position);
+        if (enemyWalkPoints.Length > 0)
+        {
+            agent.SetDestination(enemyWalkPoints[1].transform.position);
+            currentEnemyWalkPoint = enemyWalkPoints[1];
+
+        }
 
         stateMachine.Initialize(patrolState);
         ShowDetectImage(false);
@@ -73,19 +82,19 @@ public class Enemy : MonoBehaviour
     public bool IsPlayerChaseable() =>
         Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
 
-    public Vector3 GetNewWalkPoint()
+    public EnemyWalkPoint GetNewEnemyWalkPoint()
     {
 
-        List<Transform> availableWalkPoints = new List<Transform>();
+        List<EnemyWalkPoint> availableWalkPoints = new List<EnemyWalkPoint>();
 
-        foreach (var point in walkPoints)
+        foreach (var point in enemyWalkPoints)
         {
             availableWalkPoints.Add(point);
         }
 
         for (int i = availableWalkPoints.Count - 1; i >= 0; i--)
         {
-            if (availableWalkPoints[i].position == currentWalkPoint)
+            if (availableWalkPoints[i].transform.position == currentEnemyWalkPoint.transform.position)
             {
                 availableWalkPoints.RemoveAt(i);
                 break;
@@ -94,22 +103,25 @@ public class Enemy : MonoBehaviour
 
         if (availableWalkPoints.Count == 0)
         {
-            availableWalkPoints.AddRange(walkPoints);
+            availableWalkPoints.AddRange(enemyWalkPoints);
         }
 
 
         int randomIndex = Random.Range(0, availableWalkPoints.Count);
-        Vector3 newWalkPoint = availableWalkPoints[randomIndex].position;
+        EnemyWalkPoint newWalkPoint = availableWalkPoints[randomIndex];
 
         return newWalkPoint;
     }
 
-    public void SetWalkPoint(Vector3 nextWalkPoint)
-    {
-        currentWalkPoint = nextWalkPoint;
-        agent.SetDestination(currentWalkPoint);
-    }
 
+    public void SetEnemyWalkPoint(EnemyWalkPoint nextWalkPoint)
+    {
+        currentEnemyWalkPoint = nextWalkPoint;
+        agent.SetDestination(currentEnemyWalkPoint.transform.position);
+
+        if (agent.remainingDistance <= agent.stoppingDistance) {
+        }
+    }
     public void ShowDetectImage(bool value)
     {
         detectImage.gameObject.SetActive(value);

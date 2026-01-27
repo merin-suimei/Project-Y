@@ -8,11 +8,10 @@ public class EnemyDetectState : EnemyState
     public EnemyDetectState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
 
+
     public override void Enter()
     {
         base.Enter();
-
-        enemy.ShowDetectImage(true);
 
         detectDelay = 1.5f;
         detectProgress = 0f;
@@ -24,20 +23,26 @@ public class EnemyDetectState : EnemyState
         base.StateUpdate();
 
         if (enemy.IsPlayerVisible())
+        {
             detectProgress += Time.deltaTime;
+            EventBus.Raise<float>(EventType.OnEnemyDetect, detectProgress);
+        }
+
         else
+        {
             detectProgress -= Time.deltaTime * decaySpeed;
+            EventBus.Raise<float>(EventType.OnEnemyLoseAim, detectProgress);
+        }
 
         if (detectProgress <= 0)
             enemy.stateMachine.ChangeState(enemy.patrolState);
         else if (detectProgress >= detectDelay)
             enemy.stateMachine.ChangeState(enemy.chaseState);
+        
     }
 
     public override void Exit()
     {
         base.Exit();
-
-        enemy.ShowDetectImage(false);
     }
 }

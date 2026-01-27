@@ -1,6 +1,11 @@
+using UnityEngine;
+
 public class EnemyPatrolState : EnemyState
 {
     private bool isWalkPointSet = false;
+    private float timer;
+    private Quaternion targetRot;
+    private float speedRot = 5f;
 
     public EnemyPatrolState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
@@ -17,10 +22,28 @@ public class EnemyPatrolState : EnemyState
             enemy.stateMachine.ChangeState(enemy.detectState);
 
         if (!isWalkPointSet)
-            enemy.SetWalkPoint(enemy.GetNewWalkPoint());
+        {
+            enemy.SetEnemyWalkPoint(enemy.GetNewEnemyWalkPoint());
+            timer = enemy.currentEnemyWalkPoint.waitTime;
+            targetRot = enemy.currentEnemyWalkPoint.transform.rotation;
+
+            isWalkPointSet = true;
+        }
 
         if (isWalkPointSet && enemy.agent.remainingDistance <= 0.1f)
-            isWalkPointSet = false;
+        {
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRot, Time.deltaTime * speedRot);
+
+            if (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                isWalkPointSet = false;
+            }
+        }
+            
     }
 
     public override void Exit()
