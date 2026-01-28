@@ -5,7 +5,6 @@ public class LightCircleFullscreenController : MonoBehaviour
     [SerializeField] private Transform body;
     [SerializeField] private Material lightCircleMaterial;
 
-    // Какая камера должна проецировать позицию игрока
     [SerializeField] private Camera targetCamera;
 
     private void Awake()
@@ -18,14 +17,12 @@ public class LightCircleFullscreenController : MonoBehaviour
     {
         if (lightCircleMaterial == null || body == null || targetCamera == null) return;
 
-        // 0..1 по экрану (Viewport). z — глубина, можно оставить для отладки
         Vector3 vp = targetCamera.WorldToViewportPoint(body.position);
+        float playerDepth01 = vp.z / targetCamera.farClipPlane;
+        Shader.SetGlobalFloat("_PlayerDepth", playerDepth01); // не понимаю, почему с материалаом не работает
 
         //Debug.Log($"vp: {vp}");
-        //lightCircleMaterial.SetFloat("_Intensity", Mathf.PingPong(Time.time, 2f) + 1f);
 
-        // Если игрок за камерой, можно выключить эффект или зажать координаты
-        // (иначе маска может "улетать")
         if (vp.z <= 0f)
             return;
 
