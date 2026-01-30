@@ -2048,6 +2048,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1397039837093142, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: m_EndAngleFade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397039837093142, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: m_StartAngleFade
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1599102072734092638, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_Type
       value: 1
@@ -2111,6 +2119,14 @@ PrefabInstance:
     - target: {fileID: 4790968739033095212, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_FadeScale
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790968739033095212, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: m_EndAngleFade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790968739033095212, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: m_StartAngleFade
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162061393964356028, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: detectImage
