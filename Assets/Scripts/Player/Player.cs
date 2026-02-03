@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerIdleState idleState {  get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerCutsceneState cutsceneState { get; private set; }
+    public PlayerStuckState stuckState {get; private set; }
 
     public Animator animator { get; private set; }  
 
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
 
     private IPlayerInput _input;
     public Vector3 moveDir {  get; private set; }
+
+    private Vector3 checkpointPosition;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,18 +38,30 @@ public class Player : MonoBehaviour
         idleState = new PlayerIdleState(this, stateMachine, "IsIdle");
         moveState = new PlayerMoveState(this, stateMachine, "IsMove");
         cutsceneState = new PlayerCutsceneState(this, stateMachine, "CutScene");
+        stuckState = new PlayerStuckState(this, stateMachine, "Stuck");
     }
 
     private void Start()
     {
+
         _input = ObjectResolver.Resolve<IPlayerInput>();
         if (_input == null)
         {
             _input = new InputSystemListener(); //for test (in final version we need to delete this line)
             Debug.LogError("inputSource does not implement IPlayerInput!");
+
+        if (rb != null)
+        {
+            SetCheckpoint(rb.position);
+        }
+        else
+        {
+            SetCheckpoint(transform.position);
+
         }
 
         stateMachine.Initialize(idleState);
+        }
     }
 
     // Update is called once per frame
@@ -66,6 +81,50 @@ public class Player : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
+    public void SetCheckpoint(Vector3 pos)
+    {
+        checkpointPosition = pos;
+        //Debug.Log($"New Checkpoint Saved: {pos}");
+    }
+
+    public void ForceStuck()
+    {
+        if (stateMachine.CurrentState != stuckState)
+        {
+            stateMachine.ChangeState(stuckState);
+        }
+    }
+
+    public void TeleportToCheckpoint()
+    {
+        if (rb == null) return;
+
+        Vector3 safePos = checkpointPosition + Vector3.up * 0.01f;
+
+        rb.position = safePos;
+
+        SetVelocity(Vector3.zero);
+        rb.angularVelocity = Vector3.zero;
+
+        //Debug.Log("Player Teleported to Checkpoint");
+    }
+
+    public void HandleTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Checkpoint"))
+        {
+            SetCheckpoint(new Vector3(other.transform.position.x, rb.position.y, other.transform.position.z));
+        }
+        else if (other.CompareTag("StuckZone"))
+        {
+            ForceStuck();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleTriggerEnter(other);
+    }
 
     private void RotateToAim()
     {
