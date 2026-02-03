@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
 
         }
 
-        stateMachine.Initialize(idleState);
         }
+        stateMachine.Initialize(idleState);
     }
 
     // Update is called once per frame
