@@ -6,7 +6,6 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.Splines.Interpolators;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     [Header("")]
@@ -19,45 +18,30 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private LayerMask playerMask;
     public StateMachine stateMachine { get; private set; }
-    public EnemyPatrolState patrolState { get; private set; }
     public EnemyChaseState chaseState { get; private set; }
     public EnemyDetectState detectState { get; private set; }
-
-    public NavMeshAgent agent {  get; private set; }    
-    public Transform player {  get; private set; }  
-
-    [SerializeField] private Image detectImage;
+    public virtual EnemyState patrolState { get; protected set; }
+    public NavMeshAgent agent { get; private set; }
+    public Transform player { get; private set; }
 
 
-    [SerializeField] private EnemyWalkPoint[] enemyWalkPoints;
-    public EnemyWalkPoint currentEnemyWalkPoint { get; private set; }
 
+    public float detectDelay { get; private set; } = 0.5f;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
 
         stateMachine = new StateMachine();
-        patrolState = new EnemyPatrolState(this, stateMachine, "IsPatrol");
         chaseState = new EnemyChaseState(this, stateMachine, "IsChase");
         detectState = new EnemyDetectState(this, stateMachine, "IsDetect");
     }
 
-    private void Start()
+    protected virtual void Start() // Сделал protected virtual чтобы можно было переопределить
     {
         player = GameManager.instance.player.rb.transform;
-        if (enemyWalkPoints.Length > 0)
-        {
-            agent.SetDestination(enemyWalkPoints[1].transform.position);
-            currentEnemyWalkPoint = enemyWalkPoints[1];
-
-        }
-
-        stateMachine.Initialize(patrolState);
-        ShowDetectImage(false);
     }
-
-    private void Update()
+    public virtual void Update()
     {
         stateMachine.CurrentState.StateUpdate();
     }
@@ -82,52 +66,8 @@ public class Enemy : MonoBehaviour
     public bool IsPlayerChaseable() =>
         Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
 
-    public EnemyWalkPoint GetNewEnemyWalkPoint()
-    {
 
-        List<EnemyWalkPoint> availableWalkPoints = new List<EnemyWalkPoint>();
-
-        foreach (var point in enemyWalkPoints)
-        {
-            availableWalkPoints.Add(point);
-        }
-
-        for (int i = availableWalkPoints.Count - 1; i >= 0; i--)
-        {
-            if (availableWalkPoints[i].transform.position == currentEnemyWalkPoint.transform.position)
-            {
-                availableWalkPoints.RemoveAt(i);
-                break;
-            }
-        }
-
-        if (availableWalkPoints.Count == 0)
-        {
-            availableWalkPoints.AddRange(enemyWalkPoints);
-        }
-
-
-        int randomIndex = Random.Range(0, availableWalkPoints.Count);
-        EnemyWalkPoint newWalkPoint = availableWalkPoints[randomIndex];
-
-        return newWalkPoint;
-    }
-
-
-    public void SetEnemyWalkPoint(EnemyWalkPoint nextWalkPoint)
-    {
-        currentEnemyWalkPoint = nextWalkPoint;
-        agent.SetDestination(currentEnemyWalkPoint.transform.position);
-
-        if (agent.remainingDistance <= agent.stoppingDistance) {
-        }
-    }
-    public void ShowDetectImage(bool value)
-    {
-        detectImage.gameObject.SetActive(value);
-    }
-
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
         DrawVisionConeGizmos();
@@ -149,5 +89,5 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawLine(transform.position, leftRay);
         Gizmos.DrawLine(transform.position, rightRay);
     }
-    #endif
+#endif
 }

@@ -13,9 +13,10 @@ public class EnemyDetectState : EnemyState
     {
         base.Enter();
 
-        detectDelay = 1.5f;
+        detectDelay = enemy.detectDelay;
         detectProgress = 0f;
         decaySpeed = 1f;
+        EventBus.Raise<Enemy>(EventType.OnEnemyEnterDetect, enemy);
     }
 
     public override void StateUpdate()
@@ -25,7 +26,7 @@ public class EnemyDetectState : EnemyState
         if (enemy.IsPlayerVisible())
         {
             detectProgress += Time.deltaTime;
-            EventBus.Raise<float>(EventType.OnEnemyDetect, detectProgress);
+            EventBus.Raise<float>(EventType.OnEnemyLoseAim, detectProgress);
         }
 
         else
@@ -44,5 +45,6 @@ public class EnemyDetectState : EnemyState
     public override void Exit()
     {
         base.Exit();
+       // EventBus.Raise(EventType.OnEnemyExitDetect);
     }
 }

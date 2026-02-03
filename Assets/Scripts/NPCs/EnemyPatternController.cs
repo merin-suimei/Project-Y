@@ -1,30 +1,40 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class MonsterPatternController : MonoBehaviour
+public class EnemyPatternController : MonoBehaviour
 {
     [SerializeField] private DecalProjector patternProj;
     [SerializeField] private Material instanceMat;
+    [SerializeField] GameObject fillPattern;
+    [SerializeField] Enemy enemy;
+    private float fillTime;
 
-    [SerializeField] private float fillTime = 1.5f;
-
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
-        instanceMat = new Material(patternProj.material);
+        fillPattern.SetActive(false);
+        instanceMat = new Material(patternProj.material.shader);
+        instanceMat.CopyPropertiesFromMaterial(patternProj.material);
+
         patternProj.material = instanceMat;
+        fillTime = enemy.detectDelay;
 
         instanceMat.SetFloat("_FillAmount", 0f);
 
         EventBus.Subscribe<float>(EventType.OnEnemyDetect, StartAnimation);
         EventBus.Subscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
+        EventBus.Subscribe<Enemy>(EventType.OnEnemyEnterDetect, (sender) => { if (sender == this.enemy) fillPattern.SetActive(true); instanceMat.SetFloat("_FillAmount", 0f); });
+        EventBus.Subscribe<Enemy>(EventType.OnEnemyExitChase, (sender) => { if (sender == this.enemy) fillPattern.SetActive(false); instanceMat.SetFloat("_FillAmount", 0f); });
     }
 
-
+    
     private void StartAnimation(float detectProgress)
     {
             float normalizedElapsedTime = Mathf.Clamp01(detectProgress / fillTime); 
             instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
-            Debug.Log(normalizedElapsedTime);
     }
     private void ReverseAnimtion(float detectProgress)
     {
