@@ -1,52 +1,64 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputSystemListener : IPlayerInput, IDisposable
+public class InputSystemListener : MonoBehaviour, IPlayerInput
 {
-    private readonly InputsTypes _input;
+    private InputsTypes _input;
+    private Vector3 _moveDirection;
+    private Vector3 _aimWorldPoint;
 
-    public Vector3 MoveDirection => CalculateMoveDirection();
-    public Vector3 AimWorldPoint => CalculateAimPoint();
-    private Camera camera;
-    public InputSystemListener()
+    public Vector3 MoveDirection => _moveDirection;
+    public Vector3 AimWorldPoint => _aimWorldPoint;
+
+
+    [SerializeField] private Camera cameraMain;
+    [Tooltip("For player - rigidbody")]
+    [SerializeField] private Transform aimOrigin;
+
+    private void Awake()
     {
         _input = new InputsTypes();
-        _input.Enable();
+        if (aimOrigin == null)
+            aimOrigin = transform;
     }
 
-    private Vector3 CalculateMoveDirection()
+    private void OnEnable() => _input.Enable();
+    private void OnDisable() => _input.Disable();
+
+    void Update()
     {
-        if (camera == null)
-        {
-            camera = Camera.main;
-        }
-
-
-        Vector2 move = _input.Player.Move.ReadValue<Vector2>();
-        if (move == Vector2.zero) return Vector3.zero;
-
-        Vector3 forward = camera.transform.forward;
-        Vector3 right = camera.transform.right;
-        forward.y = 0;
-        right.y = 0;
-
-        return (forward.normalized * move.y + right.normalized * move.x);
+        ReadAim();
+        ReadMovement();
     }
 
-    private Vector3 CalculateAimPoint()
+    void ReadMovement()
     {
-        if (camera == null)
-        {
-            camera = Camera.main;
-        }
+        Vector2 _move = _input.Player.Move.ReadValue<Vector2>();
+        Vector3  inputVector = new Vector3(_move.x, 0, _move.y);
 
+        Vector3 camForward = cameraMain.transform.forward;
+        Vector3 camRight = cameraMain.transform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        _moveDirection = camForward * inputVector.z + camRight * inputVector.x;
+    }
+
+    private void ReadAim()
+    {
         Vector2 mousePos = _input.Player.Look.ReadValue<Vector2>();
-        Ray ray = camera.ScreenPointToRay(mousePos);
+        Ray ray = cameraMain.ScreenPointToRay(mousePos);
 
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        Plane groundPlane = new Plane(Vector3.up, aimOrigin.position);
 
-        return groundPlane.Raycast(ray, out float dist) ? ray.GetPoint(dist) : Vector3.zero;
+        if (groundPlane.Raycast(ray, out float distance))
+        {
+            _aimWorldPoint = ray.GetPoint(distance);
+        }
     }
 
-    public void Dispose() => _input.Dispose();
 }
