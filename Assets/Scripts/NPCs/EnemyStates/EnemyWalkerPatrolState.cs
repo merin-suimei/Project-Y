@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class EnemyPatrolState : EnemyState
+public class EnemyWalkerPatrolState : EnemyState
 {
     private bool isWalkPointSet = false;
     private float timer;
     private Quaternion targetRot;
     private float speedRot = 5f;
     EnemyWalker enemyWalker;
-    public EnemyPatrolState(EnemyWalker enemy, StateMachine stateMachine, string animBoolName)
-        : base(enemy, stateMachine, animBoolName) 
+
+    public EnemyWalkerPatrolState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
-        this.enemyWalker = enemy;
+        enemyWalker = (EnemyWalker)enemy;
     }
 
     public override void Enter()
@@ -46,7 +46,7 @@ public class EnemyPatrolState : EnemyState
                 isWalkPointSet = false;
             }
         }
-            
+
     }
 
     public override void Exit()

@@ -16,9 +16,10 @@ public class AimTargetFollower : MonoBehaviour
             return;
         }
 
-        _input = player.GetComponent<IPlayerInput>();
+        _input = ObjectResolver.Resolve<IPlayerInput>();
         if (_input == null)
         {
+
             Debug.LogError("Player does not have a component implementing IPlayerInput");
         }
     }

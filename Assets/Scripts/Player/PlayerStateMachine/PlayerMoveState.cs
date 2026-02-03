@@ -9,6 +9,7 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         base.Enter();
+       // player.animator.SetBool(animBoolName, true);
         player.SetRotationAllowed(true);
         //player.cameraMain.Priority = 0;
        
@@ -27,6 +28,7 @@ public class PlayerMoveState : PlayerState
 
     public override void Exit()
     {
+       // player.animator.SetBool(animBoolName, false);
         base.Exit(); 
     }
 
