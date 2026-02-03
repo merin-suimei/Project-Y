@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public PlayerCutsceneState cutsceneState { get; private set; }
     public PlayerStuckState stuckState {get; private set; }
 
+    public Animator animator { get; private set; }  
+
     // For movement
     [SerializeField] private Camera cameraMain;
     [SerializeField] private GameObject isometricCam;
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb {  get; private set; }
 
     // Input
-    [SerializeField] private MonoBehaviour inputSource;
+    //[SerializeField] private MonoBehaviour inputSource;
     [SerializeField] private float moveSpeed = 7;
     [SerializeField] private float turnSpeed = 720f;
     public float MoveSpeed => moveSpeed;
@@ -30,13 +32,8 @@ public class Player : MonoBehaviour
     private Vector3 checkpointPosition;
     private void Awake()
     {
-        rb = GetComponentInChildren<Rigidbody>();
-        _input = inputSource as IPlayerInput;
-        if (_input == null)
-        {
-            Debug.LogError("inputSource does not implement IPlayerInput!");
-        }
-
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         stateMachine = new StateMachine();
         idleState = new PlayerIdleState(this, stateMachine, "IsIdle");
         moveState = new PlayerMoveState(this, stateMachine, "IsMove");
@@ -46,6 +43,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
+        _input = ObjectResolver.Resolve<IPlayerInput>();
+        if (_input == null)
+        {
+            _input = new InputSystemListener(); //for test (in final version we need to delete this line)
+            Debug.LogError("inputSource does not implement IPlayerInput!");
+
         if (rb != null)
         {
             SetCheckpoint(rb.position);
@@ -53,8 +57,10 @@ public class Player : MonoBehaviour
         else
         {
             SetCheckpoint(transform.position);
+
         }
 
+        }
         stateMachine.Initialize(idleState);
     }
 
@@ -66,8 +72,8 @@ public class Player : MonoBehaviour
             moveDir = _input.MoveDirection;
         }
 
-        stateMachine.CurrentState.StateUpdate();
         RotateToAim();
+        stateMachine.CurrentState.StateUpdate();
     }
 
     public void SetVelocity(Vector3 velocity)
