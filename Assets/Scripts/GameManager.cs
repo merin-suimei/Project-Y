@@ -49,4 +49,11 @@ public class GameManager : MonoBehaviour
         player.rb.transform.position = startPoint;
        // enemy.stateMachine.ChangeState(enemy.patrolState);
     }
+    
+    public void OnSwitchStateChanged(string switchId, bool isOn)
+    {
+        // что-то
+        Debug.Log($"GameManager: switch# [{switchId}] {isOn}");
+        
+    }
 }
