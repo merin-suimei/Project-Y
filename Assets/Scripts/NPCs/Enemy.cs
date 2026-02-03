@@ -1,11 +1,9 @@
-using System;
-using UnityEngine;
-using Random = UnityEngine.Random;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using UnityEngine.Splines.Interpolators;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     [Header("")]
@@ -16,32 +14,41 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionSemiconeAngle = 45f;
     [SerializeField] private Transform enemyEye;
 
+    [SerializeField, Tooltip("Patrol points")] private Transform[] walkPoints;
     [SerializeField] private LayerMask playerMask;
+
     public StateMachine stateMachine { get; private set; }
+    public EnemyPatrolState patrolState { get; private set; }
     public EnemyChaseState chaseState { get; private set; }
     public EnemyDetectState detectState { get; private set; }
-    public virtual EnemyState patrolState { get; protected set; }
-    public NavMeshAgent agent { get; private set; }
-    public Transform player { get; private set; }
 
+    public NavMeshAgent agent {  get; private set; }    
+    public Transform player {  get; private set; }  
+    public Vector3 currentWalkPoint {  get; private set; }
 
+    [SerializeField] private Image detectImage;
 
-    public float detectDelay { get; private set; } = 0.5f;
-
-    protected virtual void Awake()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
 
         stateMachine = new StateMachine();
+        patrolState = new EnemyPatrolState(this, stateMachine, "IsPatrol");
         chaseState = new EnemyChaseState(this, stateMachine, "IsChase");
         detectState = new EnemyDetectState(this, stateMachine, "IsDetect");
     }
 
-    protected virtual void Start() // Сделал protected virtual чтобы можно было переопределить
+    private void Start()
     {
         player = GameManager.instance.player.rb.transform;
+        if (walkPoints.Length > 0)
+            agent.SetDestination(walkPoints[0].position);
+
+        stateMachine.Initialize(patrolState);
+        ShowDetectImage(false);
     }
-    public virtual void Update()
+
+    private void Update()
     {
         stateMachine.CurrentState.StateUpdate();
     }
@@ -66,8 +73,49 @@ public class Enemy : MonoBehaviour
     public bool IsPlayerChaseable() =>
         Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
 
+    public Vector3 GetNewWalkPoint()
+    {
 
-#if UNITY_EDITOR
+        List<Transform> availableWalkPoints = new List<Transform>();
+
+        foreach (var point in walkPoints)
+        {
+            availableWalkPoints.Add(point);
+        }
+
+        for (int i = availableWalkPoints.Count - 1; i >= 0; i--)
+        {
+            if (availableWalkPoints[i].position == currentWalkPoint)
+            {
+                availableWalkPoints.RemoveAt(i);
+                break;
+            }
+        }
+
+        if (availableWalkPoints.Count == 0)
+        {
+            availableWalkPoints.AddRange(walkPoints);
+        }
+
+
+        int randomIndex = Random.Range(0, availableWalkPoints.Count);
+        Vector3 newWalkPoint = availableWalkPoints[randomIndex].position;
+
+        return newWalkPoint;
+    }
+
+    public void SetWalkPoint(Vector3 nextWalkPoint)
+    {
+        currentWalkPoint = nextWalkPoint;
+        agent.SetDestination(currentWalkPoint);
+    }
+
+    public void ShowDetectImage(bool value)
+    {
+        detectImage.gameObject.SetActive(value);
+    }
+
+    #if UNITY_EDITOR
     void OnDrawGizmos()
     {
         DrawVisionConeGizmos();
@@ -89,5 +137,5 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawLine(transform.position, leftRay);
         Gizmos.DrawLine(transform.position, rightRay);
     }
-#endif
+    #endif
 }

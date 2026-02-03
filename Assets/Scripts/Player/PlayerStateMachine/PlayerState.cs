@@ -10,7 +10,7 @@ public class PlayerState : EntityState
 
     public override void Enter()
     {
-        player.animator.SetBool(animBoolName, true);
+
     }
 
     public override void StateUpdate()
@@ -20,6 +20,6 @@ public class PlayerState : EntityState
 
     public override void Exit()
     {
-        player.animator.SetBool(animBoolName, false);
+
     }
 }
