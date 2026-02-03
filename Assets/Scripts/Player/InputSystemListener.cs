@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputSystemListener : IPlayerInput, IDisposable
 {
@@ -7,11 +8,14 @@ public class InputSystemListener : IPlayerInput, IDisposable
 
     public Vector3 MoveDirection => CalculateMoveDirection();
     public Vector3 AimWorldPoint => CalculateAimPoint();
+    public event Action OnInteract;
+    
     private Camera camera;
     public InputSystemListener()
     {
         _input = new InputsTypes();
         _input.Enable();
+        _input.Player.Interact.performed += InteractPerformed;
     }
 
     private Vector3 CalculateMoveDirection()
@@ -47,6 +51,16 @@ public class InputSystemListener : IPlayerInput, IDisposable
 
         return groundPlane.Raycast(ray, out float dist) ? ray.GetPoint(dist) : Vector3.zero;
     }
+    
+    private void InteractPerformed(InputAction.CallbackContext context)
+    {
+        OnInteract?.Invoke();
+    }
 
-    public void Dispose() => _input.Dispose();
+    public void Dispose()
+    {
+        _input.Player.Interact.performed -= InteractPerformed;
+        _input.Disable();
+        _input.Dispose();
+    }
 }

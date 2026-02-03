@@ -1,7 +1,8 @@
 ﻿using System;
+using Environment;
 using UnityEngine;
 
-public class SwitchView : MonoBehaviour
+public class SwitchView : InteractableBase
 {
     [Header("Model Settings")] 
     [SerializeField] private SwitchModel modelData;
@@ -20,8 +21,9 @@ public class SwitchView : MonoBehaviour
     //     // }
     // }
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _model = new SwitchModel(modelData.Id, modelData.IsOn, modelData.IsPreventTurningOff);
         _model.OnStateChanged += HandleStateChanged;
         _controller = new SwitchController(_model);
@@ -49,7 +51,7 @@ public class SwitchView : MonoBehaviour
         }
     }
     
-    public void Interact()
+    public override void Interact()
     {
         //Debug.Log("View: interact");
         _controller.Interact();
