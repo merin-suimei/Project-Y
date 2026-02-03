@@ -13,8 +13,10 @@ public class MainMenuScript : MonoBehaviour
     [Space(10)]
     [Header("Сцены")]
     [Tooltip("Перед тем как перетащить сцену, добавьте её в File → Build Profiles → Scene List.")]
+    [SerializeField] private SceneField mainMenuScene;
     [SerializeField] private SceneField gameScene;
     [SerializeField] private SceneField creditsScene;
+    GameManager gameManager;
 
     private void Awake()
     {
@@ -45,6 +47,10 @@ public class MainMenuScript : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(gameScene);
+        //gameManager.Run();
+
+
+        //EventBus.Raise(EventType.OnClickPlay);
     }
 
     private void AuthorsClick()
@@ -55,6 +61,7 @@ public class MainMenuScript : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(creditsScene);
+        //EventBus.Raise(EventType.OnClickAuthors);
     }
 
     private void ExitClick()

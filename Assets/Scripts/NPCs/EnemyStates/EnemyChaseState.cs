@@ -1,3 +1,5 @@
+//using System.Numerics;
+using UnityEngine;
 public class EnemyChaseState : EnemyState
 {
     public EnemyChaseState(Enemy enemy, StateMachine stateMachine, string animBoolName)
@@ -12,14 +14,21 @@ public class EnemyChaseState : EnemyState
     {
         base.StateUpdate();
 
-        if (enemy.IsPlayerChaseable())
+        /*if (enemy.IsPlayerChaseable())
             enemy.agent.SetDestination(enemy.player.position);
         else
+            enemy.stateMachine.ChangeState(enemy.patrolState);*/
+        enemy.agent.SetDestination(enemy.player.position);
+        if (Vector3.Distance(enemy.transform.position, enemy.player.position) < 1.5) 
+        {
+            EventBus.Raise(EventType.OnEnemyCatchPlayer);
             enemy.stateMachine.ChangeState(enemy.patrolState);
+        }
     }
 
     public override void Exit()
     {
         base.Exit();
+        EventBus.Raise<Enemy>(EventType.OnEnemyExitChase, enemy);
     }
 }
