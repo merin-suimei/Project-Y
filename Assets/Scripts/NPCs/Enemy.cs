@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float chaseSpeed { get; private set; } = 20f;
 
 
-    public float detectDelay { get; private set; } = 0.5f;
+    public float detectDelay { get; private set; } = 1.5f;
 
     protected virtual void Awake()
     {
