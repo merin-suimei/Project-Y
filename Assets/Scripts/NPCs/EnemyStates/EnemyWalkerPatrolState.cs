@@ -54,16 +54,27 @@ public class EnemyWalkerPatrolState : EnemyState
 
     private void CalculatePointIndex()
     {
-        pointIndex += directionIndex;
-        if(pointIndex >= enemyWalker.EnemyWalkPoints.Length - 1)
+        if (enemyWalker.IsPatrolPathClosed)
         {
-            pointIndex = enemyWalker.EnemyWalkPoints.Length - 1;
-            directionIndex = -1;
+            pointIndex++;
+            if (pointIndex >= enemyWalker.EnemyWalkPoints.Length)
+            {
+                pointIndex = 0;
+            }
         }
-        else if (pointIndex <= 0)
+        else
         {
-            pointIndex = 0;
-            directionIndex = 1;
+            pointIndex += directionIndex;
+            if(pointIndex >= enemyWalker.EnemyWalkPoints.Length - 1)
+            {
+                pointIndex = enemyWalker.EnemyWalkPoints.Length - 1;
+                directionIndex = -1;
+            }
+            else if (pointIndex <= 0)
+            {
+                pointIndex = 0;
+                directionIndex = 1;
+            }
         }
     }
 
@@ -71,6 +82,5 @@ public class EnemyWalkerPatrolState : EnemyState
     {
         base.Exit();
         isWalkPointSet = false;
-        Debug.Log("Enter patrol");
     }
 }
