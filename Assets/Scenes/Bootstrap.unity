@@ -148,17 +148,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beaa45af731703f41a1f93bce1db79d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSource: {fileID: 0}
   mainMenuScene:
     m_SceneAsset: {fileID: 102900000, guid: 093f513d7b6f9114589d223f7d6cb5b4, type: 3}
     m_SceneName: MainMenu
   gameScene:
-    m_SceneAsset: {fileID: 102900000, guid: 70f83f85ebdac2a40af2462529b59bc6, type: 3}
-    m_SceneName: Prototype2
+    m_SceneAsset: {fileID: 102900000, guid: 74325153e893c504c820cb052f140202, type: 3}
+    m_SceneName: lvl-1.1
   creditsScene:
     m_SceneAsset: {fileID: 102900000, guid: d85040fb4a8e5db4ca02ef3ce45cea1b, type: 3}
     m_SceneName: CreditsScene
-  gameManager: {fileID: 0}
 --- !u!4 &460339626
 Transform:
   m_ObjectHideFlags: 0

@@ -673,9 +673,12 @@ MonoBehaviour:
   playButton: {fileID: 1267719362}
   authorsButton: {fileID: 1351144307}
   exitButton: {fileID: 1422721428}
+  mainMenuScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
   gameScene:
-    m_SceneAsset: {fileID: 102900000, guid: 70f83f85ebdac2a40af2462529b59bc6, type: 3}
-    m_SceneName: Prototype2
+    m_SceneAsset: {fileID: 102900000, guid: 74325153e893c504c820cb052f140202, type: 3}
+    m_SceneName: lvl-1.1
   creditsScene:
     m_SceneAsset: {fileID: 102900000, guid: d85040fb4a8e5db4ca02ef3ce45cea1b, type: 3}
     m_SceneName: CreditsScene
