@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventType { OnEnemyDetect, OnEnemyLoseAim, OnEnemyEnterDetect, 
-    OnEnemyExitChase, OnClickPlay, OnClickAuthors, OnClickExit, OnEnemyCatchPlayer};
+public enum EventType { OnEnemyDetect, OnEnemyLoseAim, TurnOnEnemyPattern, 
+    TurnOffEnemyPattern, OnClickPlay, OnClickAuthors, OnClickExit, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint};
 public static class EventBus
 {
     private static Dictionary<EventType, Delegate> typedActions = new();

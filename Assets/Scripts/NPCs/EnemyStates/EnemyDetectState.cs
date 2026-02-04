@@ -4,6 +4,7 @@ public class EnemyDetectState : EnemyState
     float detectDelay;
     float detectProgress;
     float decaySpeed;
+    private bool isRotatedToPlayer;
 
     public EnemyDetectState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
@@ -16,12 +17,22 @@ public class EnemyDetectState : EnemyState
         detectDelay = enemy.detectDelay;
         detectProgress = 0f;
         decaySpeed = 1f;
-        EventBus.Raise<Enemy>(EventType.OnEnemyEnterDetect, enemy);
+        isRotatedToPlayer = false;
+        enemy.agent.isStopped = true; 
+        enemy.agent.updateRotation = false;
+        enemy.agent.ResetPath();      
+        enemy.agent.velocity = Vector3.zero;
+        EventBus.Raise<Enemy>(EventType.TurnOnEnemyPattern, enemy);
     }
 
     public override void StateUpdate()
     {
         base.StateUpdate();
+        if (!isRotatedToPlayer) 
+        { 
+            RotateToPlayer();
+            isRotatedToPlayer=true;
+        }
 
         if (enemy.IsPlayerVisible())
         {
@@ -36,15 +47,28 @@ public class EnemyDetectState : EnemyState
         }
 
         if (detectProgress <= 0)
+        {
+            EventBus.Raise<Enemy>(EventType.TurnOffEnemyPattern, enemy);
             enemy.stateMachine.ChangeState(enemy.patrolState);
+        }
         else if (detectProgress >= detectDelay)
             enemy.stateMachine.ChangeState(enemy.chaseState);
         
     }
 
+    private void RotateToPlayer()
+    {
+        Vector3 directionToPlayer = (enemy.player.transform.position - enemy.transform.position).normalized;
+        directionToPlayer.y = 0;
+
+        Quaternion targetQuat = Quaternion.LookRotation(directionToPlayer);
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetQuat, Time.deltaTime);
+    }
     public override void Exit()
     {
         base.Exit();
-       // EventBus.Raise(EventType.OnEnemyExitDetect);
+        enemy.agent.updateRotation = true;
+        enemy.agent.isStopped = false;
+        // EventBus.Raise(EventType.OnEnemyExitDetect);
     }
 }

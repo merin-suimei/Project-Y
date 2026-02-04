@@ -7,7 +7,7 @@ public class EnemyStatic : Enemy
     {
         base.Awake();
 
-        patrolState = new EnemyStaticPatrolState(this, stateMachine, "IsPatrol");
+        patrolState = new EnemyStaticPatrolState(this, stateMachine, "IsIdle");
     }
     protected override void Start()
     {

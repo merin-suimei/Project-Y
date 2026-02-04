@@ -26,8 +26,8 @@ public class EnemyPatternController : MonoBehaviour
 
         EventBus.Subscribe<float>(EventType.OnEnemyDetect, StartAnimation);
         EventBus.Subscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
-        EventBus.Subscribe<Enemy>(EventType.OnEnemyEnterDetect, (sender) => { if (sender == this.enemy) fillPattern.SetActive(true); instanceMat.SetFloat("_FillAmount", 0f); });
-        EventBus.Subscribe<Enemy>(EventType.OnEnemyExitChase, (sender) => { if (sender == this.enemy) fillPattern.SetActive(false); instanceMat.SetFloat("_FillAmount", 0f); });
+        EventBus.Subscribe<Enemy>(EventType.TurnOnEnemyPattern, (sender) => { if (sender == this.enemy) fillPattern.SetActive(true); instanceMat.SetFloat("_FillAmount", 0f); });
+        EventBus.Subscribe<Enemy>(EventType.TurnOffEnemyPattern, (sender) => { if (sender == this.enemy) fillPattern.SetActive(false); instanceMat.SetFloat("_FillAmount", 0f); });
     }
 
     

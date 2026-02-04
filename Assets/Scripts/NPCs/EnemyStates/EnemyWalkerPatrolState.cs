@@ -16,20 +16,27 @@ public class EnemyWalkerPatrolState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        isWalkPointSet = false;
+        Debug.Log("Enter patrol");
     }
 
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (enemyWalker.IsPlayerVisible())
+        if (enemyWalker.IsPlayerVisible() && enemyWalker.IsPlayerChaseable())
+        {
+            enemyWalker.InterruptStay();
+
+            enemyWalker.agent.ResetPath();
             enemyWalker.stateMachine.ChangeState(enemyWalker.detectState);
+
+        }
 
         if (!isWalkPointSet)
         {
             enemyWalker.SetEnemyWalkPoint(enemyWalker.GetNewEnemyWalkPoint());
             timer = enemyWalker.currentEnemyWalkPoint.waitTime;
             targetRot = enemyWalker.currentEnemyWalkPoint.transform.rotation;
-
             isWalkPointSet = true;
         }
 
@@ -37,14 +44,12 @@ public class EnemyWalkerPatrolState : EnemyState
         {
             enemyWalker.transform.rotation = Quaternion.Slerp(enemyWalker.transform.rotation, targetRot, Time.deltaTime * speedRot);
 
-            if (timer >= 0)
+            if (Quaternion.Angle(targetRot, enemyWalker.transform.rotation) <= 1f)
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
+                enemyWalker.ExecutePointStay(timer);
                 isWalkPointSet = false;
             }
+
         }
 
     }
@@ -52,5 +57,7 @@ public class EnemyWalkerPatrolState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        isWalkPointSet = false;
+        Debug.Log("Enter patrol");
     }
 }

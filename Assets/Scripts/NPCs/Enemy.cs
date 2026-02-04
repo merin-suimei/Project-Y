@@ -18,12 +18,17 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private LayerMask playerMask;
     public StateMachine stateMachine { get; private set; }
+
+    public Animator animator { get; private set; }
+    public EnemyIdleState idleState { get; private set; }
     public EnemyChaseState chaseState { get; private set; }
     public EnemyDetectState detectState { get; private set; }
     public virtual EnemyState patrolState { get; protected set; }
     public NavMeshAgent agent { get; private set; }
     public Transform player { get; private set; }
 
+    public float patrolSpeed { get; private set; }
+    [SerializeField] public float chaseSpeed { get; private set; } = 20f;
 
 
     public float detectDelay { get; private set; } = 0.5f;
@@ -31,18 +36,22 @@ public class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
 
         stateMachine = new StateMachine();
-        chaseState = new EnemyChaseState(this, stateMachine, "IsChase");
+        idleState = new EnemyIdleState(this, stateMachine, "IsIdle");
+        chaseState = new EnemyChaseState(this, stateMachine, "IsMove");
         detectState = new EnemyDetectState(this, stateMachine, "IsDetect");
     }
 
     protected virtual void Start() // Сделал protected virtual чтобы можно было переопределить
     {
         player = GameManager.instance.player.rb.transform;
+        patrolSpeed = agent.speed;
     }
     public virtual void Update()
     {
+
         stateMachine.CurrentState.StateUpdate();
     }
 
