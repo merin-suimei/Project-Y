@@ -25,7 +25,8 @@ public class EnemyDetectState : EnemyState
         enemy.agent.updateRotation = false;
         enemy.agent.ResetPath();      
         enemy.agent.velocity = Vector3.zero;
-        EventBus.Raise<Enemy>(EventType.TurnOnEnemyPattern, enemy);
+        EventBus.Raise(EventType.TurnOnEnemyPattern, enemy);
+        EventBus.Raise(EventType.PlayEnemyDetectSound);
     }
 
     public override void StateUpdate()

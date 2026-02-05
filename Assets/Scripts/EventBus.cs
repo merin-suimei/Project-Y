@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EventType { OnEnemyDetect, OnEnemyLoseAim, TurnOnEnemyPattern, 
-    TurnOffEnemyPattern, OnClickPlay, OnClickAuthors, OnClickExit, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint};
+    TurnOffEnemyPattern, OnClickPlay, OnClickAuthors, OnClickExit, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint, PlayPlayerFootStepSound, 
+    StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound};
 public static class EventBus
 {
     private static Dictionary<EventType, Delegate> typedActions = new();

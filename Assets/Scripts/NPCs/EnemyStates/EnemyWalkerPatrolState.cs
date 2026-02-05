@@ -20,6 +20,8 @@ public class EnemyWalkerPatrolState : EnemyState
         base.Enter();
         currentPoint = enemyWalker.EnemyWalkPoints[pointIndex];
         enemy.agent.SetDestination(currentPoint.transform.position);
+
+        EventBus.Raise(EventType.PlayEnemyMoveSound);
     }
 
     public override void StateUpdate()
@@ -81,6 +83,6 @@ public class EnemyWalkerPatrolState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        isWalkPointSet = false;
+        EventBus.Raise(EventType.StopEnemyMoveSound);
     }
 }

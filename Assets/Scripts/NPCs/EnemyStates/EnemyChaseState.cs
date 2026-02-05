@@ -9,6 +9,7 @@ public class EnemyChaseState : EnemyState
     {
         base.Enter();
         enemy.agent.speed = enemy.chaseSpeed;
+        EventBus.Raise(EventType.PlayEnemyMoveSound);
     }
 
     public override void StateUpdate()
@@ -31,6 +32,7 @@ public class EnemyChaseState : EnemyState
     {
         base.Exit();
         EventBus.Raise<Enemy>(EventType.TurnOffEnemyPattern, enemy);
+        EventBus.Raise(EventType.StopEnemyMoveSound);
         enemy.agent.speed = enemy.patrolSpeed;
     }
 }
