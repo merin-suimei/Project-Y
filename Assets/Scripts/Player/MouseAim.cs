@@ -5,6 +5,7 @@ public class AimTargetFollower : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float distanceFromPlayer = 6f;
     [SerializeField] private float followSpeed = 1f;
+    [SerializeField] private Camera cameraMain;
 
     private IPlayerInput _input;
 
@@ -19,7 +20,6 @@ public class AimTargetFollower : MonoBehaviour
         _input = ObjectResolver.Resolve<IPlayerInput>();
         if (_input == null)
         {
-
             Debug.LogError("Player does not have a component implementing IPlayerInput");
         }
     }
@@ -29,16 +29,14 @@ public class AimTargetFollower : MonoBehaviour
 
         if (_input == null || player == null) return;
 
-        Vector3 aimPoint = _input.AimWorldPoint;
-        Vector3 dir = aimPoint - player.position;
-        dir.y = 0;
+        Vector3 aimDir = RotateInputVector(_input.AimDirection);
+        aimDir.y = 0;
 
         Vector3 targetPos;
 
-        if (dir.sqrMagnitude > 0.001f)
+        if (aimDir.sqrMagnitude > 0.001f)
         {
-            dir = dir.normalized;
-            targetPos = player.position + dir * distanceFromPlayer;
+            targetPos = player.position + aimDir * distanceFromPlayer;
         }
         else
         {
@@ -51,8 +49,18 @@ public class AimTargetFollower : MonoBehaviour
             targetPos,
             followSpeed * Time.deltaTime
         );
-            
-            
-        
+    }
+
+    private Vector3 RotateInputVector(Vector2 input)
+    {
+        if (cameraMain == null) cameraMain = Camera.main;
+        if (input == Vector2.zero) return Vector3.zero;
+
+        Vector3 forward = cameraMain.transform.forward;
+        Vector3 right = cameraMain.transform.right;
+        forward.y = 0;
+        right.y = 0;
+
+        return forward.normalized*input.y + right.normalized*input.x;
     }
 }

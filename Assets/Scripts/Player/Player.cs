@@ -1,4 +1,3 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -23,6 +22,7 @@ public class Player : MonoBehaviour
     // Input
     //[SerializeField] private MonoBehaviour inputSource;
     [SerializeField] private float moveSpeed = 7;
+    [SerializeField] private float verticalSpeedMult = 1f;
     [SerializeField] private float turnSpeed = 720f;
     public float MoveSpeed => moveSpeed;
 
@@ -43,24 +43,16 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        if (cameraMain == null) cameraMain = Camera.main;
 
         _input = ObjectResolver.Resolve<IPlayerInput>();
         if (_input == null)
         {
-            _input = new InputSystemListener(); //for test (in final version we need to delete this line)
             Debug.LogError("inputSource does not implement IPlayerInput!");
-
-        if (rb != null)
-        {
-            SetCheckpoint(rb.position);
-        }
-        else
-        {
-            SetCheckpoint(transform.position);
-
         }
 
-        }
+        SetCheckpoint(rb != null ? rb.position : transform.position);
+
         stateMachine.Initialize(idleState);
     }
 
@@ -69,7 +61,10 @@ public class Player : MonoBehaviour
     {
         if (_input != null)
         {
-            moveDir = _input.MoveDirection;
+            Vector2 inputDir = _input.MoveDirection;
+            inputDir.y *= verticalSpeedMult;
+
+            moveDir = RotateInputVector(inputDir);
         }
 
         RotateToAim();
@@ -131,8 +126,7 @@ public class Player : MonoBehaviour
         if (_input == null || !isAllowedToRotate) return;
         Vector3 originPos = rb != null ? rb.position : transform.position;
 
-        Vector3 aim = _input.AimWorldPoint;
-        Vector3 lookDir = aim - originPos;
+        Vector3 lookDir = RotateInputVector(_input.AimDirection);
         lookDir.y = 0;
 
         if (lookDir.sqrMagnitude > 0.001f)
@@ -147,5 +141,17 @@ public class Player : MonoBehaviour
 
             rb.MoveRotation(newRot);
         }
+    }
+
+    private Vector3 RotateInputVector(Vector2 input)
+    {
+        if (input == Vector2.zero) return Vector3.zero;
+
+        Vector3 forward = cameraMain.transform.forward;
+        Vector3 right = cameraMain.transform.right;
+        forward.y = 0;
+        right.y = 0;
+
+        return forward.normalized*input.y + right.normalized*input.x;
     }
 }
