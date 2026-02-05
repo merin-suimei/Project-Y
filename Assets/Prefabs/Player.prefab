@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMain: {fileID: 0}
   isometricCam: {fileID: 8003672111310355191}
-  moveSpeed: 7
+  moveSpeed: 3
   verticalSpeedMult: 1.3
   turnSpeed: 720
 --- !u!1 &1935369192756801215
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6784078435740900930}
-  distanceFromPlayer: 3
+  distanceFromPlayer: 2
   followSpeed: 1
   cameraMain: {fileID: 0}
 --- !u!1 &7165842923671236034
