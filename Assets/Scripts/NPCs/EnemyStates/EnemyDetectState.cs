@@ -5,6 +5,8 @@ public class EnemyDetectState : EnemyState
     float detectProgress;
     float decaySpeed;
     private bool isRotatedToPlayer;
+    private Vector3 detectedPlayerPos;
+    private float detectSpeedRot = 10f;
 
     public EnemyDetectState(Enemy enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
@@ -18,21 +20,20 @@ public class EnemyDetectState : EnemyState
         detectProgress = 0f;
         decaySpeed = 1f;
         isRotatedToPlayer = false;
+        detectedPlayerPos = enemy.player.position;
         enemy.agent.isStopped = true; 
         enemy.agent.updateRotation = false;
         enemy.agent.ResetPath();      
         enemy.agent.velocity = Vector3.zero;
-        EventBus.Raise<Enemy>(EventType.TurnOnEnemyPattern, enemy);
+        EventBus.Raise(EventType.TurnOnEnemyPattern, enemy);
+        EventBus.Raise(EventType.PlayEnemyDetectSound);
     }
 
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (!isRotatedToPlayer) 
-        { 
-            RotateToPlayer();
-            isRotatedToPlayer=true;
-        }
+
+        RotateToPlayer(detectedPlayerPos);
 
         if (enemy.IsPlayerVisible())
         {
@@ -56,13 +57,13 @@ public class EnemyDetectState : EnemyState
         
     }
 
-    private void RotateToPlayer()
+    private void RotateToPlayer(Vector3 playerPos)
     {
-        Vector3 directionToPlayer = (enemy.player.transform.position - enemy.transform.position).normalized;
+        Vector3 directionToPlayer = (playerPos - enemy.transform.position).normalized;
         directionToPlayer.y = 0;
 
         Quaternion targetQuat = Quaternion.LookRotation(directionToPlayer);
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetQuat, Time.deltaTime);
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetQuat, Time.deltaTime * detectSpeedRot);
     }
     public override void Exit()
     {

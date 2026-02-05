@@ -10,10 +10,13 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyWalker : Enemy
 {
-    public EnemyWalkerPatrolState walkerPatrolState;
 
     [SerializeField] private EnemyWalkPoint[] enemyWalkPoints;
-    public EnemyWalkPoint currentEnemyWalkPoint { get; private set; }
+    public EnemyWalkPoint[] EnemyWalkPoints => enemyWalkPoints;
+
+    [SerializeField] private bool isPatrolPathClosed;
+    public bool IsPatrolPathClosed => isPatrolPathClosed;
+
     public override EnemyState patrolState { get; protected set; }
 
     private Coroutine pointStayCoroutine;
@@ -28,12 +31,6 @@ public class EnemyWalker : Enemy
     protected override void Start()
     {
         base.Start();
-        if (enemyWalkPoints.Length > 0)
-        {
-            agent.SetDestination(enemyWalkPoints[1].transform.position);
-            currentEnemyWalkPoint = enemyWalkPoints[1];
-
-        }
         stateMachine.Initialize(patrolState);
     }
     public override void Update()
@@ -66,42 +63,5 @@ public class EnemyWalker : Enemy
         }
     }
 
-    public EnemyWalkPoint GetNewEnemyWalkPoint()
-    {
-
-        List<EnemyWalkPoint> availableWalkPoints = new List<EnemyWalkPoint>();
-
-        foreach (var point in enemyWalkPoints)
-        {
-            availableWalkPoints.Add(point);
-        }
-
-        for (int i = availableWalkPoints.Count - 1; i >= 0; i--)
-        {
-            if (availableWalkPoints[i].transform.position == currentEnemyWalkPoint.transform.position)
-            {
-                availableWalkPoints.RemoveAt(i);
-                break;
-            }
-        }
-
-        if (availableWalkPoints.Count == 0)
-        {
-            availableWalkPoints.AddRange(enemyWalkPoints);
-        }
-
-
-        int randomIndex = Random.Range(0, availableWalkPoints.Count);
-        EnemyWalkPoint newWalkPoint = availableWalkPoints[randomIndex];
-
-        return newWalkPoint;
-    }
-
-
-    public void SetEnemyWalkPoint(EnemyWalkPoint nextWalkPoint)
-    {
-        currentEnemyWalkPoint = nextWalkPoint;
-        agent.SetDestination(currentEnemyWalkPoint.transform.position);
-    }
 
 }

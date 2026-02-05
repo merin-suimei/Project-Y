@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 5809458008053020925}
   - component: {fileID: 5543348136646412340}
   - component: {fileID: 985539517250178080}
+  - component: {fileID: 8484091748450328033}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -236,7 +237,7 @@ Transform:
   m_GameObject: {fileID: 2140153980924317859}
   serializedVersion: 2
   m_LocalRotation: {x: 0.18395132, y: 0, z: 0, w: 0.9829354}
-  m_LocalPosition: {x: -0, y: 0.64, z: 0.2}
+  m_LocalPosition: {x: -0, y: 0.364, z: 0.138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -330,6 +331,21 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &8484091748450328033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140153980924317859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8bca95f7c947b4db5fb152a0d693d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anisotropy: 0.25
+  scattering: 14
+  radius: 0.092
 --- !u!1 &4784059012402451552
 GameObject:
   m_ObjectHideFlags: 0

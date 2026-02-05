@@ -126,7 +126,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlayerDepth: {r: 11.9, g: 17, b: 0, a: 0}
-    - _PlayerPosSS: {r: 0.5671737, g: 0.53366894, b: 12.610922, a: 0}
+    - _PlayerPosSS: {r: 0.47414637, g: 0.40634078, b: 10.679692, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

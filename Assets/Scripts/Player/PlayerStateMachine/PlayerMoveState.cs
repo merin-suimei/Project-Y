@@ -9,8 +9,8 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         base.Enter();
-       // player.animator.SetBool(animBoolName, true);
         player.SetRotationAllowed(true);
+        EventBus.Raise(EventType.PlayPlayerFootStepSound);
         //player.cameraMain.Priority = 0;
        
     }
@@ -29,7 +29,8 @@ public class PlayerMoveState : PlayerState
     public override void Exit()
     {
        // player.animator.SetBool(animBoolName, false);
-        base.Exit(); 
+        base.Exit();
+        EventBus.Raise(EventType.StopPlayerFootStepSound);
     }
 
 }
