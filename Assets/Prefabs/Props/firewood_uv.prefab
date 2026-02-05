@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8938050638174623810}
   - component: {fileID: 4498251574551918139}
   m_Layer: 0
-  m_Name: firewood
+  m_Name: firewood_uv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2792803898420552693}
-  m_Mesh: {fileID: -797586249709398393, guid: 187b9033c7ccf1d44ae435716e4a9358, type: 3}
+  m_Mesh: {fileID: -4151020911630148230, guid: 6730347257e7a064eae9100349a43a3f, type: 3}
 --- !u!23 &8938050638174623810
 MeshRenderer:
   m_ObjectHideFlags: 0
