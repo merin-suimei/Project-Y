@@ -159,11 +159,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 10
+  nearbyDetectionRange: 2
   detectionSemiconeAngle: 18.5
   enemyEye: {fileID: 6778303737074897439}
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  raycastIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  <detectDelay>k__BackingField: 1
 --- !u!195 &1966592435824988444
 NavMeshAgent:
   m_ObjectHideFlags: 0

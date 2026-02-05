@@ -11,12 +11,15 @@ public class Enemy : MonoBehaviour
     [Header("")]
     [Tooltip("Range to detect possible collision")]
     [SerializeField] private float detectionRange = 10f;
+    [Tooltip("Range to detect possible collision")]
+    [SerializeField] private float nearbyDetectionRange = 2f;
     [Tooltip("Semicon angle for detection (in degrees)")]
     [Range(0f, 90f)]
     [SerializeField] private float detectionSemiconeAngle = 45f;
     [SerializeField] private Transform enemyEye;
 
     [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask raycastIgnore;
     public StateMachine stateMachine { get; private set; }
 
     public Animator animator { get; private set; }
@@ -31,7 +34,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float chaseSpeed { get; private set; } = 20f;
 
 
-    public float detectDelay { get; private set; } = 1.5f;
+    [field: SerializeField] public float detectDelay { get; private set; } = 1.5f;
 
     protected virtual void Awake()
     {
@@ -44,7 +47,7 @@ public class Enemy : MonoBehaviour
         detectState = new EnemyDetectState(this, stateMachine, "IsDetect");
     }
 
-    protected virtual void Start() // Сделал protected virtual чтобы можно было переопределить
+    protected virtual void Start() // пїЅпїЅпїЅпїЅпїЅпїЅ protected virtual пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         player = GameManager.instance.player.rb.transform;
         patrolSpeed = agent.speed;
@@ -59,11 +62,15 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = (player.position - enemyEye.position).normalized;
 
-        if (Vector3.Angle(enemyEye.forward, dir) > detectionSemiconeAngle)
-            return false;
-        if (Vector3.Distance(enemyEye.position, player.position) > detectionRange)
-            return false;
-        if (Physics.Raycast(enemyEye.position, dir, out RaycastHit hit, detectionRange))
+        if (Vector3.Distance(transform.position, player.position) > nearbyDetectionRange)
+        {
+            if (Vector3.Angle(enemyEye.forward, dir) > detectionSemiconeAngle)
+                return false;
+            if (Vector3.Distance(enemyEye.position, player.position) > detectionRange)
+                return false;
+        }
+
+        if (Physics.Raycast(enemyEye.position, dir, out RaycastHit hit, detectionRange, ~raycastIgnore))
         {
             if (hit.transform == player)
                 return true;
@@ -82,6 +89,9 @@ public class Enemy : MonoBehaviour
         DrawVisionConeGizmos();
         UnityEditor.Handles.color = Color.red;
         UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionRange);
+
+        UnityEditor.Handles.color = Color.yellow;
+        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, nearbyDetectionRange);
     }
 
     private void DrawVisionConeGizmos()

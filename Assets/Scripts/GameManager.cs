@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        EventBus.Subscribe(EventType.OnEnemyCatchPlayer, TeleportToStartPoint);
+        EventBus.Subscribe(EventType.OnEnemyCatchPlayer, player.TeleportToCheckpoint);
     }
 
     public void Run()
@@ -42,11 +42,5 @@ public class GameManager : MonoBehaviour
             yield return null;
         
         }
-    }
-
-    private void TeleportToStartPoint()
-    {
-        player.rb.transform.position = startPoint;
-       // enemy.stateMachine.ChangeState(enemy.patrolState);
     }
 }

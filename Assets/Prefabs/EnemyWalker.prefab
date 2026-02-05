@@ -158,11 +158,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRange: 7
+  nearbyDetectionRange: 2
   detectionSemiconeAngle: 35
   enemyEye: {fileID: 3756311988425602384}
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  raycastIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  <detectDelay>k__BackingField: 1
   enemyWalkPoints:
   - {fileID: 0}
   - {fileID: 0}
