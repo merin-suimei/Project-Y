@@ -9,6 +9,7 @@ public class EnemyState : EntityState
     public override void Enter()
     {
         base.Enter();
+        enemy.animator.SetBool(animBoolName, true);
     }
 
     public override void StateUpdate()
@@ -19,5 +20,6 @@ public class EnemyState : EntityState
     public override void Exit()
     {
         base.Exit();
+        enemy.animator.SetBool(animBoolName, false);
     }
 }

@@ -1,9 +1,17 @@
+/*using UnityEngine;
+
 public class EnemyPatrolState : EnemyState
 {
     private bool isWalkPointSet = false;
-
-    public EnemyPatrolState(Enemy enemy, StateMachine stateMachine, string animBoolName)
-        : base(enemy, stateMachine, animBoolName) {}
+    private float timer;
+    private Quaternion targetRot;
+    private float speedRot = 5f;
+    EnemyWalker enemyWalker;
+    public EnemyPatrolState(EnemyWalker enemy, StateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName) 
+    {
+        this.enemyWalker = enemy;
+    }
 
     public override void Enter()
     {
@@ -13,14 +21,32 @@ public class EnemyPatrolState : EnemyState
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (enemy.IsPlayerVisible())
-            enemy.stateMachine.ChangeState(enemy.detectState);
+        if (enemyWalker.IsPlayerVisible())
+            enemyWalker.stateMachine.ChangeState(enemyWalker.detectState);
 
         if (!isWalkPointSet)
-            enemy.SetWalkPoint(enemy.GetNewWalkPoint());
+        {
+            enemyWalker.SetEnemyWalkPoint(enemyWalker.GetNewEnemyWalkPoint());
+            timer = enemyWalker.currentEnemyWalkPoint.waitTime;
+            targetRot = enemyWalker.currentEnemyWalkPoint.transform.rotation;
 
-        if (isWalkPointSet && enemy.agent.remainingDistance <= 0.1f)
-            isWalkPointSet = false;
+            isWalkPointSet = true;
+        }
+
+        if (isWalkPointSet && enemyWalker.agent.remainingDistance <= 0.1f)
+        {
+            enemyWalker.transform.rotation = Quaternion.Slerp(enemyWalker.transform.rotation, targetRot, Time.deltaTime * speedRot);
+
+            if (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                isWalkPointSet = false;
+            }
+        }
+            
     }
 
     public override void Exit()
@@ -28,3 +54,4 @@ public class EnemyPatrolState : EnemyState
         base.Exit();
     }
 }
+*/

@@ -12,13 +12,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ignore NavMesh
   - Water
   - UI
   - Player
   - Enemy
-  - 
-  - 
+  - Wall
+  - Floor
   - 
   - 
   - 

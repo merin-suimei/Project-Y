@@ -1,4 +1,3 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +10,8 @@ public class Player : MonoBehaviour
     public PlayerCutsceneState cutsceneState { get; private set; }
     public PlayerStuckState stuckState {get; private set; }
 
+    public Animator animator { get; private set; }  
+
     // For movement
     [SerializeField] private Camera cameraMain;
     [SerializeField] private GameObject isometricCam;
@@ -19,8 +20,9 @@ public class Player : MonoBehaviour
     public Rigidbody rb {  get; private set; }
 
     // Input
-    [SerializeField] private MonoBehaviour inputSource;
+    //[SerializeField] private MonoBehaviour inputSource;
     [SerializeField] private float moveSpeed = 7;
+    [SerializeField] private float verticalSpeedMult = 1f;
     [SerializeField] private float turnSpeed = 720f;
     public float MoveSpeed => moveSpeed;
 
@@ -30,13 +32,8 @@ public class Player : MonoBehaviour
     private Vector3 checkpointPosition;
     private void Awake()
     {
-        rb = GetComponentInChildren<Rigidbody>();
-        _input = inputSource as IPlayerInput;
-        if (_input == null)
-        {
-            Debug.LogError("inputSource does not implement IPlayerInput!");
-        }
-
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         stateMachine = new StateMachine();
         idleState = new PlayerIdleState(this, stateMachine, "IsIdle");
         moveState = new PlayerMoveState(this, stateMachine, "IsMove");
@@ -46,14 +43,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        if (rb != null)
+        if (cameraMain == null) cameraMain = Camera.main;
+
+        _input = ObjectResolver.Resolve<IPlayerInput>();
+        if (_input == null)
         {
-            SetCheckpoint(rb.position);
+            Debug.LogError("inputSource does not implement IPlayerInput!");
         }
-        else
-        {
-            SetCheckpoint(transform.position);
-        }
+
+        SetCheckpoint(rb != null ? rb.position : transform.position);
 
         stateMachine.Initialize(idleState);
     }
@@ -63,11 +61,14 @@ public class Player : MonoBehaviour
     {
         if (_input != null)
         {
-            moveDir = _input.MoveDirection;
+            Vector2 inputDir = _input.MoveDirection;
+            inputDir.y *= verticalSpeedMult;
+
+            moveDir = RotateInputVector(inputDir);
         }
 
-        stateMachine.CurrentState.StateUpdate();
         RotateToAim();
+        stateMachine.CurrentState.StateUpdate();
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -125,8 +126,7 @@ public class Player : MonoBehaviour
         if (_input == null || !isAllowedToRotate) return;
         Vector3 originPos = rb != null ? rb.position : transform.position;
 
-        Vector3 aim = _input.AimWorldPoint;
-        Vector3 lookDir = aim - originPos;
+        Vector3 lookDir = RotateInputVector(_input.AimDirection);
         lookDir.y = 0;
 
         if (lookDir.sqrMagnitude > 0.001f)
@@ -141,5 +141,17 @@ public class Player : MonoBehaviour
 
             rb.MoveRotation(newRot);
         }
+    }
+
+    private Vector3 RotateInputVector(Vector2 input)
+    {
+        if (input == Vector2.zero) return Vector3.zero;
+
+        Vector3 forward = cameraMain.transform.forward;
+        Vector3 right = cameraMain.transform.right;
+        forward.y = 0;
+        right.y = 0;
+
+        return forward.normalized*input.y + right.normalized*input.x;
     }
 }

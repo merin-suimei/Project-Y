@@ -29,6 +29,8 @@ public class MovingText : MonoBehaviour
             LayoutRebuilder.ForceRebuildLayoutImmediate(scrollRect.content);
             scrollRect.verticalNormalizedPosition = 1f;
         }
+
+        creditsText.text = creditsTextAsset.text;
     }
 
     void EndCredits()

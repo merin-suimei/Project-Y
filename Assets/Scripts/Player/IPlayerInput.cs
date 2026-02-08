@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 public interface IPlayerInput
 {
-    Vector3 MoveDirection { get; }
+    Vector2 MoveDirection { get; }
 
-    Vector3 AimWorldPoint { get; }
-
+    Vector2 AimDirection { get; }
 }
