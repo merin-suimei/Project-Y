@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button authorsButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button settingsButton;
 
     [Space(10)]
     [Header("Сцены")]
@@ -18,10 +19,13 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private SceneField creditsScene;
     GameManager gameManager;
 
+    [SerializeField] private GameObject SettingsPopupUI;
+
     private void Awake()
     {
         playButton.onClick.AddListener(PlayClick);
         authorsButton.onClick.AddListener(AuthorsClick);
+        settingsButton.onClick.AddListener(SettingsClick);
         exitButton.onClick.AddListener(ExitClick);
     }
 
@@ -62,6 +66,11 @@ public class MainMenuScript : MonoBehaviour
         }
         SceneManager.LoadScene(creditsScene);
         //EventBus.Raise(EventType.OnClickAuthors);
+    }
+
+    private void SettingsClick()
+    {
+        SettingsPopupUI.SetActive(true);
     }
 
     private void ExitClick()
