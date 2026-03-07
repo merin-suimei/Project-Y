@@ -6,7 +6,6 @@ public enum EventType { ResetGameState, UpdateGameState, ResetSettings, UpdateSe
     LoadScene, UpdatePosition, OnObjectToggle,
     OnEnemyDetect, OnEnemyLoseAim, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint,
     TurnOnEnemyPattern, TurnOffEnemyPattern,
-    OnClickPlay, OnClickAuthors, OnClickExit,
     PlayPlayerFootStepSound, StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound };
 public static class EventBus
 {
