@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyWalkerPatrolState : EnemyState
 {
-    private bool isWalkPointSet = false;
     private Quaternion targetRot;
     private float speedRot = 5f;
     private EnemyWalker enemyWalker;

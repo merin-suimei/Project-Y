@@ -4,7 +4,6 @@ public class EnemyDetectState : EnemyState
     float detectDelay;
     float detectProgress;
     float decaySpeed;
-    private bool isRotatedToPlayer;
     private Vector3 detectedPlayerPos;
     private float detectSpeedRot = 10f;
 
@@ -19,7 +18,6 @@ public class EnemyDetectState : EnemyState
         detectDelay = enemy.detectDelay;
         detectProgress = 0f;
         decaySpeed = 1f;
-        isRotatedToPlayer = false;
         detectedPlayerPos = enemy.player.position;
         enemy.agent.isStopped = true; 
         enemy.agent.updateRotation = false;
