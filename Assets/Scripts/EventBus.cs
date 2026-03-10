@@ -6,7 +6,7 @@ public enum EventType { ResetGameState, UpdateGameState, ResetSettings, UpdateSe
     LoadScene, UpdatePosition, OnObjectToggle,
     OnEnemyDetect, OnEnemyLoseAim, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint,
     TurnOnEnemyPattern, TurnOffEnemyPattern,
-    PlayPlayerFootStepSound, StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound };
+    PlayPlayerFootStepSound, StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound, OnClickPlay, OnClickAuthors };
 public static class EventBus
 {
     private static Dictionary<EventType, Delegate> typedActions = new();
