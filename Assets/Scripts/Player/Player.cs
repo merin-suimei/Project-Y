@@ -24,6 +24,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7;
     [SerializeField] private float verticalSpeedMult = 1f;
     [SerializeField] private float turnSpeed = 720f;
+    [Tooltip("Ось X: от -1 (назад) до 1 (вперед). Ось Y: множитель скорости движения")]
+    [SerializeField] private AnimationCurve moveSpeedCurve = AnimationCurve.Linear(-1f, 0.6f, 1f, 1f);
+    
+    [Tooltip("Ось X: от -1 (назад) до 1 (вперед). Ось Y: множитель скорости анимации")]
+    [SerializeField] private AnimationCurve animSpeedCurve = AnimationCurve.Linear(-1f, 0.75f, 1f, 1f);
     public float MoveSpeed => moveSpeed;
 
     private IPlayerInput _input;
@@ -74,6 +79,16 @@ public class Player : MonoBehaviour
     public void SetVelocity(Vector3 velocity)
     {
         rb.linearVelocity = velocity;
+    }
+
+    public float GetMoveSpeedFactor()
+    {
+        return moveSpeedCurve.Evaluate(GetDirectionDot());
+    }
+
+    public float GetAnimSpeedFactor()
+    {
+        return animSpeedCurve.Evaluate(GetDirectionDot());
     }
 
     public void SetCheckpoint(Vector3 pos)
@@ -153,5 +168,21 @@ public class Player : MonoBehaviour
         right.y = 0;
 
         return forward.normalized*input.y + right.normalized*input.x;
+    }
+    
+    private float GetDirectionDot()
+    {
+        if (moveDir.sqrMagnitude < 0.001f)
+        {
+            return 1f; 
+        }
+
+        Vector3 lookDirection = rb.rotation * Vector3.forward;
+        lookDirection.y = 0;
+        lookDirection.Normalize();
+
+        Vector3 movementDirection = moveDir.normalized;
+
+        return Vector3.Dot(lookDirection, movementDirection);
     }
 }

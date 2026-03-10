@@ -23,12 +23,25 @@ public class PlayerMoveState : PlayerState
             stateMachine.ChangeState(player.idleState);
         }
 
-        player.SetVelocity(new Vector3(player.moveDir.x*player.MoveSpeed, player.rb.linearVelocity.y, player.moveDir.z * player.MoveSpeed));
+        //Старое управление
+        //player.SetVelocity(new Vector3(player.moveDir.x*player.MoveSpeed, player.rb.linearVelocity.y, player.moveDir.z * player.MoveSpeed));
+
+        //Новое управление
+        float moveSpeedFactor = player.GetMoveSpeedFactor();
+        float animSpeedFactor = player.GetAnimSpeedFactor();
+
+        player.animator.speed = animSpeedFactor;
+        player.SetVelocity(new Vector3(
+            player.moveDir.x * player.MoveSpeed * moveSpeedFactor,
+            player.rb.linearVelocity.y,
+            player.moveDir.z * player.MoveSpeed * moveSpeedFactor
+        ));
     }
 
     public override void Exit()
     {
        // player.animator.SetBool(animBoolName, false);
+        player.animator.speed = 1f;
         base.Exit();
         EventBus.Raise(EventType.StopPlayerFootStepSound);
     }
