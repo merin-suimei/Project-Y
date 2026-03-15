@@ -60,17 +60,17 @@ public class Enemy : MonoBehaviour
 
     public bool IsPlayerVisible()
     {
-        Vector3 dir = (player.position - enemyEye.position).normalized;
+        Vector3 dir = (player.position - transform.position).normalized;
 
         if (Vector3.Distance(transform.position, player.position) > nearbyDetectionRange)
         {
-            if (Vector3.Angle(enemyEye.forward, dir) > detectionSemiconeAngle)
+            if (Vector3.Angle(transform.forward, dir) > detectionSemiconeAngle)
                 return false;
-            if (Vector3.Distance(enemyEye.position, player.position) > detectionRange)
+            if (Vector3.Distance(transform.position, player.position) > detectionRange)
                 return false;
         }
 
-        if (Physics.Raycast(enemyEye.position, dir, out RaycastHit hit, detectionRange, ~raycastIgnore))
+        if (Physics.Raycast(enemyEye.position, (player.position - enemyEye.position).normalized, out RaycastHit hit, detectionRange*2, ~raycastIgnore))
         {
             if (hit.transform == player)
                 return true;
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
     }
 
     public bool IsPlayerChaseable() =>
-        Vector3.Distance(enemyEye.position, player.position) <= detectionRange;
+        Vector3.Distance(transform.position, player.position) <= detectionRange;
 
 
 #if UNITY_EDITOR
