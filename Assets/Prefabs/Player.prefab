@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMain: {fileID: 0}
   isometricCam: {fileID: 8003672111310355191}
-  moveSpeed: 3
+  moveSpeed: 2
   verticalSpeedMult: 1.3
   turnSpeed: 720
 --- !u!1 &1935369192756801215
