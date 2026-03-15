@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventType { OnEnemyDetect, OnEnemyLoseAim, TurnOnEnemyPattern, 
-    TurnOffEnemyPattern, OnClickPlay, OnClickAuthors, OnClickExit, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint, PlayPlayerFootStepSound, 
-    StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound};
+public enum EventType { ResetGameState, UpdateGameState, ResetSettings, UpdateSettings,
+    LoadScene, UpdatePosition, OnObjectToggle,
+    OnEnemyDetect, OnEnemyLoseAim, OnEnemyCatchPlayer, IsEnemyOnPatrolPoint,
+    TurnOnEnemyPattern, TurnOffEnemyPattern,
+    PlayPlayerFootStepSound, StopPlayerFootStepSound, PlayEnemyMoveSound, StopEnemyMoveSound, PlayEnemyDetectSound, OnClickPlay, OnClickAuthors };
 public static class EventBus
 {
     private static Dictionary<EventType, Delegate> typedActions = new();

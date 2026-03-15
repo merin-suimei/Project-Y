@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
     [Header("Кнопки")]
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button StartNewGameButton;
+    [SerializeField] private Button continuePlayButton;
     [SerializeField] private Button authorsButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button settingsButton;
 
     [Space(10)]
     [Header("Сцены")]
@@ -16,12 +18,16 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private SceneField mainMenuScene;
     [SerializeField] private SceneField gameScene;
     [SerializeField] private SceneField creditsScene;
-    GameManager gameManager;
+
+    [SerializeField] private GameObject SettingsPopupUI;
+    [SerializeField] private GameObject StartNewGameConfirmationPopup;
 
     private void Awake()
     {
-        playButton.onClick.AddListener(PlayClick);
+        StartNewGameButton.onClick.AddListener(StartNewGameClick);
+        continuePlayButton.onClick.AddListener(ContinueClick);
         authorsButton.onClick.AddListener(AuthorsClick);
+        settingsButton.onClick.AddListener(SettingsClick);
         exitButton.onClick.AddListener(ExitClick);
     }
 
@@ -39,20 +45,17 @@ public class MainMenuScript : MonoBehaviour
             es.SetSelectedGameObject(es.firstSelectedGameObject);
     }
 
-    private void PlayClick()
+    private void StartNewGameClick()
     {
-        if (gameScene == null)
-        {
-            Debug.Log("gameScene не установлена в инспекторе");
-            return;
-        }
-        SceneManager.LoadScene(gameScene);
-        //gameManager.Run();
+        StartNewGameConfirmationPopup.gameObject.SetActive(true);
 
-
-        //EventBus.Raise(EventType.OnClickPlay);
     }
 
+    private void ContinueClick()
+    {
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        SceneManager.LoadScene(gameState.currentLevel);
+    }
     private void AuthorsClick()
     {
         if (creditsScene == null)
@@ -61,7 +64,11 @@ public class MainMenuScript : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(creditsScene);
-        //EventBus.Raise(EventType.OnClickAuthors);
+    }
+
+    private void SettingsClick()
+    {
+        SettingsPopupUI.SetActive(true);
     }
 
     private void ExitClick()
