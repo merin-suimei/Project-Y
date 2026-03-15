@@ -27,8 +27,8 @@ public class GameInitiator : MonoBehaviour
         //gameManager = gameObject.AddComponent<GameManager>();
         ObjectResolver.RegisterInstance<IPlayerInput>(_input);
 
-        EventBus.Subscribe(EventType.OnClickPlay, PlayClickLogic);
-        EventBus.Subscribe(EventType.OnClickAuthors, AuthorsClickLogic);
+        //EventBus.Subscribe(EventType.OnClickPlay, PlayClickLogic);
+        //EventBus.Subscribe(EventType.OnClickAuthors, AuthorsClickLogic);
     }
 
     private void PlayClickLogic()
