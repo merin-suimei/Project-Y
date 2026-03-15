@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Control Settings")]
+    [SerializeField] private ControlScheme currentControlScheme;
+
     private bool isAllowedToRotate;
     public void SetRotationAllowed(bool isAllowed) => isAllowedToRotate = isAllowed;
     private StateMachine stateMachine;
@@ -24,6 +27,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7;
     [SerializeField] private float verticalSpeedMult = 1f;
     [SerializeField] private float turnSpeed = 720f;
+    [SerializeField] private float accelerationRate = 10f; 
+    public float AccelerationRate => accelerationRate;
     [Tooltip("Ось X: от -1 (назад) до 1 (вперед). Ось Y: множитель скорости движения")]
     [SerializeField] private AnimationCurve moveSpeedCurve = AnimationCurve.Linear(-1f, 0.6f, 1f, 1f);
     
@@ -64,12 +69,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_input != null)
+        if (_input != null && currentControlScheme != null)
         {
             Vector2 inputDir = _input.MoveDirection;
             inputDir.y *= verticalSpeedMult;
 
-            moveDir = RotateInputVector(inputDir);
+            moveDir = currentControlScheme.CalculateMoveDirection(inputDir, transform, cameraMain.transform);
+            //moveDir = RotateInputVector(inputDir);
         }
 
         RotateToAim();
@@ -138,10 +144,10 @@ public class Player : MonoBehaviour
 
     private void RotateToAim()
     {
-        if (_input == null || !isAllowedToRotate) return;
-        Vector3 originPos = rb != null ? rb.position : transform.position;
+        if (_input == null || !isAllowedToRotate || currentControlScheme == null) return;
 
-        Vector3 lookDir = RotateInputVector(_input.AimDirection);
+        // Vector3 lookDir = RotateInputVector(_input.AimDirection);
+        Vector3 lookDir = currentControlScheme.CalculateLookDirection(_input.AimDirection, moveDir, transform, cameraMain.transform);
         lookDir.y = 0;
 
         if (lookDir.sqrMagnitude > 0.001f)
@@ -164,12 +170,15 @@ public class Player : MonoBehaviour
 
         Vector3 forward = cameraMain.transform.forward;
         Vector3 right = cameraMain.transform.right;
+        // Vector3 forward = rb.transform.forward;
+        // Vector3 right = rb.transform.right;
+
         forward.y = 0;
         right.y = 0;
 
         return forward.normalized*input.y + right.normalized*input.x;
     }
-    
+
     private float GetDirectionDot()
     {
         if (moveDir.sqrMagnitude < 0.001f)

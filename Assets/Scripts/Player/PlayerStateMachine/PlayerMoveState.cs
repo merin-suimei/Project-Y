@@ -21,6 +21,7 @@ public class PlayerMoveState : PlayerState
         if (player.moveDir.sqrMagnitude < 0.1f)
         {
             stateMachine.ChangeState(player.idleState);
+            return;
         }
 
         //Старое управление
@@ -31,11 +32,16 @@ public class PlayerMoveState : PlayerState
         float animSpeedFactor = player.GetAnimSpeedFactor();
 
         player.animator.speed = animSpeedFactor;
-        player.SetVelocity(new Vector3(
-            player.moveDir.x * player.MoveSpeed * moveSpeedFactor,
-            player.rb.linearVelocity.y,
-            player.moveDir.z * player.MoveSpeed * moveSpeedFactor
-        ));
+
+        Vector3 targetVelocity = player.moveDir * (player.MoveSpeed * moveSpeedFactor);
+        Vector3 currentVelocity = player.rb.linearVelocity;
+        targetVelocity.y = currentVelocity.y;
+        Vector3 smoothedVelocity = Vector3.Lerp(
+            currentVelocity, 
+            targetVelocity, 
+            player.AccelerationRate * Time.deltaTime
+        );
+        player.SetVelocity(smoothedVelocity);
     }
 
     public override void Exit()
