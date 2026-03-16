@@ -157,9 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee8690ceea0731429533de51a4221d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 7
+  detectionRange: 5
   nearbyDetectionRange: 2
-  detectionSemiconeAngle: 35
+  detectionSemiconeAngle: 30
   enemyEye: {fileID: 3756311988425602384}
   playerMask:
     serializedVersion: 2
