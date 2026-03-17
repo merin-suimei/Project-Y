@@ -22,6 +22,8 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private GameObject SettingsPopupUI;
     [SerializeField] private GameObject StartNewGameConfirmationPopup;
 
+    [SerializeField] private DebugSceneSwitcher debugSceneSwitcherPrefab; 
+
     private void Awake()
     {
         StartNewGameButton.onClick.AddListener(StartNewGameClick);
@@ -29,6 +31,22 @@ public class MainMenuScript : MonoBehaviour
         authorsButton.onClick.AddListener(AuthorsClick);
         settingsButton.onClick.AddListener(SettingsClick);
         exitButton.onClick.AddListener(ExitClick);
+
+        InitDebugSwitcher();
+    }
+
+    private void InitDebugSwitcher()
+    {
+        if (ObjectResolver.Resolve<DebugSceneSwitcher>() == null)
+        {
+            if (debugSceneSwitcherPrefab != null)
+            {
+                DebugSceneSwitcher switcherInstance = Instantiate(debugSceneSwitcherPrefab);
+                ObjectResolver.RegisterInstance(debugSceneSwitcherPrefab);
+                DontDestroyOnLoad(switcherInstance.gameObject);
+            }
+        }
+
     }
 
     private void OnEnable()
