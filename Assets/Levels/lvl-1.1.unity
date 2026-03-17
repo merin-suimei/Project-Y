@@ -55320,7 +55320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347629389510405410, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6465928124494747590, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: player
@@ -62873,6 +62873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded085d155cde949b60f67a11dbc3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  version: 2
+  globalVolume: 0
   mode: 2
   size: {x: 11.553222, y: 11.089485, z: 12.1976795}
   overrideRendererFilters: 0
@@ -62903,8 +62905,6 @@ MonoBehaviour:
     e33: 1
   cachedHashCode: 420526116
   fillEmptySpaces: 0
-  version: 2
-  globalVolume: 0
 --- !u!43 &1014733861
 Mesh:
   m_ObjectHideFlags: 0
