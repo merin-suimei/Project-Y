@@ -15,6 +15,10 @@ public class GameInitiator : MonoBehaviour
     [SerializeField] private SceneField creditsScene;
     GameManager gameManager;
 
+    [Space(10)]
+    [SerializeField] private GameState gameState;
+    [SerializeField] private Settings settings;
+
 
     private void Start()
     {
@@ -26,6 +30,7 @@ public class GameInitiator : MonoBehaviour
         //_input = gameObject.AddComponent<InputSystemListener()>();
         //gameManager = gameObject.AddComponent<GameManager>();
         ObjectResolver.RegisterInstance<IPlayerInput>(_input);
+        ObjectResolver.RegisterInstance(gameState);
 
         EventBus.Subscribe(EventType.OnClickPlay, PlayClickLogic);
         EventBus.Subscribe(EventType.OnClickAuthors, AuthorsClickLogic);

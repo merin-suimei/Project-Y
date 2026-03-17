@@ -157,6 +157,8 @@ MonoBehaviour:
   creditsScene:
     m_SceneAsset: {fileID: 102900000, guid: d85040fb4a8e5db4ca02ef3ce45cea1b, type: 3}
     m_SceneName: CreditsScene
+  gameState: {fileID: 11400000, guid: 6f82fccedc3c955ce8489655efd5ec86, type: 2}
+  settings: {fileID: 11400000, guid: f4744b510545d637d858e4c5bf3f5e24, type: 2}
 --- !u!4 &460339626
 Transform:
   m_ObjectHideFlags: 0
