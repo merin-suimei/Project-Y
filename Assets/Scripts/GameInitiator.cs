@@ -1,58 +1,42 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-
-public class GameInitiator : MonoBehaviour
+public static class GameInitiator
 {
-    [Header("InputSystem")]
-    private IPlayerInput _input;
+    private static GameState currentGameState = Resources.Load<GameState>("CurrentGameState"); // AssetDatabase.LoadAssetAtPath<GameState>("Assets/ScriptableObjects/CurrentGameState.asset");
+    private static Settings currentSettings = Resources.Load<Settings>("CurrentSettings");
+    private static GameState defaultGameState = Resources.Load<GameState>("DefaultGameState");
+    private static Settings defaultSettings = Resources.Load<Settings>("DefaultSettings");
 
-    [Space(10)]
-    [Header("Сцены")]
-    [Tooltip("Перед тем как перетащить сцену, добавьте её в File → Build Profiles → Scene List.")]
-    [SerializeField] private SceneField mainMenuScene;
-    [SerializeField] private SceneField gameScene;
-    [SerializeField] private SceneField creditsScene;
-    GameManager gameManager;
-
-
-    private void Start()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void BeforeSceneLoad()
     {
-        DontDestroyOnLoad(gameObject);
+        ObjectResolver.RegisterInstance<IPlayerInput>(new InputSystemListener());
+        ObjectResolver.RegisterInstance(currentGameState);
+        ObjectResolver.RegisterInstance(currentSettings);
 
-        SceneManager.LoadScene(mainMenuScene);
-
-        _input = new InputSystemListener();
-        //_input = gameObject.AddComponent<InputSystemListener()>();
-        //gameManager = gameObject.AddComponent<GameManager>();
-        ObjectResolver.RegisterInstance<IPlayerInput>(_input);
-
-        EventBus.Subscribe(EventType.OnClickPlay, PlayClickLogic);
-        EventBus.Subscribe(EventType.OnClickAuthors, AuthorsClickLogic);
+        EventBus.Subscribe(EventType.ResetGameState, ResetGameState);
+        EventBus.Subscribe(EventType.UpdateGameState, UpdateGameState);
+        EventBus.Subscribe(EventType.ResetSettings, ResetSettings);
+        EventBus.Subscribe(EventType.UpdateSettings, UpdateSettings);
     }
 
-    private void PlayClickLogic()
+    private static void ResetGameState()
     {
-        if (gameScene == null)
-        {
-            Debug.Log("gameScene не установлена в инспекторе");
-            return;
-        }
-        SceneManager.LoadScene(gameScene);
-        //gameManager.Run();
-        
-        
+        //TODO
     }
 
-    private void AuthorsClickLogic()
+    private static void UpdateGameState()
     {
-        if (creditsScene == null)
-        {
-            Debug.Log("subtitleScene не установлена в инспекторе");
-            return;
-        }
-        SceneManager.LoadScene(creditsScene);
+        //TODO
     }
 
+    private static void ResetSettings()
+    {
+        //TODO
+    }
 
+    private static void UpdateSettings()
+    {
+        //TODO
+    }
 }
