@@ -96,10 +96,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3864288329833242170}
   - component: {fileID: 3558404529426656993}
-  - component: {fileID: 5162061393964356028}
+  - component: {fileID: 1355906550618490447}
   - component: {fileID: 7908300607732427483}
   m_Layer: 7
-  m_Name: EnemyWalker
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5162061393964356028
+--- !u!114 &1355906550618490447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,27 +154,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3355401115949184097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee8690ceea0731429533de51a4221d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 05c3dda575b0ccb49a11291ac9b81c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 7
-  nearbyDetectionRange: 2
-  detectionSemiconeAngle: 35
-  enemyEye: {fileID: 3756311988425602384}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  raycastIgnore:
-    serializedVersion: 2
-    m_Bits: 4
-  <detectDelay>k__BackingField: 1
-  enemyWalkPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  isPatrolPathClosed: 1
+  speed: 0
+  rotationSpeed: 0
+  resetPoint: {x: 0, y: 0, z: 0}
+  <type>k__BackingField: {fileID: 11400000, guid: 8e197a2eb40b2f1a9ac6784a0c8acdfd, type: 2}
+  <EnemyEye>k__BackingField: {fileID: 3756311988425602384}
+  <EnemyWalkPoints>k__BackingField: []
+  <IsPatrolPathClosed>k__BackingField: 0
 --- !u!136 &7908300607732427483
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -359,7 +348,6 @@ MonoBehaviour:
   patternProj: {fileID: 1397039837093142}
   instanceMat: {fileID: 0}
   fillPattern: {fileID: 5693152466619777637}
-  enemy: {fileID: 5162061393964356028}
 --- !u!1001 &7105519764896443812
 PrefabInstance:
   m_ObjectHideFlags: 0
