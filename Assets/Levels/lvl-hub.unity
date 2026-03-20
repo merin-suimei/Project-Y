@@ -176,7 +176,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 735603812}
+  m_Mesh: {fileID: 528383085}
 --- !u!33 &23481963
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -15324,6 +15324,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8db1bb1e21be8499c6121a4b315ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1172772912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4727429863530638770, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
+  m_PrefabInstance: {fileID: 1172772910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee020d414c5482449faacf34342b805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1180806725
 Mesh:
   m_ObjectHideFlags: 0
@@ -15518,10 +15529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bf4475197476341a396e5b7fbdb52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1172772911}
-  enemy: {fileID: 0}
-  enemyWalkPoints: []
-  startPoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 1172772912}
+  enemies: []
 --- !u!4 &1191926189
 Transform:
   m_ObjectHideFlags: 0

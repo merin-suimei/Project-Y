@@ -9,7 +9,7 @@ public class Avatar : MonoBehaviour
 
     public int ID { get; private set; } = -1;
     [SerializeField] protected float speed;
-    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected float turnSpeed;
 
     private Vector3 moveDir;
     private Vector3 moveDest;
@@ -93,7 +93,7 @@ public class Avatar : MonoBehaviour
         if (isRotateToDirty)
         {
             Quaternion targetQuat = Quaternion.LookRotation(rotateTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, Time.deltaTime * turnSpeed);
 
             if (Vector3.Angle(rotateTarget, transform.forward) <= 1f)
                 isRotateToDirty = false;

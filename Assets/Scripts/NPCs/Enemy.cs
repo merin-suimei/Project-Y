@@ -30,7 +30,7 @@ public class Enemy : Avatar
 
         patrolSpeed = type.PatrolSpeed;
         chaseSpeed = type.ChaseSpeed;
-        rotationSpeed = type.RotationSpeed;
+        turnSpeed = type.TurnSpeed;
 
         detectDelay = type.DetectDelay;
 

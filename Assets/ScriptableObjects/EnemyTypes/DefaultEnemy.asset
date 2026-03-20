@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97afbb74461dcddd095b22a21183d6b7, type: 3}
   m_Name: DefaultEnemy
   m_EditorClassIdentifier: 
-  detectionRange: 10
-  nearbyDetectionRange: 2
-  detectionSemiconeAngle: 45
-  enemyEye: {fileID: 0}
-  playerMask:
+  <DetectionRange>k__BackingField: 5
+  <NearbyDetectionRange>k__BackingField: 2
+  <DetectionSemiconeAngle>k__BackingField: 30
+  <CatchThreshold>k__BackingField: 1
+  <DetectDelay>k__BackingField: 1
+  <DecaySpeed>k__BackingField: 1
+  <RaycastIgnore>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
-  raycastIgnore:
-    serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
+  <PatrolSpeed>k__BackingField: 3
+  <ChaseSpeed>k__BackingField: 20
+  <TurnSpeed>k__BackingField: 4
