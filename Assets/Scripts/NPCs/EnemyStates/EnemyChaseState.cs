@@ -1,38 +1,37 @@
-//using System.Numerics;
-using UnityEngine;
 public class EnemyChaseState : EnemyState
 {
-    public EnemyChaseState(Enemy enemy, StateMachine stateMachine, string animBoolName)
+    public EnemyChaseState(EnemyModel enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
-        enemy.agent.speed = enemy.chaseSpeed;
+        EventBus.Raise(EventType.EnemyEnableChaseSpeed, enemy.id, true);
         EventBus.Raise(EventType.PlayEnemyMoveSound);
+
+        // Не проверяем ID чтобы остановить всех мобов
+        EventBus.Subscribe(EventType.OnEnemyCatchPlayer, PlayerCaught);
     }
 
     public override void StateUpdate()
     {
         base.StateUpdate();
 
-        /*if (enemy.IsPlayerChaseable())
-            enemy.agent.SetDestination(enemy.player.position);
-        else
-            enemy.stateMachine.ChangeState(enemy.patrolState);*/
-        enemy.agent.SetDestination(enemy.player.position);
-        if (Vector3.Distance(enemy.transform.position, enemy.player.position) < 1.5) 
-        {
-            EventBus.Raise(EventType.OnEnemyCatchPlayer);
-            enemy.stateMachine.ChangeState(enemy.patrolState);
-        }
+        EventBus.Raise(EventType.OnMoveTo, enemy.id, enemy.player.position);
+    }
+
+    private void PlayerCaught()
+    {
+        enemy.stateMachine.ChangeState(enemy.patrolState);
     }
 
     public override void Exit()
     {
         base.Exit();
-        EventBus.Raise<Enemy>(EventType.TurnOffEnemyPattern, enemy);
+        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, PlayerCaught);
+
+        EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, false);
+        EventBus.Raise(EventType.EnemyEnableChaseSpeed, enemy.id, false);
         EventBus.Raise(EventType.StopEnemyMoveSound);
-        enemy.agent.speed = enemy.patrolSpeed;
     }
 }

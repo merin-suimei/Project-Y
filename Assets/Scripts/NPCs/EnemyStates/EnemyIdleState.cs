@@ -1,19 +1,17 @@
-using UnityEngine;
-
 public class EnemyIdleState : EnemyState
 {
-    public EnemyIdleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
-    {
-    }
+    public EnemyIdleState(EnemyModel enemy, StateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
     }
+
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (enemy.IsPlayerVisible() && enemy.IsPlayerChaseable())
+        if (enemy.IsPlayerVisible)
             enemy.stateMachine.ChangeState(enemy.detectState);
     }
 
@@ -21,6 +19,5 @@ public class EnemyIdleState : EnemyState
     {
         base.Exit();
     }
-
 }
 

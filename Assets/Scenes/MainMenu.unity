@@ -1666,6 +1666,7 @@ MonoBehaviour:
     m_SceneName: CreditsScene
   SettingsPopupUI: {fileID: 2947749383694062422}
   StartNewGameConfirmationPopup: {fileID: 1174829410}
+  debugSceneSwitcherPrefab: {fileID: 4198979957936395584, guid: d0e65209a3cb829408584977a6b4d307, type: 3}
 --- !u!114 &1388657725
 MonoBehaviour:
   m_ObjectHideFlags: 0
