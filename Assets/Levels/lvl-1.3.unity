@@ -10665,6 +10665,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -123
       objectReference: {fileID: 0}
+    - target: {fileID: 5649516994547892859, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649516994547892859, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_MaxValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6347629389510405410, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -10696,6 +10704,14 @@ PrefabInstance:
     - target: {fileID: 7410416101914696719, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -306
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772644948940594179, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772644948940594179, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8046249605742190486, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10735,6 +10751,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8046249605742190486, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

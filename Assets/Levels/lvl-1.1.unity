@@ -55357,6 +55357,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -306
       objectReference: {fileID: 0}
+    - target: {fileID: 7772644948940594179, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772644948940594179, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8046249605742190486, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55395,6 +55403,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8046249605742190486, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685905548916753309, guid: b647ddd0fa6771846b92dbc489f33231, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -62884,8 +62904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded085d155cde949b60f67a11dbc3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 2
-  globalVolume: 0
   mode: 2
   size: {x: 11.553222, y: 11.089485, z: 12.1976795}
   overrideRendererFilters: 0
@@ -134178,6 +134196,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1191926189}
   - {fileID: 296536528}
+  - {fileID: 701932253}
   - {fileID: 2058710061}
   - {fileID: 68681883}
   - {fileID: 575712061}
