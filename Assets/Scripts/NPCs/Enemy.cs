@@ -65,26 +65,28 @@ public class Enemy : Avatar
     void OnDrawGizmos()
     {
         DrawVisionConeGizmos();
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, detectionRange);
 
-        UnityEditor.Handles.color = Color.yellow;
-        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, nearbyDetectionRange);
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, transform.forward, 360f, type.NearbyDetectionRange);
     }
 
     private void DrawVisionConeGizmos()
     {
         Vector3 leftRay = transform.position +
-            Quaternion.Euler(0, detectionSemiconeAngle, 0) *
-            (transform.forward * detectionRange);
+            Quaternion.Euler(0, -type.DetectionSemiconeAngle, 0) *
+            (transform.forward * type.DetectionRange);
 
         Vector3 rightRay = transform.position +
-            Quaternion.Euler(0, -detectionSemiconeAngle, 0) *
-            (transform.forward * detectionRange);
+            Quaternion.Euler(0, type.DetectionSemiconeAngle, 0) *
+            (transform.forward * type.DetectionRange);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, leftRay);
         Gizmos.DrawLine(transform.position, rightRay);
+
+        UnityEditor.Handles.color = Color.yellow;
+        UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, Quaternion.Euler(0, -type.DetectionSemiconeAngle, 0) * transform.forward,
+            type.DetectionSemiconeAngle*2, type.DetectionRange);
     }
 #endif
 }
