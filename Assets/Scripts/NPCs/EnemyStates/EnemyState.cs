@@ -1,7 +1,7 @@
 public class EnemyState : EntityState
 {
-    protected Enemy enemy;
-    public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
+    protected EnemyModel enemy;
+    public EnemyState(EnemyModel enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
         this.enemy = enemy;
     }
@@ -9,7 +9,7 @@ public class EnemyState : EntityState
     public override void Enter()
     {
         base.Enter();
-        enemy.animator.SetBool(animBoolName, true);
+        EventBus.Raise(EventType.OnAnimationStart, enemy.id, animBoolName);
     }
 
     public override void StateUpdate()
@@ -20,6 +20,6 @@ public class EnemyState : EntityState
     public override void Exit()
     {
         base.Exit();
-        enemy.animator.SetBool(animBoolName, false);
+        EventBus.Raise(EventType.OnAnimationStop, enemy.id, animBoolName);
     }
 }

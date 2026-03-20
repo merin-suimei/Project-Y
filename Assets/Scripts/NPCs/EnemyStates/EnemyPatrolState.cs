@@ -1,57 +1,86 @@
-/*using UnityEngine;
-
 public class EnemyPatrolState : EnemyState
 {
-    private bool isWalkPointSet = false;
-    private float timer;
-    private Quaternion targetRot;
-    private float speedRot = 5f;
-    EnemyWalker enemyWalker;
-    public EnemyPatrolState(EnemyWalker enemy, StateMachine stateMachine, string animBoolName)
-        : base(enemy, stateMachine, animBoolName) 
+    private EnemyWalkPoint currentPoint;
+    private int pointIndex;
+    private int directionIndex;
+
+    public EnemyPatrolState(EnemyModel enemy, StateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName)
     {
-        this.enemyWalker = enemy;
+        EventBus.Subscribe(EventType.OnEnemyCatchPlayer, ResetPoint);
+    }
+
+    ~EnemyPatrolState()
+    {
+        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, ResetPoint);
     }
 
     public override void Enter()
     {
         base.Enter();
+        currentPoint = enemy.enemyWalkPoints[pointIndex];
+        EventBus.Raise(EventType.OnMoveTo, enemy.id, currentPoint.transform.position);
+        EventBus.Raise(EventType.PlayEnemyMoveSound);
+
+        EventBus.Subscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
     }
 
     public override void StateUpdate()
     {
         base.StateUpdate();
-        if (enemyWalker.IsPlayerVisible())
-            enemyWalker.stateMachine.ChangeState(enemyWalker.detectState);
-
-        if (!isWalkPointSet)
+        if (enemy.IsPlayerVisible)
         {
-            enemyWalker.SetEnemyWalkPoint(enemyWalker.GetNewEnemyWalkPoint());
-            timer = enemyWalker.currentEnemyWalkPoint.waitTime;
-            targetRot = enemyWalker.currentEnemyWalkPoint.transform.rotation;
+            enemy.InterruptStay();
 
-            isWalkPointSet = true;
+            enemy.stateMachine.ChangeState(enemy.detectState);
         }
+    }
 
-        if (isWalkPointSet && enemyWalker.agent.remainingDistance <= 0.1f)
+    private void ResetPoint()
+    {
+        pointIndex = 0;
+        currentPoint = enemy.enemyWalkPoints[pointIndex];
+    }
+
+    private void EnemyOnPoint(int targetID)
+    {
+        if (targetID != enemy.id) return;
+
+        EventBus.Raise(EventType.OnRotateTo, enemy.id, currentPoint.transform.position + currentPoint.transform.forward);
+        CalculatePointIndex();
+        enemy.ExecutePointStay(currentPoint.waitTime);
+    }
+
+    private void CalculatePointIndex()
+    {
+        if (enemy.isPatrolPathClosed)
         {
-            enemyWalker.transform.rotation = Quaternion.Slerp(enemyWalker.transform.rotation, targetRot, Time.deltaTime * speedRot);
-
-            if (timer >= 0)
+            pointIndex++;
+            if (pointIndex >= enemy.enemyWalkPoints.Length)
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                isWalkPointSet = false;
+                pointIndex = 0;
             }
         }
-            
+        else
+        {
+            pointIndex += directionIndex;
+            if(pointIndex >= enemy.enemyWalkPoints.Length - 1)
+            {
+                pointIndex = enemy.enemyWalkPoints.Length - 1;
+                directionIndex = -1;
+            }
+            else if (pointIndex <= 0)
+            {
+                pointIndex = 0;
+                directionIndex = 1;
+            }
+        }
     }
 
     public override void Exit()
     {
+        EventBus.Unsubscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
         base.Exit();
+        EventBus.Raise(EventType.StopEnemyMoveSound);
     }
 }
-*/

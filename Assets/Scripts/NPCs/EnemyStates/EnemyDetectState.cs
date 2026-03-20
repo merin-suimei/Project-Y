@@ -1,31 +1,18 @@
 using UnityEngine;
 public class EnemyDetectState : EnemyState
 {
-    float detectDelay;
     float detectProgress;
-    float decaySpeed;
-    private bool isRotatedToPlayer;
-    private Vector3 detectedPlayerPos;
-    private float detectSpeedRot = 10f;
 
-    public EnemyDetectState(Enemy enemy, StateMachine stateMachine, string animBoolName)
+    public EnemyDetectState(EnemyModel enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName) {}
-
 
     public override void Enter()
     {
         base.Enter();
 
-        detectDelay = enemy.detectDelay;
         detectProgress = 0f;
-        decaySpeed = 1f;
-        isRotatedToPlayer = false;
-        detectedPlayerPos = enemy.player.position;
-        enemy.agent.isStopped = true; 
-        enemy.agent.updateRotation = false;
-        enemy.agent.ResetPath();      
-        enemy.agent.velocity = Vector3.zero;
-        EventBus.Raise(EventType.TurnOnEnemyPattern, enemy);
+        EventBus.Raise(EventType.OnInterruptMoveTo, enemy.id, true);
+        EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, true);
         EventBus.Raise(EventType.PlayEnemyDetectSound);
     }
 
@@ -33,43 +20,33 @@ public class EnemyDetectState : EnemyState
     {
         base.StateUpdate();
 
-        RotateToPlayer(detectedPlayerPos);
+        EventBus.Raise(EventType.OnRotateTo, enemy.id, enemy.player.position);
 
-        if (enemy.IsPlayerVisible())
+        if (enemy.IsPlayerVisible)
         {
             detectProgress += Time.deltaTime;
-            EventBus.Raise<float>(EventType.OnEnemyLoseAim, detectProgress);
+            EventBus.Raise(EventType.OnEnemyLoseAim, detectProgress);
         }
 
         else
         {
-            detectProgress -= Time.deltaTime * decaySpeed;
-            EventBus.Raise<float>(EventType.OnEnemyLoseAim, detectProgress);
+            detectProgress -= Time.deltaTime * enemy.decaySpeed;
+            EventBus.Raise(EventType.OnEnemyLoseAim, detectProgress);
         }
 
         if (detectProgress <= 0)
         {
-            EventBus.Raise<Enemy>(EventType.TurnOffEnemyPattern, enemy);
+            EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, false);
             enemy.stateMachine.ChangeState(enemy.patrolState);
         }
-        else if (detectProgress >= detectDelay)
+        else if (detectProgress >= enemy.detectDelay)
             enemy.stateMachine.ChangeState(enemy.chaseState);
-        
     }
 
-    private void RotateToPlayer(Vector3 playerPos)
-    {
-        Vector3 directionToPlayer = (playerPos - enemy.transform.position).normalized;
-        directionToPlayer.y = 0;
-
-        Quaternion targetQuat = Quaternion.LookRotation(directionToPlayer);
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetQuat, Time.deltaTime * detectSpeedRot);
-    }
     public override void Exit()
     {
         base.Exit();
-        enemy.agent.updateRotation = true;
-        enemy.agent.isStopped = false;
-        // EventBus.Raise(EventType.OnEnemyExitDetect);
+        EventBus.Raise(EventType.OnInterruptMoveTo, enemy.id, false);
+        EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, false);
     }
 }

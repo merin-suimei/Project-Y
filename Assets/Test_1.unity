@@ -644,6 +644,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.6932261
       objectReference: {fileID: 0}
+    - target: {fileID: 628887084482532710, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7490969
+      objectReference: {fileID: 0}
     - target: {fileID: 3996971099033538835, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
       propertyPath: Lens.ModeOverride
       value: 0
@@ -759,6 +763,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b8db1bb1e21be8499c6121a4b315ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &68681885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4727429863530638770, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
+  m_PrefabInstance: {fileID: 68681883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee020d414c5482449faacf34342b805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &122118890
@@ -3772,6 +3787,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <IsPatrolPathClosed>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <EnemyWalkPoints>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1633114830}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 183288615}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 407007646}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1692325876}
     - target: {fileID: 3355401115949184097, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_Name
       value: EnemyWalker_3
@@ -3845,6 +3884,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+--- !u!114 &500297149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+  m_PrefabInstance: {fileID: 500297148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c3dda575b0ccb49a11291ac9b81c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &505271698
 GameObject:
   m_ObjectHideFlags: 0
@@ -10132,10 +10182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bf4475197476341a396e5b7fbdb52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 68681884}
-  enemy: {fileID: 0}
-  enemyWalkPoints: []
-  startPoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 68681885}
+  enemies:
+  - {fileID: 1414007502}
+  - {fileID: 1590800199}
+  - {fileID: 500297149}
 --- !u!4 &1191926189
 Transform:
   m_ObjectHideFlags: 0
@@ -13463,6 +13514,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <IsPatrolPathClosed>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <EnemyWalkPoints>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 425265070}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1273754941}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1441648565}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2054939209}
     - target: {fileID: 3355401115949184097, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_Name
       value: EnemyWalker_1
@@ -13536,6 +13611,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+--- !u!114 &1414007502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+  m_PrefabInstance: {fileID: 1414007501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c3dda575b0ccb49a11291ac9b81c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1423033694
 GameObject:
   m_ObjectHideFlags: 0
@@ -14748,6 +14834,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <IsPatrolPathClosed>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: <EnemyWalkPoints>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 379882438}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 773174967}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1282216977}
+    - target: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1468468822}
     - target: {fileID: 3355401115949184097, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_Name
       value: EnemyWalker_2
@@ -14821,6 +14931,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+--- !u!114 &1590800199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1355906550618490447, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+  m_PrefabInstance: {fileID: 1590800198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c3dda575b0ccb49a11291ac9b81c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1601708831
 GameObject:
   m_ObjectHideFlags: 0
