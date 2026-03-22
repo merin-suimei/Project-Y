@@ -5,41 +5,50 @@ public class EnemyPatternController : MonoBehaviour
 {
     [SerializeField] private DecalProjector patternProj;
     [SerializeField] private Material instanceMat;
-    [SerializeField] GameObject fillPattern;
-    [SerializeField] Enemy enemy;
-    private float fillTime;
+    [SerializeField] private GameObject fillPattern;
+    private Enemy enemy;
 
-    private void Awake()
-    {
-        
-    }
     void Start()
     {
+        enemy = GetComponentInParent<Enemy>();
+
         fillPattern.SetActive(false);
         instanceMat = new Material(patternProj.material.shader);
         instanceMat.CopyPropertiesFromMaterial(patternProj.material);
 
         patternProj.material = instanceMat;
-        fillTime = enemy.detectDelay;
 
         instanceMat.SetFloat("_FillAmount", 0f);
 
         EventBus.Subscribe<float>(EventType.OnEnemyDetect, StartAnimation);
         EventBus.Subscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
-        EventBus.Subscribe<Enemy>(EventType.TurnOnEnemyPattern, (sender) => { if (sender == this.enemy) fillPattern.SetActive(true); instanceMat.SetFloat("_FillAmount", 0f); });
-        EventBus.Subscribe<Enemy>(EventType.TurnOffEnemyPattern, (sender) => { if (sender == this.enemy) fillPattern.SetActive(false); instanceMat.SetFloat("_FillAmount", 0f); });
+        EventBus.Subscribe<int, bool>(EventType.EnableEnemyPattern, EnablePattern);
     }
 
-    
+    void OnDestroy()
+    {
+        EventBus.Unsubscribe<float>(EventType.OnEnemyDetect, StartAnimation);
+        EventBus.Unsubscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
+        EventBus.Unsubscribe<int, bool>(EventType.EnableEnemyPattern, EnablePattern);
+    }
+
     private void StartAnimation(float detectProgress)
     {
-            float normalizedElapsedTime = Mathf.Clamp01(detectProgress / fillTime); 
-            instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
-    }
-    private void ReverseAnimtion(float detectProgress)
-    {
-            float normalizedElapsedTime = Mathf.Clamp01(detectProgress / fillTime);
+            float normalizedElapsedTime = Mathf.Clamp01(detectProgress / enemy.detectDelay); 
             instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
     }
 
+    private void ReverseAnimtion(float detectProgress)
+    {
+            float normalizedElapsedTime = Mathf.Clamp01(detectProgress / enemy.detectDelay);
+            instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
+    }
+
+    private void EnablePattern(int sender, bool value)
+    {
+        if (sender != enemy.ID) return;
+
+        fillPattern.SetActive(value);
+        instanceMat.SetFloat("_FillAmount", 0f);
+    }
 }
