@@ -13,9 +13,6 @@
             "m_Id": "e3cb619418e74e0abc8604cc00c27e72"
         },
         {
-            "m_Id": "6d4d1ffaa3384abe96d48f7fd7819955"
-        },
-        {
             "m_Id": "a3963e318c0a4f17a59823b4a0588139"
         },
         {
@@ -841,9 +838,6 @@
             "m_Id": "e3cb619418e74e0abc8604cc00c27e72"
         },
         {
-            "m_Id": "6d4d1ffaa3384abe96d48f7fd7819955"
-        },
-        {
             "m_Id": "a3963e318c0a4f17a59823b4a0588139"
         },
         {
@@ -1183,7 +1177,7 @@
         "serializedVersion": "2",
         "x": -4751.33349609375,
         "y": 14.666667938232422,
-        "width": 1610.0,
+        "width": 2080.842529296875,
         "height": 345.3333435058594
     },
     "m_Group": {
@@ -1274,36 +1268,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "6d4d1ffaa3384abe96d48f7fd7819955",
-    "m_Guid": {
-        "m_GuidSerialized": "750b9620-94f1-4ca3-b0e8-75b550df5e70"
-    },
-    "m_Name": "EmissionColor",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "EmissionColor",
-    "m_DefaultReferenceName": "_EmissionColor",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
 }
 
 {
@@ -1775,10 +1739,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2749.333251953125,
-            "y": 135.3333282470703,
+            "x": -2876.66650390625,
+            "y": 135.33338928222657,
             "width": 127.333251953125,
-            "height": 119.99998474121094
+            "height": 119.99992370605469
         }
     },
     "m_Slots": [
@@ -2659,9 +2623,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3078.0,
-            "y": 341.333251953125,
-            "width": 167.33349609375,
+            "x": -3132.66650390625,
+            "y": 255.33331298828126,
+            "width": 167.333251953125,
             "height": 36.0
         }
     },
@@ -2762,7 +2726,7 @@
         "serializedVersion": "2",
         "x": -4041.333251953125,
         "y": -675.3333129882813,
-        "width": 1060.98779296875,
+        "width": 1376.17236328125,
         "height": 553.3333129882813
     },
     "m_Group": {
@@ -2858,10 +2822,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2512.0,
-            "y": -278.0,
-            "width": 131.333251953125,
-            "height": 120.00001525878906
+            "x": -2427.999755859375,
+            "y": -282.66668701171877,
+            "width": 131.33349609375,
+            "height": 119.99996948242188
         }
     },
     "m_Slots": [

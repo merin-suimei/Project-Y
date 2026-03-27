@@ -13,9 +13,6 @@
             "m_Id": "f8e3510f04ee4239919e59db873a0053"
         },
         {
-            "m_Id": "b8e0d9eefc4c42cebfdcba8103b5be08"
-        },
-        {
             "m_Id": "973417b457c9483d87f198a557742bce"
         },
         {
@@ -86,9 +83,6 @@
         },
         {
             "m_Id": "d5b5847ca7684e27a6a0f125012547f7"
-        },
-        {
-            "m_Id": "1cc3ee5bc13c421cbc4e738cf343fabd"
         },
         {
             "m_Id": "d187bb708e6a46e7898fa01ff2861889"
@@ -202,20 +196,6 @@
                     "m_Id": "09b7cfbcd59643c7ae5cf2fc7762ece5"
                 },
                 "m_SlotId": 462301564
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "1cc3ee5bc13c421cbc4e738cf343fabd"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "09b7cfbcd59643c7ae5cf2fc7762ece5"
-                },
-                "m_SlotId": -58510031
             }
         },
         {
@@ -568,7 +548,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "01156493b0ab4466bf3861f3bccddfbc",
     "m_Id": 0,
-    "m_DisplayName": "MaximumBrightness",
+    "m_DisplayName": "LightCircleMaxBrightness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -665,9 +645,6 @@
         },
         {
             "m_Id": "1370185e91db488d842c1693af1f2e53"
-        },
-        {
-            "m_Id": "99485353b7064899863bc69f7921fa0c"
         },
         {
             "m_Id": "d5d9e649c8014db8922c10348fed5197"
@@ -768,10 +745,10 @@
     "m_Guid": {
         "m_GuidSerialized": "2051ca47-6f1e-413c-b4e7-d0753f10150a"
     },
-    "m_Name": "CircleRadius",
+    "m_Name": "LightCircleRadius",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "CircleRadius",
-    "m_DefaultReferenceName": "_CircleRadius",
+    "m_RefNameGeneratedByDisplayName": "LightCircleRadius",
+    "m_DefaultReferenceName": "_LightCircleRadius",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
@@ -798,7 +775,7 @@
     "m_SlotType": 0,
     "m_Hidden": false,
     "m_ShaderOutputName": "_EmissionIntensity",
-    "m_StageCapability": 3,
+    "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
@@ -882,10 +859,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1350.666748046875,
-            "y": 962.6668090820313,
-            "width": 131.9998779296875,
-            "height": 35.99993896484375
+            "x": -1350.0001220703125,
+            "y": 926.666748046875,
+            "width": 132.0,
+            "height": 36.0
         }
     },
     "m_Slots": [
@@ -937,42 +914,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "1cc3ee5bc13c421cbc4e738cf343fabd",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -1359.33349609375,
-            "y": 818.6666870117188,
-            "width": 140.0001220703125,
-            "height": 36.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "b601378b1ffc48049f6bf2336c6497bc"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "b8e0d9eefc4c42cebfdcba8103b5be08"
-    }
 }
 
 {
@@ -1259,7 +1200,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "311d0c1b9bc24a4481dbff0ef156d287",
     "m_Id": 0,
-    "m_DisplayName": "CircleSoftness",
+    "m_DisplayName": "LightCircleSoftness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1665,7 +1606,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "5add04d8c26949f292ce5480009e09e0",
     "m_Id": 0,
-    "m_DisplayName": "EmissionIntensity",
+    "m_DisplayName": "LightCircleIntensity",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1821,7 +1762,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6eebbec5e17e4065b7c520cdbe43965b",
     "m_Id": 0,
-    "m_DisplayName": "CircleRadius",
+    "m_DisplayName": "LightCircleRadius",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1982,9 +1923,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1352.6668701171875,
-            "y": 926.6668090820313,
-            "width": 133.33349609375,
+            "x": -1352.0001220703125,
+            "y": 890.666748046875,
+            "width": 133.333251953125,
             "height": 36.0
         }
     },
@@ -2180,10 +2121,10 @@
     "m_Guid": {
         "m_GuidSerialized": "aa653a39-e817-4a10-9779-e70c396df0f0"
     },
-    "m_Name": "MaximumBrightness",
+    "m_Name": "LightCircleMaxBrightness",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MaximumBrightness",
-    "m_DefaultReferenceName": "_MaximumBrightness",
+    "m_RefNameGeneratedByDisplayName": "LightCircleMaxBrightness",
+    "m_DefaultReferenceName": "_LightCircleMaxBrightness",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
@@ -2244,31 +2185,6 @@
     "m_Labels": [
         "Y"
     ]
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "99485353b7064899863bc69f7921fa0c",
-    "m_Id": -58510031,
-    "m_DisplayName": "EmissionColor",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_EmissionColor",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
 }
 
 {
@@ -2400,10 +2316,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d4ec05ad-3ee5-4f69-9858-749dc70c828a"
     },
-    "m_Name": "CircleSoftness",
+    "m_Name": "LightCircleSoftness",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "CircleSoftness",
-    "m_DefaultReferenceName": "_CircleSoftness",
+    "m_RefNameGeneratedByDisplayName": "LightCircleSoftness",
+    "m_DefaultReferenceName": "_LightCircleSoftness",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
@@ -2644,31 +2560,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "b601378b1ffc48049f6bf2336c6497bc",
-    "m_Id": 0,
-    "m_DisplayName": "EmissonColor",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "b6c401c29638441bbc3d439173a79f15",
     "m_Group": {
@@ -2679,9 +2570,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1350.666748046875,
-            "y": 746.6666870117188,
-            "width": 131.3333740234375,
+            "x": -1376.666748046875,
+            "y": 746.666748046875,
+            "width": 157.3333740234375,
             "height": 36.0
         }
     },
@@ -2701,36 +2592,6 @@
     "m_Property": {
         "m_Id": "1334ad11a2424de2bbb3bc0632717f1c"
     }
-}
-
-{
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "b8e0d9eefc4c42cebfdcba8103b5be08",
-    "m_Guid": {
-        "m_GuidSerialized": "dd2f3c4a-70df-42cc-ad53-e9e14cdb4185"
-    },
-    "m_Name": "EmissonColor",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "EmissonColor",
-    "m_DefaultReferenceName": "_EmissonColor",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": false,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": true,
-    "hlslDeclarationOverride": 1,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
 }
 
 {
@@ -2851,9 +2712,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1361.33349609375,
-            "y": 890.6668090820313,
-            "width": 142.0001220703125,
+            "x": -1387.333251953125,
+            "y": 854.6666870117188,
+            "width": 167.9998779296875,
             "height": 36.0
         }
     },
@@ -3013,10 +2874,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1391.33349609375,
-            "y": 854.6666870117188,
-            "width": 172.0001220703125,
-            "height": 36.0001220703125
+            "x": -1419.33349609375,
+            "y": 818.666748046875,
+            "width": 200.0,
+            "height": 36.00006103515625
         }
     },
     "m_Slots": [
@@ -3064,9 +2925,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1376.6668701171875,
-            "y": 782.6666870117188,
-            "width": 157.33349609375,
+            "x": -1387.33349609375,
+            "y": 782.666748046875,
+            "width": 167.3333740234375,
             "height": 36.0
         }
     },
@@ -3442,11 +3303,11 @@
     "m_Guid": {
         "m_GuidSerialized": "f3a50547-74da-427b-a305-e6b0c09be1e9"
     },
-    "m_Name": "EmissionIntensity",
+    "m_Name": "LightCircleIntensity",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "EmissionIntensity",
-    "m_DefaultReferenceName": "_EmissionIntensity",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "LightCircleIntensity",
+    "m_DefaultReferenceName": "_LightCircleIntensity",
+    "m_OverrideReferenceName": "_LightCircleIntensity",
     "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -3477,9 +3338,6 @@
         },
         {
             "m_Id": "f8e3510f04ee4239919e59db873a0053"
-        },
-        {
-            "m_Id": "b8e0d9eefc4c42cebfdcba8103b5be08"
         },
         {
             "m_Id": "973417b457c9483d87f198a557742bce"

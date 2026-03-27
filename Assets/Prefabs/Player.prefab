@@ -553,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203582662326206771}
-  - component: {fileID: 9009750397591752068}
+  - component: {fileID: 5943413362541814920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -579,7 +579,7 @@ Transform:
   - {fileID: 6784078435740900930}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9009750397591752068
+--- !u!114 &5943413362541814920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,12 +588,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7165842923671236034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ede56cebf130242a1eaacb0526e333, type: 3}
+  m_Script: {fileID: 11500000, guid: 383610fc2839abb4fa653bee1b36934b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 6784078435740900930}
-  lightCircleMaterial: {fileID: 2100000, guid: a53dc94053f1e7c41a82e99f84e6a96e, type: 2}
-  targetCamera: {fileID: 0}
+  Player: {fileID: 6784078435740900930}
+  _circleRadius: 2.5
+  _emissionIntensity: 0.28
+  _maxBrightness: 1.8
+  _circleSoftness: 1.9
 --- !u!1 &8003672111310355191
 GameObject:
   m_ObjectHideFlags: 0

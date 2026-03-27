@@ -5,7 +5,6 @@ public class LightCirclePosition : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] private float _circleRadius;
     [SerializeField] private float _emissionIntensity;
-    [SerializeField] private Color _emissionColor;
     [SerializeField] private float _maxBrightness;
     [SerializeField] private float _circleSoftness;
 
@@ -28,10 +27,9 @@ public class LightCirclePosition : MonoBehaviour
 
         var p = Player.position;
         Shader.SetGlobalVector("_PositionPlayerLight", new Vector4(p.x, p.y, p.z, 1f));
-        Shader.SetGlobalFloat("_CircleRadius", _circleRadius);
-        Shader.SetGlobalFloat("_EmissionIntensity", _emissionIntensity);
-        Shader.SetGlobalColor("_EmissonColor", _emissionColor);
-        Shader.SetGlobalFloat("_MaximumBrightness", _maxBrightness);
-        Shader.SetGlobalFloat("_CircleSoftness", _circleSoftness);
+        Shader.SetGlobalFloat("_LightCircleRadius", _circleRadius);
+        Shader.SetGlobalFloat("_LightCircleIntensity", _emissionIntensity);
+        Shader.SetGlobalFloat("_LightCircleMaxBrightness", _maxBrightness);
+        Shader.SetGlobalFloat("_LightCircleSoftness", _circleSoftness);
     }
 }
