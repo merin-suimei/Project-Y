@@ -41,8 +41,10 @@ public class Enemy : Avatar
         EventBus.Subscribe<int, bool>(EventType.EnemyEnableChaseSpeed, EnableChaseSpeed);
     }
 
-    void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
         EventBus.Unsubscribe<int, bool>(EventType.EnemyEnableChaseSpeed, EnableChaseSpeed);
     }
 
