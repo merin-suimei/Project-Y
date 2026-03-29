@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CurrentGameState
   m_EditorClassIdentifier: 
   currentLevel:
-    m_SceneAsset: {fileID: 102900000, guid: 74325153e893c504c820cb052f140202, type: 3}
-    m_SceneName: lvl-1.1
+    m_SceneAsset: {fileID: 102900000, guid: dcdfec6678b66db47b38f4a9388e71d2, type: 3}
+    m_SceneName: lvl-1.1-decor
