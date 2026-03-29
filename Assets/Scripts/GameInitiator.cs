@@ -11,6 +11,8 @@ public static class GameInitiator
     private static void BeforeSceneLoad()
     {
         ObjectResolver.RegisterInstance<IPlayerInput>(new InputSystemListener());
+        ObjectResolver.RegisterInstance(new InputsTypes());
+
         ObjectResolver.RegisterInstance(currentGameState);
         ObjectResolver.RegisterInstance(currentSettings);
 

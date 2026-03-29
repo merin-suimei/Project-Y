@@ -1,20 +1,18 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class OcclusionPositionWriter : MonoBehaviour
 {
     // set values from the inspector
     public Material OccluderMaterial;
     public Camera MainCamera;
-    public Transform Player;
     public bool ShouldInterpolate;
     public float InterpolationWithHitPoint = 0.3f;
     public float InterpolationWithPreviousPosition = 0.3f;
     public float SphereCastRadius = 0.5f;
+
+    // assigned from GameManager
+    private Transform Player;
 
     // when no hit - smoooth dissapearance is provided with this 
     public float FadeOutSpeed = 0.1f;
@@ -30,6 +28,11 @@ public class OcclusionPositionWriter : MonoBehaviour
     // timer
     float TimeElapsed = 0;
     public float TimeBetweenUpdates = 0.1f;
+
+    void Awake()
+    {
+        Player = GameManager.instance.player.transform;
+    }
 
     void Start()
     {
@@ -83,11 +86,14 @@ public class OcclusionPositionWriter : MonoBehaviour
         {
             MainCamera = Camera.main;
         }
-        Vector3 pos = Player.position;
-        Vector3 from = pos;
-        Vector3 to = MainCamera.transform.position;
-        Vector3 direction = (to - from).normalized;
-        Gizmos.DrawRay(from, direction);
+        if (Player != null)
+        {
+            Vector3 pos = Player.position;
+            Vector3 from = pos;
+            Vector3 to = MainCamera.transform.position;
+            Vector3 direction = (to - from).normalized;
+            Gizmos.DrawRay(from, direction);
+        }
         if (hitCount != 0) Gizmos.DrawSphere(hits[0].point, SphereCastRadius);
     }
 
