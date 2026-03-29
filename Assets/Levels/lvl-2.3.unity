@@ -646,10 +646,6 @@ PrefabInstance:
       propertyPath: Lens.ModeOverride
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8526357193648257146, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9203582662326206771, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.501287

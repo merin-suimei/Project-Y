@@ -476,10 +476,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.247449
       objectReference: {fileID: 0}
-    - target: {fileID: 6937268208950964698, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7165842923671236034, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1465,7 +1461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!43 &128971209
 Mesh:
   m_ObjectHideFlags: 0
@@ -8534,7 +8530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!4 &438549979
 Transform:
   m_ObjectHideFlags: 0
@@ -10188,7 +10184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 0.25
 --- !u!43 &554654858
 Mesh:
   m_ObjectHideFlags: 0
@@ -11121,7 +11117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 2
 --- !u!4 &622213974
 Transform:
   m_ObjectHideFlags: 0
@@ -12446,7 +12442,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -17325,7 +17321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 2
 --- !u!4 &951964305
 Transform:
   m_ObjectHideFlags: 0
@@ -20268,7 +20264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!43 &1135340175
 Mesh:
   m_ObjectHideFlags: 0
@@ -23207,7 +23203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 0.25
 --- !u!4 &1222159623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3864288329833242170, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
@@ -24095,7 +24091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 0.25
 --- !u!43 &1277952116
 Mesh:
   m_ObjectHideFlags: 0
@@ -28053,7 +28049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!43 &1486524067
 Mesh:
   m_ObjectHideFlags: 0
@@ -31504,7 +31500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 0
+  <waitTime>k__BackingField: 0.25
 --- !u!43 &1572192757
 Mesh:
   m_ObjectHideFlags: 0
@@ -31879,7 +31875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!1 &1584023775
 GameObject:
   m_ObjectHideFlags: 0
@@ -32761,7 +32757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!4 &1585197165
 Transform:
   m_ObjectHideFlags: 0
@@ -41867,7 +41863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!4 &1925605436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3864288329833242170, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
@@ -42794,7 +42790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b732122410aee947b99b614ee7751db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <waitTime>k__BackingField: 1
+  <waitTime>k__BackingField: 2
 --- !u!1 &2010360174
 GameObject:
   m_ObjectHideFlags: 0

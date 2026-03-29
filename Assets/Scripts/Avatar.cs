@@ -46,7 +46,7 @@ public class Avatar : MonoBehaviour
         EventBus.Subscribe<int, Vector3>(EventType.UpdateResetPoint, UpdateResetPoint);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         EventBus.Unsubscribe<int, Vector3>(EventType.OnMove, Move);
         EventBus.Unsubscribe<int, Vector3>(EventType.OnMoveTo, MoveTo);
