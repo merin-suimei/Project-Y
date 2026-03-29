@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class GameManager : MonoBehaviour
 
     public Avatar player;
     public Enemy[] enemies;
+    //public BabaYaga babaYaga;
+
 
     private Dictionary<int, Avatar> _avatarsDict = new();
 
     public List<IModel> models = new();
+  
 
     private void Awake()
     {
@@ -43,6 +47,9 @@ public class GameManager : MonoBehaviour
             _avatarsDict.Add(nextId, enemy);
             nextId++;
         }
+        //babaYaga.SetID(nextId);
+        models.Add(new BabaYagaModel(nextId));
+        nextId++;
     }
 
     private void Start()
@@ -56,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (IModel model in models)
             model.Tick();
+
     }
 
     private void OnDestroy()
