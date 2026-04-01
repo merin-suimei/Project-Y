@@ -8,17 +8,16 @@ public class DebugSceneSwitcher : MonoBehaviour
     private bool showMenu = false;
     private Vector2 scrollPosition;
 
-    private void Start()
+    private void Awake()
     {
         _input = ObjectResolver.Resolve<InputsTypes>();
 
         if (_input == null)
         {
             _input = new InputsTypes();
-            _input.Enable();
             ObjectResolver.RegisterInstance(_input);
         }
-
+        _input.UI.Enable();
         _input.UI.ToggleDebugSceneSwitcher.performed += ToggleDebugSceneSwitcher;
     }
 
@@ -33,7 +32,6 @@ public class DebugSceneSwitcher : MonoBehaviour
     private void ToggleDebugSceneSwitcher(InputAction.CallbackContext context)
     {
         showMenu = !showMenu;
-        //Debug.Log("{showMenu}");
     }
 
     private void OnGUI()
