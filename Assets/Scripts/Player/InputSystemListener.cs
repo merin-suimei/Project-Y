@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputSystemListener : IPlayerInput, IDisposable
 {
@@ -8,10 +9,12 @@ public class InputSystemListener : IPlayerInput, IDisposable
     public Vector2 MoveDirection => _input.Player.Move.ReadValue<Vector2>().normalized;
     public Vector2 AimDirection => CalculateAimDirection();
 
+    public event Action OnInteract;
     public InputSystemListener()
     {
         _input = new InputsTypes();
         _input.Enable();
+        _input.Player.Interact.performed += InteractPerformed;
     }
 
     // Returns mouse position relative to screen center within largest circle
@@ -25,6 +28,16 @@ public class InputSystemListener : IPlayerInput, IDisposable
 
         return Vector2.ClampMagnitude(relativeMousePos, shortestHalfScreen) / shortestHalfScreen;
     }
+    
+    private void InteractPerformed(InputAction.CallbackContext context)
+    {
+        OnInteract?.Invoke();
+    }
 
-    public void Dispose() => _input.Dispose();
+    public void Dispose()
+    {
+        _input.Player.Interact.performed -= InteractPerformed;
+        _input.Disable();
+        _input.Dispose();
+    }
 }
