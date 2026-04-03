@@ -10,7 +10,7 @@ public class Enemy : Avatar
     public float catchThreshold { get; private set; }
 
     public float detectDelay { get; private set; }
-    private LayerMask raycastIgnore;
+    public LayerMask raycastIgnore { get; private set; }
 
     private float patrolSpeed;
     private float chaseSpeed;
