@@ -848,7 +848,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2216981, g: 0.33586434, b: 1, a: 1}
   m_Intensity: 10
   m_Range: 2.5
   m_SpotAngle: 30
@@ -8466,6 +8466,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5586537756227740421, guid: 595e29c45e0500448b0557029745f26e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.696
+      objectReference: {fileID: 0}
+    - target: {fileID: -1860219826549310932, guid: 595e29c45e0500448b0557029745f26e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 06ad187608a18af4ab21e232c68434dc, type: 2}
+    - target: {fileID: 823334100980793467, guid: 595e29c45e0500448b0557029745f26e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 595e29c45e0500448b0557029745f26e, type: 3}
       propertyPath: m_Name
       value: Pot
@@ -11088,7 +11100,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c718fbba8a344c4bae83122cfc77b8b, type: 2}
+  - {fileID: 2100000, guid: ac2f7cef7a002ca4c8c69baefe0fa18e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11126,13 +11138,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613654294}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.48941696, z: -0, w: 0.8720499}
-  m_LocalPosition: {x: -9.85, y: 0, z: -8.32}
+  m_LocalRotation: {x: -0, y: -0.114318945, z: -0, w: 0.99344414}
+  m_LocalPosition: {x: -10.22, y: 0, z: -7.58}
   m_LocalScale: {x: 0.16, y: 4.12787, z: 1.7121699}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1165879330}
-  m_LocalEulerAnglesHint: {x: 0, y: -58.604, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -13.129, z: 0}
 --- !u!1001 &618673844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12702,7 +12714,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17318,7 +17330,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 99085992b7709bd4c9c4723b10f99944, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26452,7 +26464,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40810,8 +40822,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.8, g: 0.26653, b: 0.035294104, a: 1}
-  m_Intensity: 20
+  m_Color: {r: 0.8, g: 0.077991135, b: 0.035294104, a: 1}
+  m_Intensity: 55.7
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
