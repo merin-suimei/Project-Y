@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  rotationSpeed: 0
+  turnSpeed: 0
   resetPoint: {x: 0, y: 0, z: 0}
   <type>k__BackingField: {fileID: 11400000, guid: 8e197a2eb40b2f1a9ac6784a0c8acdfd, type: 2}
   <EnemyEye>k__BackingField: {fileID: 3756311988425602384}
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 0.16}
-  m_Size: {x: 4.61, y: 7.45, z: 0.21}
+  m_Offset: {x: 0, y: -1, z: 0.16}
+  m_Size: {x: 4.61, y: 5.33, z: 0.21}
   m_FadeFactor: 1
 --- !u!1 &5693152466619777637
 GameObject:
@@ -296,8 +296,8 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 0.63}
-  m_Size: {x: 4.61, y: 7.45, z: 1}
+  m_Offset: {x: 0, y: -1, z: 0.63}
+  m_Size: {x: 4.61, y: 5.33, z: 1}
   m_FadeFactor: 1
 --- !u!1 &6462363525457707633
 GameObject:

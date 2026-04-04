@@ -15,8 +15,8 @@ MonoBehaviour:
   <DetectionRange>k__BackingField: 5
   <NearbyDetectionRange>k__BackingField: 2
   <DetectionSemiconeAngle>k__BackingField: 30
-  <CatchThreshold>k__BackingField: 1
-  <DetectDelay>k__BackingField: 1
+  <CatchThreshold>k__BackingField: 2
+  <DetectDelay>k__BackingField: 0.7
   <DecaySpeed>k__BackingField: 1
   <RaycastIgnore>k__BackingField:
     serializedVersion: 2
