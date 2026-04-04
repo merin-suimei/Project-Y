@@ -20,26 +20,30 @@ public class EnemyPatternController : MonoBehaviour
 
         instanceMat.SetFloat("_FillAmount", 0f);
 
-        EventBus.Subscribe<float>(EventType.OnEnemyDetect, StartAnimation);
-        EventBus.Subscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
+        EventBus.Subscribe<int, float>(EventType.OnEnemyDetect, StartAnimation);
+        EventBus.Subscribe<int, float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
         EventBus.Subscribe<int, bool>(EventType.EnableEnemyPattern, EnablePattern);
     }
 
     void OnDestroy()
     {
-        EventBus.Unsubscribe<float>(EventType.OnEnemyDetect, StartAnimation);
-        EventBus.Unsubscribe<float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
+        EventBus.Unsubscribe<int, float>(EventType.OnEnemyDetect, StartAnimation);
+        EventBus.Unsubscribe<int, float>(EventType.OnEnemyLoseAim, ReverseAnimtion);
         EventBus.Unsubscribe<int, bool>(EventType.EnableEnemyPattern, EnablePattern);
     }
 
-    private void StartAnimation(float detectProgress)
+    private void StartAnimation(int sender, float detectProgress)
     {
+        if (sender != enemy.ID) return;
+
             float normalizedElapsedTime = Mathf.Clamp01(detectProgress / enemy.detectDelay); 
             instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
     }
 
-    private void ReverseAnimtion(float detectProgress)
+    private void ReverseAnimtion(int sender, float detectProgress)
     {
+        if (sender != enemy.ID) return;
+        
             float normalizedElapsedTime = Mathf.Clamp01(detectProgress / enemy.detectDelay);
             instanceMat.SetFloat("_FillAmount", normalizedElapsedTime);
     }
