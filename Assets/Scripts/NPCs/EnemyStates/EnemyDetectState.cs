@@ -25,13 +25,13 @@ public class EnemyDetectState : EnemyState
         if (enemy.IsPlayerVisible)
         {
             detectProgress += Time.deltaTime;
-            EventBus.Raise(EventType.OnEnemyLoseAim, detectProgress);
+            EventBus.Raise(EventType.OnEnemyLoseAim, enemy.id, detectProgress);
         }
 
         else
         {
             detectProgress -= Time.deltaTime * enemy.decaySpeed;
-            EventBus.Raise(EventType.OnEnemyLoseAim, detectProgress);
+            EventBus.Raise(EventType.OnEnemyLoseAim, enemy.id, detectProgress);
         }
 
         if (detectProgress <= 0)

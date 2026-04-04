@@ -8,12 +8,12 @@ public class FlashlightToggle : MonoBehaviour
 
     private void Awake()
     {
+        _input = new InputsTypes();
+
         if (_flashlight == null)
         {
             Debug.LogError("Flashlight not assigned");
-            return;
         }
-        _input = new InputsTypes();
     }
 
     private void OnEnable()
@@ -30,7 +30,18 @@ public class FlashlightToggle : MonoBehaviour
 
     private void OnFlashlight(InputAction.CallbackContext ctx)
     {
+        if (_flashlight == null)
+        {
+            Debug.LogError("Flashlight not assigned");
+            return;
+        }
+
         _flashlight.enabled = !_flashlight.enabled;
+    }
+
+    private void OnDestroy()
+    {
+        _input.Dispose();
     }
 
 }
