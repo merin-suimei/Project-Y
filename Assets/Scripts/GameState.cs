@@ -4,4 +4,5 @@ using UnityEngine;
 public class GameState : ScriptableObject
 {
     public SceneField currentLevel;
+    public bool isHardMode;
 }

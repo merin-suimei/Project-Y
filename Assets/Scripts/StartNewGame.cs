@@ -4,20 +4,23 @@ using UnityEngine.UI;
 
 public class StartNewGame : MonoBehaviour
 {
-    [SerializeField] private Button ConfirmNewGameButton;
+    [SerializeField] private Button NormalModeButton;
+    [SerializeField] private Button HardModeButton;
     [SerializeField] private Button RejectNewGameButton;
 
     private void Start()
     {
         gameObject.SetActive(false);
-        ConfirmNewGameButton.onClick.AddListener(ConfirmNewGameClick);
-        RejectNewGameButton.onClick.AddListener (RejectNewGameClick);
+        NormalModeButton.onClick.AddListener(() => ConfirmNewGameClick(false));
+        HardModeButton.onClick.AddListener(() => ConfirmNewGameClick(true));
+        RejectNewGameButton.onClick.AddListener(RejectNewGameClick);
     }
 
-    private void ConfirmNewGameClick()
+    private void ConfirmNewGameClick(bool isHardMode)
     {
         EventBus.Raise(EventType.ResetGameState);
         GameState gameState = ObjectResolver.Resolve<GameState>();
+        gameState.isHardMode = isHardMode;
         SceneManager.LoadScene(gameState.currentLevel);
         gameObject.SetActive(false);
     }
