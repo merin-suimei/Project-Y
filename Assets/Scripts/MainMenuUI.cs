@@ -42,7 +42,7 @@ public class MainMenuScript : MonoBehaviour
             if (debugSceneSwitcherPrefab != null)
             {
                 DebugSceneSwitcher switcherInstance = Instantiate(debugSceneSwitcherPrefab);
-                ObjectResolver.RegisterInstance(debugSceneSwitcherPrefab);
+                ObjectResolver.RegisterInstance(switcherInstance);
                 DontDestroyOnLoad(switcherInstance.gameObject);
             }
         }

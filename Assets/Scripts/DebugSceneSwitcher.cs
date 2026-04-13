@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 public class DebugSceneSwitcher : MonoBehaviour
 {
     private InputsTypes _input;
-    private bool showMenu = false;
-    private Vector2 scrollPosition;
+    private bool _showMenu = false;
+    private Vector2 _scrollPosition;
+    private DetectionService _detectionService;
 
     private void Awake()
     {
@@ -21,6 +22,11 @@ public class DebugSceneSwitcher : MonoBehaviour
         _input.UI.ToggleDebugSceneSwitcher.performed += ToggleDebugSceneSwitcher;
     }
 
+    public void InitDetectionService(DetectionService detectionService)
+    {
+        _detectionService = detectionService;
+    }
+
     private void OnDestroy()
     {
         if (_input != null)
@@ -31,18 +37,38 @@ public class DebugSceneSwitcher : MonoBehaviour
 
     private void ToggleDebugSceneSwitcher(InputAction.CallbackContext context)
     {
-        showMenu = !showMenu;
+        _showMenu = !_showMenu;
     }
 
     private void OnGUI()
     {
-        if (!showMenu) return;
+        if (!_showMenu) return;
 
         GUILayout.BeginArea(new Rect(20, 20, 250, Screen.height - 40));
         GUI.Box(new Rect(0, 0, 250, Screen.height - 40), "ТЕСТОВОЕ МЕНЮ УРОВНЕЙ");
         GUILayout.Space(30);
 
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+        if (_detectionService != null)
+        {
+            bool currentState = _detectionService.IsDetectionDisabled();
+            
+            string cheatText = currentState ? "Невидимость: ВКЛ" : "Невидимость: ВЫКЛ";
+            GUI.backgroundColor = currentState ? Color.green : Color.white;
+            
+            if (GUILayout.Button(cheatText, GUILayout.Height(30)))
+            {
+                _detectionService.SetDetectionDisabled(!currentState);
+            }
+            GUI.backgroundColor = Color.white; 
+            GUILayout.Space(10); 
+        }
+        else
+        {
+            GUILayout.Label("DetectionService не подключен!", GUILayout.Height(30));
+            GUILayout.Space(10);
+        }
+
+        _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
 
         int sceneCount = SceneManager.sceneCountInBuildSettings;
 
@@ -60,7 +86,7 @@ public class DebugSceneSwitcher : MonoBehaviour
                 if (GUILayout.Button($"Загрузить: [{i}] {sceneName}", GUILayout.Height(30)))
                 {
                     SceneManager.LoadScene(i);
-                    showMenu = false; 
+                    _showMenu = false; 
                 }
             }
         }
@@ -68,4 +94,5 @@ public class DebugSceneSwitcher : MonoBehaviour
         GUILayout.EndScrollView();
         GUILayout.EndArea();
     }
+
 }
