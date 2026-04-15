@@ -1202,7 +1202,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163079159}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 00f06c76c757fdc4f981cdf3bbee048b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7535,6 +7535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: jug_5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc68b5339436da347bf35745e53b9f13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8473,6 +8477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrameSquare (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77c981944b8dbfd43bc4848de2aa3642, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8699,6 +8707,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 77c981944b8dbfd43bc4848de2aa3642, type: 3}
       propertyPath: m_Name
       value: FrameSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77c981944b8dbfd43bc4848de2aa3642, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10170,7 +10182,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120432445}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 00f06c76c757fdc4f981cdf3bbee048b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -14039,7 +14051,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579617056}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b5476c269a0b43049849f714a6daf202, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -14711,6 +14723,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ad00ba4ba2c05574c8ab5cf541479d0f, type: 3}
       propertyPath: m_Name
       value: jug_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad00ba4ba2c05574c8ab5cf541479d0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18954,7 +18970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2452486200532478949
 GameObject:
   m_ObjectHideFlags: 0
