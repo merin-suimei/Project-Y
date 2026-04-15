@@ -6,10 +6,10 @@ PhysicsMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerMaterial
+  m_Name: StaticPropsMaterial
   serializedVersion: 2
   m_DynamicFriction: 0
-  m_StaticFriction: 1
+  m_StaticFriction: 0.18
   m_Bounciness: 0
   m_FrictionCombine: 2
   m_BounceCombine: 0
