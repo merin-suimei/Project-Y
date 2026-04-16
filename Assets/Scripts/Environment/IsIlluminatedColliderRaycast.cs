@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Design;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,15 +11,31 @@ public class LightZoneColliderRaycast : MonoBehaviour
     public bool CheckRaycastToPlayer;
     public Transform playerPos;
     public Transform lightPos;
-    private bool PlayerInsideCollider = false;
+    private bool PlayerLit = true;
+    private bool PlayerInsideCollider = true;
     private RaycastHit[] hits = new RaycastHit[1];
 
     public void Update()
     {
+        Debug.Log(player.IsIlluminated);
         if(!PlayerInsideCollider) return;
-        if (player != null) player.IsIlluminated = CheckRaycast();
-
-        // Debug.Log(player.IsIlluminated);
+        bool raycastHitsPlayer = CheckRaycast();
+        if(PlayerLit && !raycastHitsPlayer)
+        {
+            PlayerLit = false; 
+            player.IsIlluminated--;
+        }
+        if(PlayerLit && raycastHitsPlayer)
+        {
+        }
+        if(!PlayerLit && !raycastHitsPlayer)
+        {
+        }
+        if(!PlayerLit && raycastHitsPlayer)
+        {
+            PlayerLit = true; 
+            player.IsIlluminated++;
+        }
     }
 
     private bool CheckRaycast()
@@ -36,9 +53,9 @@ public class LightZoneColliderRaycast : MonoBehaviour
         Vector3 to = playerPos.position;
         Vector3 direction = to - from;
         float distance = direction.magnitude;
-        Debug.DrawRay(from, direction, Color.red);
+        // Debug.DrawRay(from, direction, Color.red);
         int hitCount = Physics.RaycastNonAlloc(from, direction.normalized, hits, distance, -1, QueryTriggerInteraction.Ignore);
-        Debug.Log(hits[0].collider.gameObject.name);
+        // Debug.Log(hits[0].collider.gameObject.name);
         if (hitCount == 1 && hits[0].collider.CompareTag("Player"))
         {
             return true;
@@ -54,7 +71,11 @@ public class LightZoneColliderRaycast : MonoBehaviour
             if (player != null)
             {
                 PlayerInsideCollider = true;
-                player.IsIlluminated = CheckRaycast();
+                if(CheckRaycast())
+                {
+                   PlayerLit = true; 
+                   player.IsIlluminated++; 
+                }
             }
         }
     }
@@ -66,7 +87,8 @@ public class LightZoneColliderRaycast : MonoBehaviour
             if (player != null)
             {
                 PlayerInsideCollider = false;
-                player.IsIlluminated = false;
+                if(PlayerLit) player.IsIlluminated--;
+                PlayerLit = false;
             }
         }
     }

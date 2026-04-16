@@ -24,7 +24,7 @@ public class Avatar : MonoBehaviour
     private bool isTeleportDirty;
     private bool isResetPosDirty;
 
-    public bool IsIlluminated { get; set; } = true;
+    public int IsIlluminated { get; set; } = 0;
 
     protected virtual void Awake()
     {
