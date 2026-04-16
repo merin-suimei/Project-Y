@@ -11,6 +11,8 @@ public class LightZoneCollider : MonoBehaviour
             if (player != null)
             {
                 player.IsIlluminated = true;
+                Debug.Assert(player.IsIlluminated == true);
+                // Debug.Log(player.IsIlluminated);
             }
         }
     }
@@ -22,6 +24,8 @@ public class LightZoneCollider : MonoBehaviour
             if (player != null)
             {
                 player.IsIlluminated = false;
+                Debug.Assert(player.IsIlluminated == false);
+                // Debug.Log(player.IsIlluminated);
             }
         }
     }
