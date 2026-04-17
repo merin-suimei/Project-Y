@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6988274613992320359, guid: 8ef03fd84326bc04b9098b48fd0e9fd0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 8120124684306716168, guid: 8ef03fd84326bc04b9098b48fd0e9fd0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -415,7 +419,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 292fcccc6b11b9f46b9f9795c1ceeb57, type: 2}
+      objectReference: {fileID: 2100000, guid: d0f4c1a3ea53d7d4ebeff3c3b3e6e95e, type: 2}
     - target: {fileID: -4649613504714232583, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -534,7 +538,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 39d7f244b8d99604ead0727b2ab740ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 306189242584805428a7ef3f7b61b4e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 39d7f244b8d99604ead0727b2ab740ca, type: 3}
       propertyPath: m_Name
       value: Bone1 (1)
@@ -1050,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 306189242584805428a7ef3f7b61b4e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: m_Name
       value: Bone2
@@ -2957,6 +2961,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2640918547080306342, guid: cd843bb6800fce84aa99e1f75fe35074, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 3813776690256651721, guid: cd843bb6800fce84aa99e1f75fe35074, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8
@@ -4144,7 +4152,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 292fcccc6b11b9f46b9f9795c1ceeb57, type: 2}
+      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
     - target: {fileID: -4649613504714232583, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -4668,7 +4676,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ec94e6339387f3d44b4499991a69a0d7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7c8f25a057d7d0742a9da32666409d3f, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: ec94e6339387f3d44b4499991a69a0d7, type: 3}
       propertyPath: m_Name
       value: CandleFull
@@ -4747,6 +4755,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 287b66f1bec0bb740aef54c430a0da45, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 287b66f1bec0bb740aef54c430a0da45, type: 3}
       propertyPath: m_Name
       value: CandleHalf
@@ -6709,7 +6721,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
+      objectReference: {fileID: 2100000, guid: 2dd8cc288d490af419a6cf46cd7327f1, type: 2}
     - target: {fileID: 919132149155446097, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: m_Name
       value: wallHalf
@@ -7208,7 +7220,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 292fcccc6b11b9f46b9f9795c1ceeb57, type: 2}
+      objectReference: {fileID: 2100000, guid: 2815e8d1d23c1004da00dfb7c26e6aff, type: 2}
     - target: {fileID: -4649613504714232583, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -7732,7 +7744,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 85497ddd97f5c0341afc73bcc8f89f49, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 68efff740b45ab746a79796140f70d1b, type: 2}
+      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
     - target: {fileID: 919132149155446097, guid: 85497ddd97f5c0341afc73bcc8f89f49, type: 3}
       propertyPath: m_Name
       value: RackFive
@@ -8109,7 +8121,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
+      objectReference: {fileID: 2100000, guid: 2dd8cc288d490af419a6cf46cd7327f1, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall (4)
@@ -8786,7 +8798,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ec94e6339387f3d44b4499991a69a0d7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7c8f25a057d7d0742a9da32666409d3f, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: ec94e6339387f3d44b4499991a69a0d7, type: 3}
       propertyPath: m_Name
       value: CandleFull (2)
@@ -9628,6 +9640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30.126
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2383c15797ca8324c909e45cb7566efb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 2383c15797ca8324c909e45cb7566efb, type: 3}
       propertyPath: m_Name
       value: HumanSkull
@@ -10087,7 +10103,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
+      objectReference: {fileID: 2100000, guid: 2dd8cc288d490af419a6cf46cd7327f1, type: 2}
     - target: {fileID: 919132149155446097, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: m_Name
       value: wallHalf (1)
@@ -12580,7 +12596,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 7288b6a2021480945bb708e69d3fa021, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7c8f25a057d7d0742a9da32666409d3f, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 7288b6a2021480945bb708e69d3fa021, type: 3}
       propertyPath: m_Name
       value: CandleQuarter
@@ -16042,7 +16058,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 292fcccc6b11b9f46b9f9795c1ceeb57, type: 2}
+      objectReference: {fileID: 2100000, guid: 417c1cc8a6952224c8e3910d69a6a871, type: 2}
     - target: {fileID: -4649613504714232583, guid: f445bfa3c2f3f324a8022e3fb643d2d5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -16971,7 +16987,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 39d7f244b8d99604ead0727b2ab740ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 306189242584805428a7ef3f7b61b4e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 39d7f244b8d99604ead0727b2ab740ca, type: 3}
       propertyPath: m_Name
       value: Bone1
