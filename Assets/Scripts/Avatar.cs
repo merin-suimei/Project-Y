@@ -24,6 +24,8 @@ public class Avatar : MonoBehaviour
     private bool isTeleportDirty;
     private bool isResetPosDirty;
 
+    public int IsIlluminated { get; set; } = 0;
+
     protected virtual void Awake()
     {
         if (resetPoint == Vector3.zero)

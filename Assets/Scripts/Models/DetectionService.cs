@@ -22,6 +22,8 @@ public class DetectionService : IModel
     {
         if (isDetectionDisabled) return false;
 
+        if (enemy.needsLightToDetect && player.IsIlluminated == 0) return false;
+
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
 
         if (distance < enemy.catchThreshold) 

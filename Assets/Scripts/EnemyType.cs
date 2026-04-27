@@ -14,7 +14,7 @@ public class EnemyType : ScriptableObject
     [field: SerializeField] public float DetectDelay { get; private set; } = 1f;
     [field: SerializeField] public float DecaySpeed { get; private set; } = 1f;
     [field: SerializeField] public LayerMask RaycastIgnore  { get; private set; }
-
+    [field: SerializeField] public bool NeedsLightToDetect  { get; private set; } = false;
 
     [field: Space(10)]
     [field: Header("Движение")]

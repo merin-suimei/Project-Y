@@ -11,6 +11,7 @@ public class Enemy : Avatar
 
     public float detectDelay { get; private set; }
     public LayerMask raycastIgnore { get; private set; }
+    public bool needsLightToDetect;
 
     private float patrolSpeed;
     private float chaseSpeed;
@@ -27,6 +28,7 @@ public class Enemy : Avatar
         catchThreshold = type.CatchThreshold;
 
         raycastIgnore = type.RaycastIgnore;
+        needsLightToDetect = type.NeedsLightToDetect;
 
         patrolSpeed = type.PatrolSpeed;
         chaseSpeed = type.ChaseSpeed;
