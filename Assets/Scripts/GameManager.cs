@@ -33,7 +33,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        models.Add(new DetectionService(player, enemies));
+        DetectionService detectionService = new DetectionService(player, enemies);
+        models.Add(detectionService);
+        DebugSceneSwitcher debugSceneSwitcher = ObjectResolver.Resolve<DebugSceneSwitcher>();
+        if (debugSceneSwitcher != null)
+        {
+            debugSceneSwitcher.InitDetectionService(detectionService);
+        }
 
         player.SetID(0);
         models.Add(new PlayerModel(0));

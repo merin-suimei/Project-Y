@@ -596,6 +596,9 @@ MonoBehaviour:
   _emissionIntensity: 0.28
   _maxBrightness: 1.8
   _circleSoftness: 1.9
+  _circleShadowRadius: 0.55
+  _circleShadowSoftness: 3
+  _circleShadowOffset: {x: -0.1, y: -0.1}
 --- !u!1 &8003672111310355191
 GameObject:
   m_ObjectHideFlags: 0

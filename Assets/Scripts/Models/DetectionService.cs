@@ -4,6 +4,7 @@ public class DetectionService : IModel
 {
     private readonly Avatar player;
     private readonly Enemy[] enemies;
+    private bool isDetectionDisabled = false;
 
     public DetectionService(Avatar player, Enemy[] enemies)
     {
@@ -19,6 +20,10 @@ public class DetectionService : IModel
 
     public bool IsPlayerVisible(Enemy enemy)
     {
+        if (isDetectionDisabled) return false;
+
+        if (enemy.needsLightToDetect && player.IsIlluminated == 0) return false;
+
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
 
         if (distance < enemy.catchThreshold) 
@@ -36,5 +41,15 @@ public class DetectionService : IModel
         }
 
         return enemy.HasLineOfSight(player.transform);
+    }
+    
+    public void SetDetectionDisabled(bool isDisabled)
+    {
+        isDetectionDisabled = isDisabled;
+    }
+
+    public bool IsDetectionDisabled()
+    {
+        return isDetectionDisabled;
     }
 }

@@ -10,14 +10,49 @@ public class EnemyConeView : MonoBehaviour
     private float detectionRange;
     private LayerMask raycastIgnore;
 
-    [SerializeField] public float meshResolution = 0.5f;
-    [SerializeField] public float edgeResolveIterations = 3f;
-    [SerializeField] public float edgeDistanceTreshold = 0.5f;
-    [SerializeField] public float viewHeightOffset = 4.5f;
-    [SerializeField] public float middleLine = 0.81f;
+    [SerializeField] private float meshResolution = 0.5f;
+    [SerializeField] private float edgeResolveIterations = 3f;
+    [SerializeField] private float edgeDistanceTreshold = 0.5f;
+    [SerializeField] private float viewHeightOffset = 4.5f;
+    [SerializeField] private float middleLine = 0.81f;
     [SerializeField] private float obstacleInset = 0.02f;
     [SerializeField] public MeshFilter viewMeshFilter;
     Mesh viewMesh;
+    private readonly List<Vector3> _viewPoints = new();
+    private readonly List<Vector3> _bottomLocal = new();
+    private readonly List<Vector3> _viewPointsTop = new();
+    private readonly List<Vector3> _vertices = new();
+    private readonly List<int> _triangles = new();
+
+    [Header("Edge Lines")]
+    [SerializeField] private Material edgeLineMaterial;
+    public Material EdgeLineMaterial => edgeLineMaterial;
+    [SerializeField] private float edgeLineWidth = 0.05f;
+    [Header("Bottom triangle")]
+    [SerializeField] private bool drawLeftBottomRay = false;
+    [SerializeField] private bool drawRightBottomRay = false;
+    [SerializeField] private bool drawBottomArc = false;
+    [Header("Top arc and center line")]
+    [SerializeField] private bool drawTopArc = false;
+    [SerializeField] private bool drawCenterLine = false;
+    [Header("Left side")]
+    [Tooltip("Edge is used if the raycast encountered an obstacle")]
+    [SerializeField] private bool drawLeftEdge = false;
+    [SerializeField] private bool drawLeftTopRay = false;
+    [Header("Right side")]
+    [Tooltip("Edge is used if the raycast encountered an obstacle")]
+    [SerializeField] private bool drawRightEdge = false;
+    [SerializeField] private bool drawRightTopRay = false;
+
+    private LineRenderer bottomArcLine;
+    private LineRenderer topArcLine;
+    private LineRenderer leftEdgeLine;
+    private LineRenderer rightEdgeLine;
+    private LineRenderer leftBottomRayLine;
+    private LineRenderer rightBottomRayLine;
+    private LineRenderer leftTopRayLine;
+    private LineRenderer rightTopRayLine;
+    private LineRenderer centerSpineLine;
 
     public struct ViewCastInfo
     {
@@ -62,6 +97,8 @@ public class EnemyConeView : MonoBehaviour
         detectionSemiconeAngle = enemy.detectionSemiconeAngle;
         detectionRange = enemy.detectionRange;
         raycastIgnore = enemy.raycastIgnore;
+
+        CreateAllEdgeLines();
     }
 
     // Update is called once per frame
@@ -72,10 +109,15 @@ public class EnemyConeView : MonoBehaviour
 
     void DrawFieldOfView()
     {
+        _viewPoints.Clear();
+        _bottomLocal.Clear();
+        _viewPointsTop.Clear();
+        _vertices.Clear();
+        _triangles.Clear();
+
         float fullAngle = detectionSemiconeAngle * 2f;
         int stepCount = Mathf.RoundToInt(fullAngle * meshResolution);
         float stepAngleSize = fullAngle / stepCount;
-        List<Vector3> viewPoints = new List<Vector3>();
         ViewCastInfo oldViewCast = new ViewCastInfo();
         for (int i = 0; i <= stepCount; i++)
         {
@@ -89,49 +131,54 @@ public class EnemyConeView : MonoBehaviour
                     EdgeInfo edge = FindeEdge(oldViewCast, newViewCast);
                     if (edge.pointA != Vector3.zero)
                     {
-                        viewPoints.Add(edge.pointA);
+                        _viewPoints.Add(edge.pointA);
                     }
                     if (edge.pointB != Vector3.zero)
                     {
-                        viewPoints.Add(edge.pointB);
+                        _viewPoints.Add(edge.pointB);
                     }
                 }
             }
 
-            viewPoints.Add(newViewCast.point);
+            _viewPoints.Add(newViewCast.point);
             oldViewCast = newViewCast;
         }
 
         // �������� ��� ����� �� middleLine ��� ������ �����
-        for (int i = 0; i < viewPoints.Count; i++)
+        for (int i = 0; i < _viewPoints.Count; i++)
         {
-            Vector3 bottomViewPoint = viewPoints[i] - Vector3.up * middleLine;
-            viewPoints[i] = bottomViewPoint;
+            Vector3 bottomViewPoint = _viewPoints[i] - Vector3.up * middleLine;
+            _viewPoints[i] = bottomViewPoint;
 
         }
 
+        //List<Vector3> bottomLocal = new List<Vector3>(viewPoints.Count);
+        for (int i = 0; i < _viewPoints.Count; i++)
+        {
+            _bottomLocal.Add(transform.InverseTransformPoint(_viewPoints[i]));
+        }
+
         // ������� �����
-        int vertexCountTop = viewPoints.Count + 1;
+        int vertexCountTop = _viewPoints.Count + 1;
         Vector3[] verticesTop = new Vector3[vertexCountTop];
         int[] trianglesTop = new int[(vertexCountTop - 2) * 3];
 
         verticesTop[0] = Vector3.up * viewHeightOffset;
         // ������ ������ �����
-        List<Vector3> viewPointsTop = new List<Vector3>();
-        for (int i = 0; i < viewPoints.Count; i++)
+        for (int i = 0; i < _viewPoints.Count; i++)
         {
-            Vector3 localPoint = transform.InverseTransformPoint(viewPoints[i]);
+            Vector3 localPoint = _bottomLocal[i];
             Vector2 flatPoint = new Vector2(localPoint.x, localPoint.z);
             float distanceFromOrigin = flatPoint.magnitude;
             float t = Mathf.Clamp01(distanceFromOrigin / detectionRange);
             float topY = Mathf.Lerp(viewHeightOffset, 0f, t);
             Vector3 topPoint = new Vector3(localPoint.x, topY, localPoint.z);
-            viewPointsTop.Add(topPoint);
+            _viewPointsTop.Add(topPoint);
         }
 
         for (int i = 0; i < vertexCountTop - 1; i++)
         {
-            verticesTop[i + 1] = viewPointsTop[i];
+            verticesTop[i + 1] = _viewPointsTop[i];
 
             if (i < vertexCountTop - 2)
             {
@@ -142,14 +189,14 @@ public class EnemyConeView : MonoBehaviour
         }
 
         // ������ �����
-        int vertexCountBottom = viewPoints.Count + 1;
+        int vertexCountBottom = _bottomLocal.Count + 1;
         Vector3[] verticesBottom = new Vector3[vertexCountBottom];
         int[] trianglesBottom = new int[(vertexCountBottom - 2) * 3];
 
         verticesBottom[0] = Vector3.zero;
         for (int i = 0; i < vertexCountBottom - 1; i++)
         {
-            verticesBottom[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+            verticesBottom[i + 1] = _bottomLocal[i];
 
             if (i < vertexCountBottom - 2)
             {
@@ -160,7 +207,7 @@ public class EnemyConeView : MonoBehaviour
         }
 
         // ���������� �����
-        int sideSegmentCount = viewPoints.Count - 1;
+        int sideSegmentCount = _viewPoints.Count - 1;
 
         Vector3[] verticesSides = new Vector3[sideSegmentCount * 4];
         int[] trianglesSides = new int[sideSegmentCount * 6];
@@ -170,10 +217,10 @@ public class EnemyConeView : MonoBehaviour
             int v = i * 4;
             int t = i * 6;
 
-            Vector3 b0 = transform.InverseTransformPoint(viewPoints[i]);
-            Vector3 b1 = transform.InverseTransformPoint(viewPoints[i + 1]);
-            Vector3 top0 = viewPointsTop[i];
-            Vector3 top1 = viewPointsTop[i + 1];
+            Vector3 b0 = _bottomLocal[i];
+            Vector3 b1 = _bottomLocal[i + 1];
+            Vector3 top0 = _viewPointsTop[i];
+            Vector3 top1 = _viewPointsTop[i + 1];
 
             verticesSides[v + 0] = b0;
             verticesSides[v + 1] = b1;
@@ -195,8 +242,8 @@ public class EnemyConeView : MonoBehaviour
         int[] trianglesLeftCap = new int[6];
 
         verticesLeftCap[0] = Vector3.zero;
-        verticesLeftCap[1] = transform.InverseTransformPoint(viewPoints[0]);
-        verticesLeftCap[2] = viewPointsTop[0];
+        verticesLeftCap[1] = _bottomLocal[0];
+        verticesLeftCap[2] = _viewPointsTop[0];
         verticesLeftCap[3] = Vector3.up * viewHeightOffset;
 
         trianglesLeftCap[0] = 0;
@@ -208,15 +255,15 @@ public class EnemyConeView : MonoBehaviour
         trianglesLeftCap[5] = 3;
 
         // ������
-        int last = viewPoints.Count - 1;
+        int last = _viewPoints.Count - 1;
 
         Vector3[] verticesRightCap = new Vector3[4];
         int[] trianglesRightCap = new int[6];
 
         verticesRightCap[0] = Vector3.zero;
         verticesRightCap[1] = Vector3.up * viewHeightOffset;
-        verticesRightCap[2] = viewPointsTop[last];
-        verticesRightCap[3] = transform.InverseTransformPoint(viewPoints[last]);
+        verticesRightCap[2] = _viewPointsTop[last];
+        verticesRightCap[3] = _bottomLocal[last];
 
         trianglesRightCap[0] = 0;
         trianglesRightCap[1] = 1;
@@ -227,44 +274,46 @@ public class EnemyConeView : MonoBehaviour
         trianglesRightCap[5] = 3;
 
         // ����������� ���� ������
-        List<Vector3> vertices = new List<Vector3>();
-        List<int> triangles = new List<int>();
-        vertices.AddRange(verticesBottom);
+        //List<Vector3> vertices = new List<Vector3>();
+        //List<int> triangles = new List<int>();
+        _vertices.AddRange(verticesBottom);
         for (int i = 0; i < trianglesBottom.Length; i++)
         {
-            triangles.Add(trianglesBottom[i]);
+            _triangles.Add(trianglesBottom[i]);
         }
-        int topStart = vertices.Count;
-        vertices.AddRange(verticesTop);
+        int topStart = _vertices.Count;
+        _vertices.AddRange(verticesTop);
         for (int i = 0; i < trianglesTop.Length; i++)
         {
-            triangles.Add(trianglesTop[i] + topStart);
+            _triangles.Add(trianglesTop[i] + topStart);
         }
-        int leftStart = vertices.Count;
-        vertices.AddRange(verticesLeftCap);
+        int leftStart = _vertices.Count;
+        _vertices.AddRange(verticesLeftCap);
         for (int i = 0; i < trianglesLeftCap.Length; i++)
         {
-            triangles.Add(trianglesLeftCap[i] + leftStart);
+            _triangles.Add(trianglesLeftCap[i] + leftStart);
         }
-        int sideStart = vertices.Count;
-        vertices.AddRange(verticesSides);
+        int sideStart = _vertices.Count;
+        _vertices.AddRange(verticesSides);
         for (int i = 0; i < trianglesSides.Length; i++)
         {
-            triangles.Add(trianglesSides[i] + sideStart);
+            _triangles.Add(trianglesSides[i] + sideStart);
         }
-        int rightStart = vertices.Count;
-        vertices.AddRange(verticesRightCap);
+        int rightStart = _vertices.Count;
+        _vertices.AddRange(verticesRightCap);
         for (int i = 0; i < trianglesRightCap.Length; i++)
         {
-            triangles.Add(trianglesRightCap[i] + rightStart);
+            _triangles.Add(trianglesRightCap[i] + rightStart);
         }
 
 
         viewMesh.Clear();
-        viewMesh.vertices = vertices.ToArray();
-        viewMesh.triangles = triangles.ToArray();
+        viewMesh.vertices = _vertices.ToArray();
+        viewMesh.triangles = _triangles.ToArray();
         viewMesh.RecalculateNormals();
         viewMesh.RecalculateBounds();
+
+        UpdateEdgeLines(_bottomLocal, _viewPointsTop);
     }
 
     ViewCastInfo ViewCast(float localAngle)
@@ -312,4 +361,149 @@ public class EnemyConeView : MonoBehaviour
 
         return new EdgeInfo(minPoint, maxPoint);
     }
+
+    // lines
+    private void CreateAllEdgeLines()
+    {
+        bottomArcLine = CreateEdgeLine("BottomArcLine");
+        topArcLine = CreateEdgeLine("TopArcLine");
+        leftEdgeLine = CreateEdgeLine("LeftEdgeLine");
+        rightEdgeLine = CreateEdgeLine("RightEdgeLine");
+        leftBottomRayLine = CreateEdgeLine("LeftBottomRayLine");
+        rightBottomRayLine = CreateEdgeLine("RightBottomRayLine");
+        leftTopRayLine = CreateEdgeLine("LeftTopRayLine");
+        rightTopRayLine = CreateEdgeLine("RightTopRayLine");
+        centerSpineLine = CreateEdgeLine("CenterSpineLine");
+    }
+    private LineRenderer CreateEdgeLine(string lineName)
+    {
+        GameObject lineObject = new GameObject(lineName);
+        lineObject.transform.SetParent(transform, false);
+
+        LineRenderer lr = lineObject.AddComponent<LineRenderer>();
+        lr.useWorldSpace = false;
+        lr.alignment = LineAlignment.View;
+        lr.widthMultiplier = edgeLineWidth;
+        lr.material = edgeLineMaterial;
+        lr.positionCount = 0;
+        lr.numCornerVertices = 2;
+        lr.numCapVertices = 2;
+
+        return lr;
+    }
+
+    private void DisableAllLines()
+    {
+        bottomArcLine.enabled = false;
+        topArcLine.enabled = false;
+        leftEdgeLine.enabled = false;
+        rightEdgeLine.enabled = false;
+        leftBottomRayLine.enabled = false;
+        rightBottomRayLine.enabled = false;
+        leftTopRayLine.enabled = false;
+        rightTopRayLine.enabled = false;
+        centerSpineLine.enabled = false;
+    }
+
+    private void SetOptionalSegment(LineRenderer lr, bool shouldDraw, Vector3 a, Vector3 b)
+    {
+        if (!shouldDraw)
+        {
+            lr.enabled = false;
+            return;
+        }
+
+        SetTwoPointLine(lr, a, b);
+    }
+
+    private void SetOptionalPolyline(LineRenderer lr, bool shouldDraw, List<Vector3> points)
+    {
+        if (!shouldDraw || points == null || points.Count < 2)
+        {
+            lr.enabled = false;
+            return;
+        }
+
+        SetPolyline(lr, points);
+    }
+
+    private void SetTwoPointLine(LineRenderer lr, Vector3 a, Vector3 b)
+    {
+        lr.enabled = true;
+        lr.positionCount = 2;
+        lr.SetPosition(0, a);
+        lr.SetPosition(1, b);
+    }
+
+    private void SetPolyline(LineRenderer lr, List<Vector3> points)
+    {
+        if (points == null || points.Count < 2)
+        {
+            lr.enabled = false;
+            return;
+        }
+
+        lr.enabled = true;
+        lr.positionCount = points.Count;
+        lr.SetPositions(points.ToArray());
+    }
+
+    private void UpdateEdgeLines(List<Vector3> bottomLocal, List<Vector3> topLocal)
+    {
+        if (bottomLocal == null || topLocal == null || bottomLocal.Count < 2 || topLocal.Count < 2)
+        {
+            DisableAllLines();
+            return;
+        }
+
+        int last = bottomLocal.Count - 1;
+
+        Vector3 bottomApex = Vector3.zero;
+        Vector3 topApex = Vector3.up * viewHeightOffset;
+
+        SetOptionalPolyline(bottomArcLine, drawBottomArc, bottomLocal);
+        SetOptionalPolyline(topArcLine, drawTopArc, topLocal);
+
+        SetOptionalSegment(leftEdgeLine, drawLeftEdge, bottomLocal[0], topLocal[0]);
+        SetOptionalSegment(rightEdgeLine, drawRightEdge, bottomLocal[last], topLocal[last]);
+
+        SetOptionalSegment(leftBottomRayLine, drawLeftBottomRay, bottomApex, bottomLocal[0]);
+        SetOptionalSegment(rightBottomRayLine, drawRightBottomRay, bottomApex, bottomLocal[last]);
+
+        SetOptionalSegment(leftTopRayLine, drawLeftTopRay, topApex, topLocal[0]);
+        SetOptionalSegment(rightTopRayLine, drawRightTopRay, topApex, topLocal[last]);
+
+        SetOptionalSegment(centerSpineLine, drawCenterLine, bottomApex, topApex);
+    }
+
+    public void SetLinesColor(Color color)
+    {
+        ApplyLineColor(bottomArcLine, color);
+        ApplyLineColor(topArcLine, color);
+        ApplyLineColor(leftEdgeLine, color);
+        ApplyLineColor(rightEdgeLine, color);
+        ApplyLineColor(leftBottomRayLine, color);
+        ApplyLineColor(rightBottomRayLine, color);
+        ApplyLineColor(leftTopRayLine, color);
+        ApplyLineColor(rightTopRayLine, color);
+        ApplyLineColor(centerSpineLine, color);
+    }
+
+    private void ApplyLineColor(LineRenderer lr, Color color)
+    {
+        if (lr == null) return;
+
+        Material mat = lr.material;
+        if (mat == null) return;
+
+        if (mat.HasProperty("_Color"))
+            mat.SetColor("_Color", color);
+
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", color);
+
+        if (mat.HasProperty("_EmissionColor"))
+            mat.SetColor("_EmissionColor", color);
+    }
+
 }
