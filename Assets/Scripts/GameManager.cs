@@ -74,7 +74,10 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, ResetAllPos);       
+        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, ResetAllPos);
+
+        foreach (IModel model in models) // TODO: Проверить необходимость Destroy() для остальных моделей
+            if (model is EnemyModel enemy) enemy.Destroy();
     }
 
     private void ResetAllPos()

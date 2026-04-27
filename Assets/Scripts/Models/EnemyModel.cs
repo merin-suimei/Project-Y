@@ -44,9 +44,10 @@ public class EnemyModel : IModel
         EventBus.Subscribe<int, bool>(EventType.OnPlayerVisible, SetPlayerVisible);
     }
 
-    ~EnemyModel()
+    public void Destroy()
     {
         EventBus.Unsubscribe<int, bool>(EventType.OnPlayerVisible, SetPlayerVisible);
+        stateMachine.CurrentState.Exit();
     }
 
     public void Tick()

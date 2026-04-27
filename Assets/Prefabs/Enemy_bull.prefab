@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 6234721590882699821}
   - component: {fileID: 1646987377350132493}
   - component: {fileID: 5697638994429913943}
-  - component: {fileID: 6096769850234517559}
   m_Layer: 7
   m_Name: ConeView
   m_TagString: Untagged
@@ -382,24 +381,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6096769850234517559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5547034103884223358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b0700517ecc3b40ac6aa410914b358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseColor: {r: 0.735849, g: 0, b: 0, a: 0}
-  useCustomChaseTransparancy: 0
-  customChaseTransparency: 0
-  changeLineColor: 0
-  useCustomChaseLineColor: 0
-  customChaseLineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5693152466619777637
 GameObject:
   m_ObjectHideFlags: 0

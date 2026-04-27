@@ -23,6 +23,7 @@ public class EnemyPatrolState : EnemyState
         EventBus.Raise(EventType.PlayEnemyMoveSound);
 
         EventBus.Subscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
+        EventBus.Subscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);
     }
 
     public override void StateUpdate()
@@ -47,6 +48,12 @@ public class EnemyPatrolState : EnemyState
         if (targetID != enemy.id) return;
 
         EventBus.Raise(EventType.OnRotateTo, enemy.id, currentPoint.transform.position + currentPoint.transform.forward);
+    }
+
+    private void EnemyTurnedOnPoint(int targetID)
+    {
+        if (targetID != enemy.id) return;
+
         CalculatePointIndex();
         enemy.ExecutePointStay(currentPoint.waitTime);
     }
@@ -80,6 +87,7 @@ public class EnemyPatrolState : EnemyState
     public override void Exit()
     {
         EventBus.Unsubscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
+        EventBus.Unsubscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);
         base.Exit();
         EventBus.Raise(EventType.StopEnemyMoveSound);
     }
