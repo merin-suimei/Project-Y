@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall (2)
@@ -299,17 +299,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -929,7 +933,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (10)
@@ -1015,7 +1019,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (12)
@@ -2014,7 +2018,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
+      objectReference: {fileID: 2100000, guid: 1b385b207cf2313418ef74de2a5a0f88, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall
@@ -2290,7 +2294,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2e4ca25256e59dc4495c594c48aa16a7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 66687ba3b25ff9743b7ca83f529763a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 9ab4776af55c0564693697b9a9a88586, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e4ca25256e59dc4495c594c48aa16a7, type: 3}
       propertyPath: m_Name
       value: commode (1)
@@ -2644,7 +2648,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: 919132149155446097, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: m_Name
       value: bench_table (1)
@@ -3181,7 +3185,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
+      objectReference: {fileID: 2100000, guid: e6823c02ac265e040826c7ffeedba17b, type: 2}
     - target: {fileID: 919132149155446097, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: m_Name
       value: Bone2 (1)
@@ -3375,7 +3379,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (13)
@@ -3997,7 +4001,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: 919132149155446097, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: m_Name
       value: bench_table (2)
@@ -4696,7 +4700,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall (7)
@@ -4818,7 +4822,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e802c39b936000342a559996ab542f00, type: 2}
+  - {fileID: 2100000, guid: 031b026b4f16e2a46830688edced1147, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7211,7 +7215,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (6)
@@ -7405,7 +7409,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (4)
@@ -7491,7 +7495,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (11)
@@ -7693,7 +7697,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: m_Name
       value: firewood (1)
@@ -7797,7 +7801,7 @@ PrefabInstance:
     - target: {fileID: -9162536073808524286, guid: bae7bcd7a5f360f4f93c6d6903ac8c84, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: -8679921383154817045, guid: bae7bcd7a5f360f4f93c6d6903ac8c84, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9904113
@@ -7853,7 +7857,7 @@ PrefabInstance:
     - target: {fileID: -5843910323032436976, guid: bae7bcd7a5f360f4f93c6d6903ac8c84, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: bae7bcd7a5f360f4f93c6d6903ac8c84, type: 3}
       propertyPath: m_Name
       value: chest 1 (1)
@@ -8768,7 +8772,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 73e80eaf9a176cf44b5b40b25d78a411, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c2f524fca00f2d247b8e8478391dad06, type: 2}
+      objectReference: {fileID: 2100000, guid: 540e4300ba3984b4cabe8de39295088b, type: 2}
     - target: {fileID: 919132149155446097, guid: 73e80eaf9a176cf44b5b40b25d78a411, type: 3}
       propertyPath: m_Name
       value: lid
@@ -9260,7 +9264,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: bc68b5339436da347bf35745e53b9f13, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: 919132149155446097, guid: bc68b5339436da347bf35745e53b9f13, type: 3}
       propertyPath: m_Name
       value: jug_5
@@ -9378,17 +9382,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9851,7 +9859,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: m_Name
       value: firewood
@@ -10593,7 +10601,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f80f1a48111b41b42877032f7d9e08b1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
+      objectReference: {fileID: 2100000, guid: e6823c02ac265e040826c7ffeedba17b, type: 2}
     - target: {fileID: 919132149155446097, guid: f80f1a48111b41b42877032f7d9e08b1, type: 3}
       propertyPath: m_Name
       value: Washtub
@@ -10675,7 +10683,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0c9fd143ee222f84c906b664b6f1d885, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c9fd143ee222f84c906b664b6f1d885, type: 3}
       propertyPath: m_Name
       value: wallWindow
@@ -10790,7 +10798,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (5)
@@ -10984,7 +10992,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (9)
@@ -11962,7 +11970,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: acb757e8fe4365c4f8e32f966ac1094b, type: 2}
+  - {fileID: 2100000, guid: 87c685734d3ef2f4faf4111edfe42338, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12310,6 +12318,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.487
       objectReference: {fileID: 0}
+    - target: {fileID: 5943413362541814920, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
+      propertyPath: _emissionIntensity
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6248383457819550697, guid: 7c92fe4283faa734eaffdef07ee89a06, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -12524,7 +12536,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: f9a062257a2bcbd438dc83414687037b, type: 3}
       propertyPath: m_Name
       value: firewood (2)
@@ -12683,7 +12695,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall (3)
@@ -12890,7 +12902,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 29cf65fa4e2ef5248ba15e38ed47c5c2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 66687ba3b25ff9743b7ca83f529763a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 9ab4776af55c0564693697b9a9a88586, type: 2}
     - target: {fileID: 919132149155446097, guid: 29cf65fa4e2ef5248ba15e38ed47c5c2, type: 3}
       propertyPath: m_Name
       value: samovar
@@ -12967,7 +12979,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: m_Name
       value: wallHalf (1)
@@ -13247,7 +13259,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (7)
@@ -13734,7 +13746,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 554122e67cc5d2645a5ae97a1b7f0b5f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2c41dfcd63031c14dbf752368a637937, type: 2}
+      objectReference: {fileID: 2100000, guid: 687e71885660f6742837e05ebb4f616e, type: 2}
     - target: {fileID: 919132149155446097, guid: 554122e67cc5d2645a5ae97a1b7f0b5f, type: 3}
       propertyPath: m_Name
       value: carpet
@@ -14015,7 +14027,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 710525367c30e1d45a270051e8581154, type: 3}
       propertyPath: m_Name
       value: wall (6)
@@ -14769,7 +14781,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e802c39b936000342a559996ab542f00, type: 2}
+  - {fileID: 2100000, guid: 031b026b4f16e2a46830688edced1147, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15887,7 +15899,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5bbb0c28e7bbe42439154d221dddc2d9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 66687ba3b25ff9743b7ca83f529763a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 9ab4776af55c0564693697b9a9a88586, type: 2}
     - target: {fileID: 919132149155446097, guid: 5bbb0c28e7bbe42439154d221dddc2d9, type: 3}
       propertyPath: m_Name
       value: ladder
@@ -16060,7 +16072,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 309595ed822734545ab5f1333a1d4efe, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
+      objectReference: {fileID: 2100000, guid: e6823c02ac265e040826c7ffeedba17b, type: 2}
     - target: {fileID: 919132149155446097, guid: 309595ed822734545ab5f1333a1d4efe, type: 3}
       propertyPath: m_Name
       value: Ribs
@@ -16870,7 +16882,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ad00ba4ba2c05574c8ab5cf541479d0f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: 919132149155446097, guid: ad00ba4ba2c05574c8ab5cf541479d0f, type: 3}
       propertyPath: m_Name
       value: jug_3
@@ -17063,10 +17075,6 @@ PrefabInstance:
       propertyPath: 'enemyWalkPoints.Array.data[7]'
       value: 
       objectReference: {fileID: 781423481}
-    - target: {fileID: 8915368012112628593, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: b445d8c4c3f9caf40af3964e50c51145, type: 2}
     - target: {fileID: 5741842105974442761, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -17075,6 +17083,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8915368012112628593, guid: 9925eb6dd9850b14388d6235293e87a3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b445d8c4c3f9caf40af3964e50c51145, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18064,7 +18076,7 @@ PrefabInstance:
     - target: {fileID: -41894280247872159, guid: 6d3b22b0f6e7b1741a8df09b7fd2ac88, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: 6d3b22b0f6e7b1741a8df09b7fd2ac88, type: 3}
       propertyPath: m_Name
       value: wallDoor
@@ -18096,7 +18108,7 @@ PrefabInstance:
     - target: {fileID: 9077926073120308842, guid: 6d3b22b0f6e7b1741a8df09b7fd2ac88, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 655ab855f433bec4a9230ffe6ecaa946, type: 2}
+      objectReference: {fileID: 2100000, guid: a54bcb88ceae44f488f76f47ae52386e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18966,7 +18978,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7945059b470d736408afeef6a851fdb3, type: 2}
+      objectReference: {fileID: 2100000, guid: e6823c02ac265e040826c7ffeedba17b, type: 2}
     - target: {fileID: 919132149155446097, guid: f72f02019ceafd64491281278e11a3fa, type: 3}
       propertyPath: m_Name
       value: Bone2
@@ -19277,7 +19289,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 239ba870a97799d4fb7af24eceaa605b, type: 2}
+      objectReference: {fileID: 2100000, guid: db17f5bcd8f95d4499348d78e690f005, type: 2}
     - target: {fileID: 919132149155446097, guid: e1e689e6d361664469fcc06f3f5ddd46, type: 3}
       propertyPath: m_Name
       value: wallHalf
@@ -19400,7 +19412,7 @@ PrefabInstance:
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ba460cb2596b9fb4e9aadf2162ba5343, type: 2}
+      objectReference: {fileID: 2100000, guid: 1b385b207cf2313418ef74de2a5a0f88, type: 2}
     - target: {fileID: 7475611779312083955, guid: bcf93b7b4994a5747a188cbd8a0bd056, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -19491,7 +19503,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: acb757e8fe4365c4f8e32f966ac1094b, type: 2}
+  - {fileID: 2100000, guid: 87c685734d3ef2f4faf4111edfe42338, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19782,6 +19794,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8590351536007896330, guid: a989077db4f206b4bb181afef710abb2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19885,7 +19901,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2e4ca25256e59dc4495c594c48aa16a7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 66687ba3b25ff9743b7ca83f529763a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 9ab4776af55c0564693697b9a9a88586, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e4ca25256e59dc4495c594c48aa16a7, type: 3}
       propertyPath: m_Name
       value: commode
@@ -20621,7 +20637,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c0a92a15cde2949b85947258397f35, type: 2}
+      objectReference: {fileID: 2100000, guid: bbca2c377c3711c45bdd08fc9d0d334c, type: 2}
     - target: {fileID: 919132149155446097, guid: 450dd67701b650c41805f177054ed3c0, type: 3}
       propertyPath: m_Name
       value: bench_table
@@ -20867,6 +20883,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 729605933}
     m_Modifications:
+    - target: {fileID: 3433630863961962816, guid: f00904e2758ebf148aedb28418aa5f5b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 755973933c624a349a2f6d66672e1dcc, type: 2}
     - target: {fileID: 3793800430336252053, guid: f00904e2758ebf148aedb28418aa5f5b, type: 3}
       propertyPath: m_Name
       value: toys_poker
@@ -20992,7 +21012,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (14)
@@ -21377,7 +21397,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 51e4fe3f50e528e40961743b8e291473, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c728170079361247b57038fa91d8c45, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ae30831c4a960847a1a4f81ca9cc7cd, type: 3}
       propertyPath: m_Name
       value: Tabouret (8)
