@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1563e5a28f7d1dd4e9595b7f9e767ef3, type: 3}
+  m_Name: Screamer5
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 6ffa44ea730064a46815ed3559c6f9dd, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 25f350c0dcba7a641bf5ca546768d480, type: 3}
+  - {fileID: 21300000, guid: cdff2d940ecd9184b8a4efa107972e98, type: 3}
+  - {fileID: 21300000, guid: d5773088bf9648743986569b9aa2260b, type: 3}
+  - {fileID: 21300000, guid: f9e2ce05f1956d849bfe6fba0adce1e6, type: 3}
+  - {fileID: 21300000, guid: 55cfc87942cc6c642949ff758c951d55, type: 3}
+  - {fileID: 21300000, guid: 7d51c9c0af0da1043bd0bcd98d0c7814, type: 3}
+  - {fileID: 21300000, guid: b1562876ac7b80b429241c6191a7127e, type: 3}
+  - {fileID: 21300000, guid: e7a622397fe1cf64baab64de8def7350, type: 3}
