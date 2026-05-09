@@ -53,6 +53,8 @@ public class MainMenuScript : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateContinueButtonState();
+
         var es = EventSystem.current;
         if (es == null) return;
 
@@ -63,6 +65,15 @@ public class MainMenuScript : MonoBehaviour
 
         if (es.firstSelectedGameObject != null)
             es.SetSelectedGameObject(es.firstSelectedGameObject);
+    }
+
+    private void UpdateContinueButtonState()
+    {
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        GameState defaultGameState = Resources.Load<GameState>("DefaultGameState");
+
+        continuePlayButton.interactable =
+            gameState.currentLevel.SceneName != defaultGameState.currentLevel.SceneName;
     }
 
     private void StartNewGameClick()

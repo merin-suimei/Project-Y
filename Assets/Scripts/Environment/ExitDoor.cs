@@ -24,6 +24,9 @@ public class ExitDoor : MonoBehaviour
             return;
         }
 
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        gameState.currentLevel = sceneToLoad;
+
         SceneManager.LoadScene(sceneToLoad);
     }
 }

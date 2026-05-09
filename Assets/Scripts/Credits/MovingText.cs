@@ -41,12 +41,14 @@ public class MovingText : MonoBehaviour
         }
         else
         {
+            EventBus.Raise(EventType.ResetGameState);
             SceneManager.LoadScene(mainMenu);
         }
     }
 
     public void SkipCredits()
     {
+        EventBus.Raise(EventType.ResetGameState);
         SceneManager.LoadScene(mainMenu);
     }
 

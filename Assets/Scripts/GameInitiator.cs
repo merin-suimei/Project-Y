@@ -25,6 +25,9 @@ public static class GameInitiator
     private static void ResetGameState()
     {
         //TODO
+        currentGameState.currentLevel = defaultGameState.currentLevel;
+        currentGameState.isHardMode = defaultGameState.isHardMode;
+
     }
 
     private static void UpdateGameState()
