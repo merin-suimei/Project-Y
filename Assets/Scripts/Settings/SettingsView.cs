@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -37,10 +38,12 @@ public class SettingsView : MonoBehaviour
     private List<Vector2Int> _resolutions;
     private Dictionary<string, SettingsValue> _newSettings;
     private bool _initialized;
+    private InputsTypes _input;
 
     private void Init()
     {
         _initialized = true;
+        _input = new InputsTypes();
         _newSettings = new Dictionary<string, SettingsValue>();
         CollectSettingsOption();
         Subscribe();
@@ -50,9 +53,17 @@ public class SettingsView : MonoBehaviour
     private void OnEnable()
     {
         if (!_initialized) Init();
+        _input.Enable();
+        _input.UI.Exit.performed += OnExit;
         _newSettings.Clear();
         LoadSettings();
         BindSettings();
+    }
+
+    private void OnDisable()
+    {
+        _input.UI.Exit.performed -= OnExit;
+        _input.Disable();
     }
 
     void Subscribe()
@@ -209,5 +220,10 @@ public class SettingsView : MonoBehaviour
             kind = SettingsValueKind.Float,
             floatValue = newValue
         };
+    }
+
+    private void OnExit(InputAction.CallbackContext ctx)
+    {
+        Exit();
     }
 }
