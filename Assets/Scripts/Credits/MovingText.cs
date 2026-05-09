@@ -1,7 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class MovingText : MonoBehaviour
 {
@@ -21,6 +23,24 @@ public class MovingText : MonoBehaviour
     private bool isScrolling = true;
     private float endTimer = 0f;
 
+    private InputsTypes _input;
+
+    private void Awake()
+    {
+        _input = new InputsTypes();
+    }
+
+    private void OnEnable()
+    {
+        _input.Enable();
+        _input.UI.Exit.performed += OnExit;
+    }
+
+    private void OnDisable()
+    {
+        _input.UI.Exit.performed -= OnExit;
+        _input.Disable();
+    }
     void Start()
     {
 
@@ -41,12 +61,14 @@ public class MovingText : MonoBehaviour
         }
         else
         {
+            EventBus.Raise(EventType.ResetGameState);
             SceneManager.LoadScene(mainMenu);
         }
     }
 
     public void SkipCredits()
     {
+        EventBus.Raise(EventType.ResetGameState);
         SceneManager.LoadScene(mainMenu);
     }
 
@@ -70,5 +92,8 @@ public class MovingText : MonoBehaviour
         }
     }
 
-    
+    private void OnExit(InputAction.CallbackContext ctx)
+    {
+        SkipCredits();
+    }
 }
