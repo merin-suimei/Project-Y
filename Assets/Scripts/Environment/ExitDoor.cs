@@ -9,9 +9,9 @@ public class ExitDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, что вошел именно Игрок
         if (other.CompareTag("Player"))
         {
+            EventBus.Raise(EventType.StopAllSound);
             LoadTargetScene();
         }
     }

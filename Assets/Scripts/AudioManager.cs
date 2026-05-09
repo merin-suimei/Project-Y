@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
         EventBus.Subscribe(EventType.PlayEnemyMoveSound, PlayEnemyMoveSound);
         EventBus.Subscribe(EventType.StopEnemyMoveSound, StopEnemyMoveSound);
         EventBus.Subscribe(EventType.PlayEnemyDetectSound, PlayEnemyDetectSound);
+        EventBus.Subscribe(EventType.StopAllSound, StopAllSound);
     }
 
     
@@ -91,5 +92,11 @@ public class AudioManager : MonoBehaviour
     private void PlayEnemyDetectSound()
     {
         PlaySFX(enemyDetect, enemyDetectVolume);
+    }
+
+    private void StopAllSound()
+    {
+        StopPlayerFootStep();
+        StopEnemyMoveSound();
     }
 }
