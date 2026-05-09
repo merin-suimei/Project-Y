@@ -37,7 +37,7 @@ public class MainMenuScript : MonoBehaviour
 
     private void InitDebugSwitcher()
     {
-        /*
+        
         if (ObjectResolver.Resolve<DebugSceneSwitcher>() == null)
         {
             if (debugSceneSwitcherPrefab != null)
@@ -47,7 +47,7 @@ public class MainMenuScript : MonoBehaviour
                 DontDestroyOnLoad(switcherInstance.gameObject);
             }
         }
-        */
+        
 
     }
 

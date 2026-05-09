@@ -35,11 +35,11 @@ public class GameManager : MonoBehaviour
 
         DetectionService detectionService = new DetectionService(player, enemies);
         models.Add(detectionService);
-        /*DebugSceneSwitcher debugSceneSwitcher = ObjectResolver.Resolve<DebugSceneSwitcher>();
+        DebugSceneSwitcher debugSceneSwitcher = ObjectResolver.Resolve<DebugSceneSwitcher>();
         if (debugSceneSwitcher != null)
         {
             debugSceneSwitcher.InitDetectionService(detectionService);
-        }*/
+        }
 
         player.SetID(0);
         models.Add(new PlayerModel(0));
