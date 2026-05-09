@@ -20,7 +20,6 @@ public class EnemyDetectState : EnemyState
     {
         base.StateUpdate();
 
-        EventBus.Raise(EventType.OnRotateTo, enemy.id, enemy.player.position);
 
         if (enemy.IsPlayerVisible)
         {
@@ -34,7 +33,7 @@ public class EnemyDetectState : EnemyState
             EventBus.Raise(EventType.OnEnemyLoseAim, enemy.id, detectProgress);
         }
 
-        if (detectProgress <= 0)
+        if (detectProgress <= -0.5)
         {
             EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, false);
             enemy.stateMachine.ChangeState(enemy.patrolState);
