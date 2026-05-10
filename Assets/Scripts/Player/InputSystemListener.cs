@@ -4,14 +4,18 @@ using UnityEngine;
 public class InputSystemListener : IPlayerInput, IDisposable
 {
     private readonly InputsTypes _input;
+    private bool isInputLocked;
 
-    public Vector2 MoveDirection => _input.Player.Move.ReadValue<Vector2>().normalized;
-    public Vector2 AimDirection => CalculateAimDirection();
+    public Vector2 MoveDirection => 
+        isInputLocked ? Vector2.zero : _input.Player.Move.ReadValue<Vector2>().normalized;
+    public Vector2 AimDirection =>
+        isInputLocked ? Vector2.zero : CalculateAimDirection();
 
     public InputSystemListener()
     {
         _input = new InputsTypes();
         _input.Enable();
+        EventBus.Subscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
     }
 
     // Returns mouse position relative to screen center within largest circle
@@ -26,5 +30,13 @@ public class InputSystemListener : IPlayerInput, IDisposable
         return Vector2.ClampMagnitude(relativeMousePos, shortestHalfScreen) / shortestHalfScreen;
     }
 
-    public void Dispose() => _input.Dispose();
+    public void Dispose(){
+        EventBus.Unsubscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
+        _input.Dispose();
+    }
+
+    private void SetInputLocked(bool locked)
+    {
+        isInputLocked = locked;
+    }
 }
