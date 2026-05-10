@@ -8,6 +8,7 @@ public class AimTargetFollower : MonoBehaviour
     [SerializeField] private Camera cameraMain;
 
     private IPlayerInput _input;
+    private bool inputLocked;
 
     private void Awake()
     {
@@ -22,10 +23,27 @@ public class AimTargetFollower : MonoBehaviour
         {
             Debug.LogError("Player does not have a component implementing IPlayerInput");
         }
+        EventBus.Subscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.Unsubscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
+    }
+
+    private void SetInputLocked(bool locked)
+    {
+        inputLocked = locked;
     }
 
     void Update()
     {
+        if (inputLocked)
+        {
+            if (player != null)
+                transform.position = player.position;
+            return;
+        }
 
         if (_input == null || player == null) return;
 

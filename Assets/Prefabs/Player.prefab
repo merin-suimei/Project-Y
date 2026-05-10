@@ -554,6 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9203582662326206771}
   - component: {fileID: 5943413362541814920}
+  - component: {fileID: 8712030216654109265}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -599,6 +600,22 @@ MonoBehaviour:
   _circleShadowRadius: 0.55
   _circleShadowSoftness: 3
   _circleShadowOffset: {x: -0.1, y: -0.1}
+--- !u!114 &8712030216654109265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165842923671236034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0f524d3f9eac543915fab2c9ec48bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 6784078435740900930}
+  mainCamera: {fileID: 0}
+  viewportOffset: 0.06
+  requiredStableFrames: 2
 --- !u!1 &8003672111310355191
 GameObject:
   m_ObjectHideFlags: 0
