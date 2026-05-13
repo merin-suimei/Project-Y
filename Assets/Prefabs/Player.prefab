@@ -594,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 6784078435740900930}
   _circleRadius: 2.5
-  _emissionIntensity: 1.5
+  _emissionIntensity: 2
   _maxBrightness: 1.43
   _circleSoftness: 1.9
   _circleShadowRadius: 0.55
