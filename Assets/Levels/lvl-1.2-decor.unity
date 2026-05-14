@@ -17366,23 +17366,23 @@ PrefabInstance:
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[0]'
       value: 
-      objectReference: {fileID: 1671233516}
+      objectReference: {fileID: 781423481}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[1]'
       value: 
-      objectReference: {fileID: 511815285}
+      objectReference: {fileID: 1671233516}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[2]'
       value: 
-      objectReference: {fileID: 742104833}
+      objectReference: {fileID: 511815285}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[3]'
       value: 
-      objectReference: {fileID: 680328352}
+      objectReference: {fileID: 742104833}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[4]'
       value: 
-      objectReference: {fileID: 781423481}
+      objectReference: {fileID: 680328352}
     - target: {fileID: 3355401115949184097, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_Name
       value: Enemy_bull
@@ -17393,7 +17393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864288329833242170, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13
+      value: 2.5336475
       objectReference: {fileID: 0}
     - target: {fileID: 3864288329833242170, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17401,7 +17401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864288329833242170, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.3
+      value: 13.067045
       objectReference: {fileID: 0}
     - target: {fileID: 3864288329833242170, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17430,6 +17430,14 @@ PrefabInstance:
     - target: {fileID: 3864288329833242170, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937977499272376018, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.10849882
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937977499272376018, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.94251573
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21458,7 +21466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2452486200532478949
 GameObject:
   m_ObjectHideFlags: 0
