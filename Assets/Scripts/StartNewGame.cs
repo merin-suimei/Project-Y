@@ -10,7 +10,6 @@ public class StartNewGame : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
         NormalModeButton.onClick.AddListener(() => ConfirmNewGameClick(false));
         HardModeButton.onClick.AddListener(() => ConfirmNewGameClick(true));
         RejectNewGameButton.onClick.AddListener(RejectNewGameClick);
