@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenResolution: {x: 1920, y: 1080}
   fullScreen: 1
-  VSync: 0
+  VSync: 1
   soundVolume: 0.5
   musicVolume: 0.5
   effectsVolume: 0.5
