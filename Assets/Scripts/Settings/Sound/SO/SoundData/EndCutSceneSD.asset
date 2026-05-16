@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a45457516c0b343978208c182695f6, type: 3}
   m_Name: EndCutSceneSD
   m_EditorClassIdentifier: 
-  AudioResource: {fileID: 8300000, guid: e6610abe60bab584e87699909c705516, type: 3}
+  AudioResource: {fileID: 0}
   volume: 1
   IsLooping: 1
   PlayOnAwake: 0
