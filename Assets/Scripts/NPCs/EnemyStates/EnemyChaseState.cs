@@ -22,6 +22,7 @@ public class EnemyChaseState : EnemyState
 
     private void PlayerCaught()
     {
+       // SoundManager.Instance.Get().Initialize(enemy.soundsData.catchSoundData).Play();
         enemy.stateMachine.ChangeState(enemy.patrolState);
     }
 

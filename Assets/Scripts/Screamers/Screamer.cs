@@ -5,6 +5,7 @@ using UnityEngine;
 public class Screamer : MonoBehaviour
 {
     [SerializeField] private ScreamerSO screamerSO;
+    [SerializeField] private SoundDataSO soundData;
     [SerializeField] private float framesPerSecond = 12f;
     private SpriteRenderer spriteRenderer;
     private void Awake()
@@ -15,7 +16,8 @@ public class Screamer : MonoBehaviour
 
     private void OnEnable()
     {
-        AudioSource.PlayClipAtPoint(screamerSO.audioClip, transform.position);
+        SoundManager.Instance.Get().Initialize(soundData).Play();
+        //AudioSource.PlayClipAtPoint(screamerSO.audioClip, transform.position);
         StartCoroutine(Play());
     }
 

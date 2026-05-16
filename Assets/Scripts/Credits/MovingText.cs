@@ -71,6 +71,7 @@ public class MovingText : MonoBehaviour
         }
         else
         {
+            SoundManager.Instance.StopAllSounds();
             EventBus.Raise(EventType.ResetGameState);
             SceneManager.LoadScene(mainMenu);
         }

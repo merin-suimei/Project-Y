@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : Avatar
 {
     [field: SerializeField] public EnemyType type { get; private set; }
+    [field: SerializeField] public EnemySoundsData soundsData { get; private set; }
 
     public float detectionRange { get; private set; }
     public float nearbyDetectionRange { get; private set; }

@@ -11,6 +11,7 @@ public class EnemyDetectState : EnemyState
         base.Enter();
 
         detectProgress = 0f;
+        SoundManager.Instance.Get().Initialize(enemy.soundsData.detectSounddata).Play();
         EventBus.Raise(EventType.OnInterruptMoveTo, enemy.id, true);
         EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, true);
         EventBus.Raise(EventType.PlayEnemyDetectSound);

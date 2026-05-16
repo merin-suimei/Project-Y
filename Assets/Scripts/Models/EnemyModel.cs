@@ -5,6 +5,7 @@ public class EnemyModel : IModel
 {
     public readonly int id;
 
+    public EnemySoundsData soundsData { get; private set; }
     public float detectDelay { get; private set; }
     public float decaySpeed { get; private set; }
 
@@ -21,9 +22,11 @@ public class EnemyModel : IModel
     public bool IsPlayerVisible { get; private set; } = false;
     private Coroutine pointStayCoroutine;
 
-    public EnemyModel(int id, EnemyType type, EnemyWalkPoint[] enemyWalkPoints, bool isPatrolPathClosed)
+    public EnemyModel(int id, EnemyType type, EnemyWalkPoint[] enemyWalkPoints, bool isPatrolPathClosed, EnemySoundsData soundsData)
     {
         this.id = id;
+
+        this.soundsData = soundsData;
 
         this.enemyWalkPoints = enemyWalkPoints;
         this.isPatrolPathClosed = isPatrolPathClosed;

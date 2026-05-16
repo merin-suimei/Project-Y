@@ -3,7 +3,7 @@ public class EnemyPatrolState : EnemyState
     private EnemyWalkPoint currentPoint;
     private int pointIndex;
     private int directionIndex;
-
+    private SoundEmitter soundEmitter;
     public EnemyPatrolState(EnemyModel enemy, StateMachine stateMachine, string animBoolName)
         : base(enemy, stateMachine, animBoolName)
     {
@@ -19,6 +19,10 @@ public class EnemyPatrolState : EnemyState
     {
         base.Enter();
         currentPoint = enemy.enemyWalkPoints[pointIndex];
+
+        soundEmitter = SoundManager.Instance.Get().Initialize(enemy.soundsData.walkSoundData);
+        soundEmitter.Play();
+
         EventBus.Raise(EventType.OnMoveTo, enemy.id, currentPoint.transform.position);
         EventBus.Raise(EventType.PlayEnemyMoveSound);
 
@@ -86,6 +90,7 @@ public class EnemyPatrolState : EnemyState
 
     public override void Exit()
     {
+        soundEmitter.Stop();
         EventBus.Unsubscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
         EventBus.Unsubscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);
         base.Exit();

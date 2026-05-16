@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public enum EventType { ResetGameState, UpdateGameState, ResetSettings, UpdateSettings,
+public enum EventType { ResetGameState, UpdateGameState, ResetSettings, UpdateSettings, CancelSettingsChanges,
     OnObjectToggle, EnableEnemyPattern, UpdateResetPoint,
     OnMove, OnMoveTo, OnMoveToArrived, OnInterruptMoveTo, OnRotateTo, OnRotateToArrived, OnTeleport, OnAnimationStart, OnAnimationStop,
     OnEnemyDetect, OnEnemyLoseAim, OnEnemyCatchPlayer, OnPlayerVisible, EnemyEnableChaseSpeed,

@@ -29,9 +29,7 @@ public class SettingsView : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown displayModeDropdown;
     [SerializeField] private Toggle vsyncToggle;
-    [SerializeField] private Slider soundVolume;
-    [SerializeField] private Slider musicVolume;
-    [SerializeField] private Slider effectsVolume;
+
     [SerializeField] public GameObject SettingsPopupUI;
 
     private Settings _settings;
@@ -71,9 +69,6 @@ public class SettingsView : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
         displayModeDropdown.onValueChanged.AddListener(OnModeChanged);
         vsyncToggle.onValueChanged.AddListener(OnVsyncChanged);
-        soundVolume.onValueChanged.AddListener(OnSoundChanged);
-        musicVolume.onValueChanged.AddListener(OnMusicChanged);
-        effectsVolume.onValueChanged.AddListener(OnEffectsChanged);
     }
 
     void LoadSettings()
@@ -91,7 +86,6 @@ public class SettingsView : MonoBehaviour
         BindResolutions();
         BindDisplayMode();
         BindVSync();
-        BindVolumes();
     }
 
     public void ResetSettings()
@@ -111,6 +105,7 @@ public class SettingsView : MonoBehaviour
 
     public void Exit()
     {
+        EventBus.Raise(EventType.CancelSettingsChanges);
         SettingsPopupUI.SetActive(false);
     }
 
@@ -152,17 +147,7 @@ public class SettingsView : MonoBehaviour
         vsyncToggle.SetIsOnWithoutNotify(vsync);
     }
 
-    void BindVolumes()
-    {
-        var sound = _settings.soundVolume;
-        soundVolume.SetValueWithoutNotify(sound);
 
-        var music = _settings.musicVolume;
-        musicVolume.SetValueWithoutNotify(music);
-
-        var effects = _settings.effectsVolume;
-        effectsVolume.SetValueWithoutNotify(effects);
-    }
 
     // change value events
 
@@ -191,34 +176,6 @@ public class SettingsView : MonoBehaviour
         {
             kind = SettingsValueKind.Bool,
             boolValue = isOn
-        };
-    }
-
-    void OnSoundChanged(float newValue)
-    {
-        _newSettings["soundVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
-        };
-    }
-
-    void OnMusicChanged(float newValue)
-    {
-        _newSettings["musicVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
-        };
-    }
-
-
-    void OnEffectsChanged(float newValue)
-    {
-        _newSettings["effectsVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
         };
     }
 
