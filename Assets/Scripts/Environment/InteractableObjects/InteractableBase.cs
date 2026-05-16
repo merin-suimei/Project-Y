@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum InteractableID
 {
-    //TODO: Add IDs
+    Exit1_1
 }
 
 public abstract class InteractableBase: MonoBehaviour
