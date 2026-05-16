@@ -70,7 +70,10 @@ public class Switch : InteractableBase
         }
 
         if (preventTurningOff)
+        {
             SetHighlight(false);
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
 
         isOn = !isOn;
         _animator.SetBool(animationParamName, isOn);
