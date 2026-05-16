@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 public class EnemyPatrolState : EnemyState
 {
     private EnemyWalkPoint currentPoint;
@@ -90,7 +93,15 @@ public class EnemyPatrolState : EnemyState
 
     public override void Exit()
     {
-        soundEmitter.Stop();
+        try
+        {
+            soundEmitter.Stop();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("Failed to stop soundEmitter in id " + enemy.id + "\n\n" + e.ToString());
+        }
+
         EventBus.Unsubscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
         EventBus.Unsubscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);
         base.Exit();
