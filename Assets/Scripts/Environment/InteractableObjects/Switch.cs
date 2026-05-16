@@ -2,10 +2,10 @@
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider))]
-public class SwitchView : InteractableBase
+public class Switch : InteractableBase
 {
-    // [Header("Interaction Settings")]
-    // [SerializeField] protected GameObject promptUI; // UI подсказка над объектом
+    [Header("Interaction Settings")]
+    [SerializeField] protected GameObject promptUI; // UI подсказка над объектом
 
     [SerializeField] private bool isOn = false;
     [Tooltip("Если true, объект нельзя выключить после включения")]
@@ -19,7 +19,7 @@ public class SwitchView : InteractableBase
 
     private void Awake()
     {
-        //if (promptUI != null) promptUI.SetActive(false);
+        SetHighlight(false);
 
         _animator = GetComponent<Animator>();
         _input = ObjectResolver.Resolve<IPlayerInput>();
@@ -33,22 +33,31 @@ public class SwitchView : InteractableBase
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             _input.OnInteract += Interact;
+
+            if (!isOn || !preventTurningOff) SetHighlight(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             _input.OnInteract -= Interact;
+            SetHighlight(false);
+        }
     }
 
-    // public void SetHighlight(bool isActive)
-    // {
-    //     if (promptUI != null && promptUI.activeSelf != isActive)
-    //     {
-    //         promptUI.SetActive(isActive);
-    //     }
-    // }
+    public void SetHighlight(bool isActive)
+    {
+        if (promptUI != null && promptUI.activeSelf != isActive)
+        {
+            promptUI.SetActive(isActive);
+        }
+
+        gameObject.layer = isActive ? LayerMask.NameToLayer("Outlined") : LayerMask.NameToLayer("Default");
+    }
 
     public void Interact()
     {
@@ -59,6 +68,9 @@ public class SwitchView : InteractableBase
             // Тут можно добавить звук, анимацию или другой эффект ошибки
             return;
         }
+
+        if (preventTurningOff)
+            SetHighlight(false);
 
         isOn = !isOn;
         _animator.SetBool(animationParamName, isOn);
