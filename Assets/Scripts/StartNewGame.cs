@@ -17,6 +17,7 @@ public class StartNewGame : MonoBehaviour
 
     private void ConfirmNewGameClick(bool isHardMode)
     {
+        SoundManager.Instance.StopAllSounds();
         EventBus.Raise(EventType.ResetGameState);
         GameState gameState = ObjectResolver.Resolve<GameState>();
         gameState.isHardMode = isHardMode;

@@ -78,7 +78,6 @@ public class MainMenuScript : MonoBehaviour
 
     private void StartNewGameClick()
     {
-        SoundManager.Instance.StopAllSounds();
         StartNewGameConfirmationPopup.gameObject.SetActive(true);
 
     }
