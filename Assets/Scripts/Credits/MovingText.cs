@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
@@ -9,6 +7,8 @@ public class MovingText : MonoBehaviour
 {
     [Header("Scene")]
     [SerializeField] private SceneField mainMenu;
+
+    [SerializeField] private CreditSceneManager creditSceneManager;
 
     [Header("Text")]
     public TMP_Text creditsText;
@@ -26,24 +26,7 @@ public class MovingText : MonoBehaviour
     private float startTimer = 0f;
     private float endTimer = 0f;
 
-    private InputsTypes _input;
 
-    private void Awake()
-    {
-        _input = new InputsTypes();
-    }
-
-    private void OnEnable()
-    {
-        _input.Enable();
-        _input.UI.Exit.performed += OnExit;
-    }
-
-    private void OnDisable()
-    {
-        _input.UI.Exit.performed -= OnExit;
-        _input.Disable();
-    }
     void Start()
     {
         creditsText.text = creditsTextAsset.text;
@@ -69,12 +52,11 @@ public class MovingText : MonoBehaviour
             startTimer = 0f;
             endTimer = 0f;
         }
-        else
+         else
         {
-            SoundManager.Instance.StopAllSounds();
-            EventBus.Raise(EventType.ResetGameState);
-            SceneManager.LoadScene(mainMenu);
+            creditSceneManager.EndFinal();
         }
+
     }
 
     public void SkipCredits()
@@ -113,11 +95,6 @@ public class MovingText : MonoBehaviour
             isScrolling = false;
             isFinished = true;
         }
-    }
-
-    private void OnExit(InputAction.CallbackContext ctx)
-    {
-        SkipCredits();
     }
 
     private void SetTextToStartPosition()
