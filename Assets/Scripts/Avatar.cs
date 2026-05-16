@@ -98,7 +98,10 @@ public class Avatar : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, Time.deltaTime * turnSpeed);
 
             if (Vector3.Angle(rotateTarget, transform.forward) <= 1f)
+            {
                 isRotateToDirty = false;
+                EventBus.Raise(EventType.OnRotateToArrived, ID);
+            }
         }
 
         if (isTeleportDirty)

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    [SerializeField] private SoundDataSO pauseAmbient;
     [Header("Player Reference")] 
     [SerializeField] private Player player;
     private InputsTypes _input;
@@ -15,7 +16,7 @@ public class PauseManager : MonoBehaviour
     private GameObject firstSelectedButton;
 
     private bool isPaused = false;
-
+    private SoundEmitter soundEmitter;
     private void Awake()
     {
         _input = new InputsTypes();
@@ -58,6 +59,7 @@ public class PauseManager : MonoBehaviour
 
     public void Resume()
     {
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -67,6 +69,10 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
+        SoundManager.Instance.PauseAllSounds();
+        soundEmitter = SoundManager.Instance.Get().Initialize(pauseAmbient);
+        soundEmitter.Play();
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -83,6 +89,8 @@ public class PauseManager : MonoBehaviour
 
     public void Continue()
     {
+        soundEmitter.Stop();
+        SoundManager.Instance.UnPauseAllSounds();
         Resume();
     }
 
@@ -90,6 +98,8 @@ public class PauseManager : MonoBehaviour
     {
         if (player != null)
         {
+            soundEmitter.Stop();
+            SoundManager.Instance.UnPauseAllSounds();
             player.ForceStuck();
             Resume();    
         }
@@ -101,6 +111,8 @@ public class PauseManager : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        SoundManager.Instance.StopAllSounds();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenu);
     }
 

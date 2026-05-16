@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -28,19 +29,19 @@ public class SettingsView : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown displayModeDropdown;
     [SerializeField] private Toggle vsyncToggle;
-    [SerializeField] private Slider soundVolume;
-    [SerializeField] private Slider musicVolume;
-    [SerializeField] private Slider effectsVolume;
+
     [SerializeField] public GameObject SettingsPopupUI;
 
     private Settings _settings;
     private List<Vector2Int> _resolutions;
     private Dictionary<string, SettingsValue> _newSettings;
     private bool _initialized;
+    private InputsTypes _input;
 
     private void Init()
     {
         _initialized = true;
+        _input = new InputsTypes();
         _newSettings = new Dictionary<string, SettingsValue>();
         CollectSettingsOption();
         Subscribe();
@@ -50,9 +51,17 @@ public class SettingsView : MonoBehaviour
     private void OnEnable()
     {
         if (!_initialized) Init();
+        _input.Enable();
+        _input.UI.Exit.performed += OnExit;
         _newSettings.Clear();
         LoadSettings();
         BindSettings();
+    }
+
+    private void OnDisable()
+    {
+        _input.UI.Exit.performed -= OnExit;
+        _input.Disable();
     }
 
     void Subscribe()
@@ -60,9 +69,6 @@ public class SettingsView : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
         displayModeDropdown.onValueChanged.AddListener(OnModeChanged);
         vsyncToggle.onValueChanged.AddListener(OnVsyncChanged);
-        soundVolume.onValueChanged.AddListener(OnSoundChanged);
-        musicVolume.onValueChanged.AddListener(OnMusicChanged);
-        effectsVolume.onValueChanged.AddListener(OnEffectsChanged);
     }
 
     void LoadSettings()
@@ -80,7 +86,6 @@ public class SettingsView : MonoBehaviour
         BindResolutions();
         BindDisplayMode();
         BindVSync();
-        BindVolumes();
     }
 
     public void ResetSettings()
@@ -100,6 +105,7 @@ public class SettingsView : MonoBehaviour
 
     public void Exit()
     {
+        EventBus.Raise(EventType.CancelSettingsChanges);
         SettingsPopupUI.SetActive(false);
     }
 
@@ -141,17 +147,7 @@ public class SettingsView : MonoBehaviour
         vsyncToggle.SetIsOnWithoutNotify(vsync);
     }
 
-    void BindVolumes()
-    {
-        var sound = _settings.soundVolume;
-        soundVolume.SetValueWithoutNotify(sound);
 
-        var music = _settings.musicVolume;
-        musicVolume.SetValueWithoutNotify(music);
-
-        var effects = _settings.effectsVolume;
-        effectsVolume.SetValueWithoutNotify(effects);
-    }
 
     // change value events
 
@@ -183,31 +179,8 @@ public class SettingsView : MonoBehaviour
         };
     }
 
-    void OnSoundChanged(float newValue)
+    private void OnExit(InputAction.CallbackContext ctx)
     {
-        _newSettings["soundVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
-        };
-    }
-
-    void OnMusicChanged(float newValue)
-    {
-        _newSettings["musicVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
-        };
-    }
-
-
-    void OnEffectsChanged(float newValue)
-    {
-        _newSettings["effectsVolume"] = new SettingsValue
-        {
-            kind = SettingsValueKind.Float,
-            floatValue = newValue
-        };
+        Exit();
     }
 }

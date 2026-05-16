@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
         foreach (Enemy enemy in enemies)
         {
             enemy.SetID(nextId);
-            models.Add(new EnemyModel(nextId, enemy.type, enemy.EnemyWalkPoints, enemy.IsPatrolPathClosed));
+            models.Add(new EnemyModel(nextId, enemy.type, enemy.EnemyWalkPoints, 
+                enemy.IsPatrolPathClosed, enemy.soundsData));
+
             _avatarsDict.Add(nextId, enemy);
             nextId++;
         }
@@ -74,7 +76,10 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, ResetAllPos);       
+        EventBus.Unsubscribe(EventType.OnEnemyCatchPlayer, ResetAllPos);
+
+        foreach (IModel model in models) // TODO: Проверить необходимость Destroy() для остальных моделей
+            if (model is EnemyModel enemy) enemy.Destroy();
     }
 
     private void ResetAllPos()

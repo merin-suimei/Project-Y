@@ -11,6 +11,7 @@ public class EnemyDetectState : EnemyState
         base.Enter();
 
         detectProgress = 0f;
+        SoundManager.Instance.Get().Initialize(enemy.soundsData.detectSounddata).Play();
         EventBus.Raise(EventType.OnInterruptMoveTo, enemy.id, true);
         EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, true);
         EventBus.Raise(EventType.PlayEnemyDetectSound);
@@ -20,7 +21,6 @@ public class EnemyDetectState : EnemyState
     {
         base.StateUpdate();
 
-        EventBus.Raise(EventType.OnRotateTo, enemy.id, enemy.player.position);
 
         if (enemy.IsPlayerVisible)
         {
@@ -34,7 +34,7 @@ public class EnemyDetectState : EnemyState
             EventBus.Raise(EventType.OnEnemyLoseAim, enemy.id, detectProgress);
         }
 
-        if (detectProgress <= 0)
+        if (detectProgress <= -0.5)
         {
             EventBus.Raise(EventType.EnableEnemyPattern, enemy.id, false);
             enemy.stateMachine.ChangeState(enemy.patrolState);

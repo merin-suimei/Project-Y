@@ -28,6 +28,7 @@ public class DetectionService : IModel
 
         if (distance < enemy.catchThreshold) 
         {
+            SoundManager.Instance.Get().Initialize(enemy.soundsData.catchSoundData).Play();
             EventBus.Raise(EventType.OnEnemyCatchPlayer);
             return false;
         }

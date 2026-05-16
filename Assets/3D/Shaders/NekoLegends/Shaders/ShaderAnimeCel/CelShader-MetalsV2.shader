@@ -395,7 +395,7 @@ Shader "Neko Legends/Cel Shader/Metals V2"
         SAMPLER(sampler_Metal_Texture);
         
         // Graph Includes
-        #include_with_pragmas "../Cel.hlsl"
+        #include_with_pragmas "./Cel.hlsl"
         
         // -- Property used by ScenePickingPass
         #ifdef SCENEPICKINGPASS
@@ -1040,7 +1040,7 @@ Shader "Neko Legends/Cel Shader/Metals V2"
         SAMPLER(sampler_Metal_Texture);
         
         // Graph Includes
-        #include_with_pragmas "../Cel.hlsl"
+        #include_with_pragmas "./Cel.hlsl"
         
         // -- Property used by ScenePickingPass
         #ifdef SCENEPICKINGPASS
@@ -3149,7 +3149,7 @@ Shader "Neko Legends/Cel Shader/Metals V2"
         SAMPLER(sampler_Metal_Texture);
         
         // Graph Includes
-        #include_with_pragmas "../Cel.hlsl"
+        #include_with_pragmas "./Cel.hlsl"
         
         // -- Property used by ScenePickingPass
         #ifdef SCENEPICKINGPASS
@@ -4040,7 +4040,7 @@ Shader "Neko Legends/Cel Shader/Metals V2"
         SAMPLER(sampler_Metal_Texture);
         
         // Graph Includes
-        #include_with_pragmas "../Cel.hlsl"
+        #include_with_pragmas "./Cel.hlsl"
         
         // -- Property used by ScenePickingPass
         #ifdef SCENEPICKINGPASS
@@ -4544,7 +4544,7 @@ Shader "Neko Legends/Cel Shader/Metals V2"
         SAMPLER(sampler_Metal_Texture);
         
         // Graph Includes
-        #include_with_pragmas "../Cel.hlsl"
+        #include_with_pragmas "./Cel.hlsl"
         
         // -- Property used by ScenePickingPass
         #ifdef SCENEPICKINGPASS

@@ -37,6 +37,7 @@ public class MainMenuScript : MonoBehaviour
 
     private void InitDebugSwitcher()
     {
+        
         if (ObjectResolver.Resolve<DebugSceneSwitcher>() == null)
         {
             if (debugSceneSwitcherPrefab != null)
@@ -46,11 +47,14 @@ public class MainMenuScript : MonoBehaviour
                 DontDestroyOnLoad(switcherInstance.gameObject);
             }
         }
+        
 
     }
 
     private void OnEnable()
     {
+        UpdateContinueButtonState();
+
         var es = EventSystem.current;
         if (es == null) return;
 
@@ -63,6 +67,15 @@ public class MainMenuScript : MonoBehaviour
             es.SetSelectedGameObject(es.firstSelectedGameObject);
     }
 
+    private void UpdateContinueButtonState()
+    {
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        GameState defaultGameState = Resources.Load<GameState>("DefaultGameState");
+
+        continuePlayButton.interactable =
+            gameState.currentLevel.SceneName != defaultGameState.currentLevel.SceneName;
+    }
+
     private void StartNewGameClick()
     {
         StartNewGameConfirmationPopup.gameObject.SetActive(true);
@@ -71,6 +84,7 @@ public class MainMenuScript : MonoBehaviour
 
     private void ContinueClick()
     {
+        SoundManager.Instance.StopAllSounds();
         GameState gameState = ObjectResolver.Resolve<GameState>();
         SceneManager.LoadScene(gameState.currentLevel);
     }
@@ -81,6 +95,7 @@ public class MainMenuScript : MonoBehaviour
             Debug.Log("subtitleScene не установлена в инспекторе");
             return;
         }
+        SoundManager.Instance.StopAllSounds();
         SceneManager.LoadScene(creditsScene);
     }
 

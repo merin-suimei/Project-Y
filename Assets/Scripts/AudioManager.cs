@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    
     [SerializeField] private float timeBetweenSteps = 10f;
     [SerializeField] private AudioClip[] playerFootSteps;
     [SerializeField] private AudioClip enemyMove;
@@ -14,15 +15,14 @@ public class AudioManager : MonoBehaviour
     private Coroutine footstepsCoroutine;
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        EventBus.Subscribe(EventType.PlayPlayerFootStepSound, PlayPlayerFootSteps);
-        EventBus.Subscribe(EventType.StopPlayerFootStepSound, StopPlayerFootStep);
-        EventBus.Subscribe(EventType.PlayEnemyMoveSound, PlayEnemyMoveSound);
-        EventBus.Subscribe(EventType.StopEnemyMoveSound, StopEnemyMoveSound);
-        EventBus.Subscribe(EventType.PlayEnemyDetectSound, PlayEnemyDetectSound);
+
     }
 
-    
+    private void Awake()
+    {
+
+    }
+
     private void PlaySFX(AudioClip clip, float volume = 1f)
     {
         StartCoroutine(PlaySFXCoroutine(clip, volume)); 
@@ -91,5 +91,11 @@ public class AudioManager : MonoBehaviour
     private void PlayEnemyDetectSound()
     {
         PlaySFX(enemyDetect, enemyDetectVolume);
+    }
+
+    private void StopAllSound()
+    {
+        StopPlayerFootStep();
+        StopEnemyMoveSound();
     }
 }

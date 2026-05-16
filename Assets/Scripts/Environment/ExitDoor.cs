@@ -3,15 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class ExitDoor : MonoBehaviour
 {
+    [SerializeField] private SoundDataSO levelTransitionSoundData;
     [Header("Transition Settings")]
     [Tooltip("The scene to load when the player enters the door.")]
     [SerializeField] private SceneField sceneToLoad;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, что вошел именно Игрок
         if (other.CompareTag("Player"))
         {
+            EventBus.Raise(EventType.StopAllSound);
             LoadTargetScene();
         }
     }
@@ -24,6 +25,10 @@ public class ExitDoor : MonoBehaviour
             return;
         }
 
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        gameState.currentLevel = sceneToLoad;
+        //SoundManager.Instance.StopAllSounds();
+        SoundManager.Instance.Get().Initialize(levelTransitionSoundData).Play();
         SceneManager.LoadScene(sceneToLoad);
     }
 }

@@ -45,7 +45,7 @@ public class DebugSceneSwitcher : MonoBehaviour
         if (!_showMenu) return;
 
         GUILayout.BeginArea(new Rect(20, 20, 250, Screen.height - 40));
-        GUI.Box(new Rect(0, 0, 250, Screen.height - 40), "ТЕСТОВОЕ МЕНЮ УРОВНЕЙ");
+        GUI.Box(new Rect(0, 0, 250, Screen.height - 40), "ЧИТ-МЕНЮ");
         GUILayout.Space(30);
 
         if (_detectionService != null)
