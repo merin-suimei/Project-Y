@@ -103,4 +103,11 @@ public class GameManager : MonoBehaviour
     {
         StopCoroutine(coroutine);
     }
+    
+    public void OnSwitchStateChanged(string switchId, bool isOn)
+    {
+        // что-то
+        Debug.Log($"GameManager: switch# [{switchId}] {isOn}");
+        
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputSystemListener : IPlayerInput, IDisposable
 {
@@ -11,10 +12,12 @@ public class InputSystemListener : IPlayerInput, IDisposable
     public Vector2 AimDirection =>
         isInputLocked ? Vector2.zero : CalculateAimDirection();
 
+    public event Action OnInteract;
     public InputSystemListener()
     {
         _input = new InputsTypes();
         _input.Enable();
+        _input.Player.Interact.performed += InteractPerformed;
         EventBus.Subscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
     }
 
@@ -29,9 +32,17 @@ public class InputSystemListener : IPlayerInput, IDisposable
 
         return Vector2.ClampMagnitude(relativeMousePos, shortestHalfScreen) / shortestHalfScreen;
     }
+    
+    private void InteractPerformed(InputAction.CallbackContext context)
+    {
+        OnInteract?.Invoke();
+    }
 
-    public void Dispose(){
+    public void Dispose()
+    {
         EventBus.Unsubscribe<bool>(EventType.SetPlayerInputLocked, SetInputLocked);
+        _input.Player.Interact.performed -= InteractPerformed;
+        _input.Disable();
         _input.Dispose();
     }
 
