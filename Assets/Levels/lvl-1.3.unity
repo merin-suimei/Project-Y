@@ -3120,7 +3120,7 @@ PrefabInstance:
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <soundsData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: a6bb67349f681c64b955238e31bf7b44, type: 2}
+      objectReference: {fileID: 11400000, guid: 947a2bd9da2a7d04f94c205b35d13cc8, type: 2}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <IsPatrolPathClosed>k__BackingField
       value: 1
@@ -31450,7 +31450,7 @@ PrefabInstance:
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <soundsData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: a6bb67349f681c64b955238e31bf7b44, type: 2}
+      objectReference: {fileID: 11400000, guid: 947a2bd9da2a7d04f94c205b35d13cc8, type: 2}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <IsPatrolPathClosed>k__BackingField
       value: 1
@@ -33347,7 +33347,7 @@ PrefabInstance:
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <soundsData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: a6bb67349f681c64b955238e31bf7b44, type: 2}
+      objectReference: {fileID: 11400000, guid: 947a2bd9da2a7d04f94c205b35d13cc8, type: 2}
     - target: {fileID: 1355906550618490447, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: <IsPatrolPathClosed>k__BackingField
       value: 1
@@ -48654,6 +48654,10 @@ PrefabInstance:
       propertyPath: sceneToLoad.m_SceneName
       value: lvl-2.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7889479199263234580, guid: ac6b5dbd819389449a8d4a6bcfdf5ca9, type: 3}
+      propertyPath: levelTransitionSoundData
+      value: 
+      objectReference: {fileID: 11400000, guid: d66d3ca7f61dad444ab5b578539d3ba7, type: 2}
     - target: {fileID: 7889479199263234580, guid: ac6b5dbd819389449a8d4a6bcfdf5ca9, type: 3}
       propertyPath: sceneToLoad.m_SceneAsset
       value: 

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a45457516c0b343978208c182695f6, type: 3}
-  m_Name: PotSD
+  m_Name: GoatWalkSD
   m_EditorClassIdentifier: 
-  AudioResource: {fileID: 8300000, guid: ccf0213a635b9574eb871ea54682171e, type: 3}
-  volume: 0.15
+  AudioResource: {fileID: 8300000, guid: 15fbbc80e412e1449a6ae28096f43fcd, type: 3}
+  volume: 0.2
   IsLooping: 1
   PlayOnAwake: 0
   IsSFX: 1

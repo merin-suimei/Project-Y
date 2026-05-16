@@ -78,12 +78,14 @@ public class MainMenuScript : MonoBehaviour
 
     private void StartNewGameClick()
     {
+        SoundManager.Instance.StopAllSounds();
         StartNewGameConfirmationPopup.gameObject.SetActive(true);
 
     }
 
     private void ContinueClick()
     {
+        SoundManager.Instance.StopAllSounds();
         GameState gameState = ObjectResolver.Resolve<GameState>();
         SceneManager.LoadScene(gameState.currentLevel);
     }
@@ -94,6 +96,7 @@ public class MainMenuScript : MonoBehaviour
             Debug.Log("subtitleScene не установлена в инспекторе");
             return;
         }
+        SoundManager.Instance.StopAllSounds();
         SceneManager.LoadScene(creditsScene);
     }
 
