@@ -25,6 +25,8 @@ public static class GameInitiator
         if (currentSettings.isFirstLaunch)
         {
             ResetSettings();
+
+            // Load initial setup scene here
         }
 
         ApplySettings();

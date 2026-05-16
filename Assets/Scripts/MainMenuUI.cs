@@ -70,10 +70,10 @@ public class MainMenuScript : MonoBehaviour
     private void UpdateContinueButtonState()
     {
         GameState gameState = ObjectResolver.Resolve<GameState>();
-        GameState defaultGameState = Resources.Load<GameState>("DefaultGameState");
 
         continuePlayButton.interactable =
-            gameState.currentLevel.SceneName != defaultGameState.currentLevel.SceneName;
+            gameState.currentLevel.SceneName != gameScene.SceneName &&
+            gameState.currentLevel.SceneName != creditsScene.SceneName;
     }
 
     private void StartNewGameClick()
@@ -92,7 +92,7 @@ public class MainMenuScript : MonoBehaviour
     {
         if (creditsScene == null)
         {
-            Debug.Log("subtitleScene не установлена в инспекторе");
+            Debug.Log("creditsScene не установлена в инспекторе");
             return;
         }
         SoundManager.Instance.StopAllSounds();
