@@ -21,6 +21,13 @@ public static class GameInitiator
         EventBus.Subscribe(EventType.UpdateGameState, UpdateGameState);
         EventBus.Subscribe(EventType.ResetSettings, ResetSettings);
         EventBus.Subscribe<List<SettingsPair>>(EventType.UpdateSettings, UpdateSettings);
+
+        if (currentSettings.isFirstLaunch)
+        {
+            ResetSettings();
+        }
+
+        ApplySettings();
     }
 
     private static void ResetGameState()
@@ -36,7 +43,9 @@ public static class GameInitiator
 
     private static void ResetSettings()
     {
-        currentSettings.screenResolution = new Vector2Int(Screen.currentResolution.width, Screen.currentResolution.height);
+        currentSettings.isFirstLaunch = defaultSettings.isFirstLaunch;
+
+        currentSettings.screenResolution = new Vector2Int(Display.main.systemWidth, Display.main.systemHeight);
         currentSettings.fullScreen = defaultSettings.fullScreen;
         currentSettings.VSync = defaultSettings.VSync;
 

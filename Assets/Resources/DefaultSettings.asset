@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb6d6b5a95abd77a9cd7593f2b8dd05, type: 3}
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
-  screenResolution: {x: 1920, y: 1080}
+  isFirstLaunch: 0
+  screenResolution: {x: 0, y: 0}
   fullScreen: 1
   VSync: 1
   soundVolume: 0.5

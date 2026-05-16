@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Settings", menuName = "Scriptable Objects/Settings")]
 public class Settings : ScriptableObject
 {
+    public bool isFirstLaunch;
+
     // video
     public Vector2Int screenResolution;
     public bool fullScreen;
