@@ -56,7 +56,7 @@ public class Switch : InteractableBase
             promptUI.SetActive(isActive);
         }
 
-        gameObject.layer = isActive ? LayerMask.NameToLayer("Outlined") : LayerMask.NameToLayer("Default");
+        // gameObject.layer = isActive ? LayerMask.NameToLayer("Outlined") : LayerMask.NameToLayer("Default");
     }
 
     public void Interact()
