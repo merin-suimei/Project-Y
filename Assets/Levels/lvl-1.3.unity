@@ -15139,8 +15139,6 @@ MonoBehaviour:
     e33: 1
   cachedHashCode: -1218402821
   fillEmptySpaces: 0
-  version: 2
-  globalVolume: 0
 --- !u!1001 &753449283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48652,7 +48650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7889479199263234580, guid: ac6b5dbd819389449a8d4a6bcfdf5ca9, type: 3}
       propertyPath: sceneToLoad.m_SceneName
-      value: lvl-2.1
+      value: CreditsScene
       objectReference: {fileID: 0}
     - target: {fileID: 7889479199263234580, guid: ac6b5dbd819389449a8d4a6bcfdf5ca9, type: 3}
       propertyPath: levelTransitionSoundData
@@ -48661,7 +48659,7 @@ PrefabInstance:
     - target: {fileID: 7889479199263234580, guid: ac6b5dbd819389449a8d4a6bcfdf5ca9, type: 3}
       propertyPath: sceneToLoad.m_SceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: ef17e649f0850bf4993a6bd3cf7a1ebd, type: 3}
+      objectReference: {fileID: 102900000, guid: d85040fb4a8e5db4ca02ef3ce45cea1b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
