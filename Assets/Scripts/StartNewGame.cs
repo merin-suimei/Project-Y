@@ -8,6 +8,8 @@ public class StartNewGame : MonoBehaviour
     [SerializeField] private Button HardModeButton;
     [SerializeField] private Button RejectNewGameButton;
 
+    [SerializeField] private CutsceneController cutsceneController;
+
     private void Start()
     {
         NormalModeButton.onClick.AddListener(() => ConfirmNewGameClick(false));
@@ -21,7 +23,7 @@ public class StartNewGame : MonoBehaviour
         EventBus.Raise(EventType.ResetGameState);
         GameState gameState = ObjectResolver.Resolve<GameState>();
         gameState.isHardMode = isHardMode;
-        SceneManager.LoadScene(gameState.currentLevel);
+        cutsceneController.StartCutscene(gameState.currentLevel);
         gameObject.SetActive(false);
     }
 
