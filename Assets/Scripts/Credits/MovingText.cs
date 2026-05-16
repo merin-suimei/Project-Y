@@ -88,9 +88,9 @@ public class MovingText : MonoBehaviour
         scrollRect.content.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
 
         float contentBottomY = scrollRect.content.localPosition.y + scrollRect.content.rect.yMin;
-        float viewportBottomY = scrollRect.viewport.rect.yMin;
+        float viewportTopY = scrollRect.viewport.rect.yMax;
 
-        if (contentBottomY >= viewportBottomY)
+        if (contentBottomY >= viewportTopY)
         {
             isScrolling = false;
             isFinished = true;

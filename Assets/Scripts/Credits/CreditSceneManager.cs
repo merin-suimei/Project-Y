@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System;
 
 public class CreditSceneManager : MonoBehaviour
 {
@@ -41,18 +42,40 @@ public class CreditSceneManager : MonoBehaviour
 
     private void Start()
     {
+        videoPlayer.loopPointReached += OnCutSceneEnd;
+        GameState gameState = ObjectResolver.Resolve<GameState>();
+        if (gameState.currentLevel == "CreditsScene")
+        {
+            StartCutScene();
+        }
+        else
+        {
+            StartCredits();
+        }
+    }
+
+    private void StartCutScene()
+    {
+        if (cutSceneRawImage != null)
+            cutSceneRawImage.gameObject.SetActive(true);
         creditsPopUp.gameObject.SetActive(false);
         cutSceneEmitter = SoundManager.Instance.Get().Initialize(cutSceneSoundData);
         cutSceneEmitter.Play();
-        videoPlayer.loopPointReached += OnCutSceneEnd;
+        videoPlayer.Play();
+    }
+
+    private void StartCredits()
+    {
+        SoundManager.Instance.Get().Initialize(titreSoundData).Play();
+        creditsPopUp.SetActive(true);
     }
 
     private void OnCutSceneEnd(VideoPlayer source)
     {
         cutSceneEmitter.Stop();
-        SoundManager.Instance.Get().Initialize(titreSoundData).Play();
+        videoPlayer.Stop();
         cutSceneRawImage.gameObject.SetActive(false);
-        creditsPopUp.SetActive(true);
+        StartCredits();
     }
 
     private void OnExit(InputAction.CallbackContext ctx)
