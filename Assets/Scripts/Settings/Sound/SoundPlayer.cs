@@ -8,7 +8,8 @@ public class SoundPlayer : MonoBehaviour
     private void Start()
     {
         SoundEmitter emitter = SoundManager.Instance.Get().Initialize(soundData);
-        emitter.transform.position = transform.position;
+        emitter.transform.SetParent(transform);
+        emitter.transform.localPosition = Vector3.zero;
         emitter.audioSource.spatialBlend = 1;
         emitter.audioSource.rolloffMode = AudioRolloffMode.Linear;
         emitter.audioSource.minDistance = minDistance;

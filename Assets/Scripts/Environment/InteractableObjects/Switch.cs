@@ -6,7 +6,8 @@ public class Switch : InteractableBase
 {
     [Header("Interaction Settings")]
     [SerializeField] protected GameObject promptUI; // UI подсказка над объектом
-
+    [SerializeField] protected SoundDataSO interactSound;
+    [SerializeField] protected GameObject eventGO;
     [SerializeField] private bool isOn = false;
     [Tooltip("Если true, объект нельзя выключить после включения")]
     [SerializeField] private bool preventTurningOff = false;
@@ -77,6 +78,15 @@ public class Switch : InteractableBase
 
         isOn = !isOn;
         _animator.SetBool(animationParamName, isOn);
+
+        if (interactSound != null)
+        {
+            SoundManager.Instance.Get().Initialize(interactSound).Play();
+        }
+        if (eventGO != null)
+        {
+            eventGO.SetActive(true);
+        }
 
         EventBus.Raise(EventType.OnObjectToggle, id, isOn);
     }

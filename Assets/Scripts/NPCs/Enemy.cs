@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : Avatar
 {
@@ -16,7 +17,7 @@ public class Enemy : Avatar
 
     private float patrolSpeed;
     private float chaseSpeed;
-
+    
     [field: SerializeField] public Transform EnemyEye { get; private set; }
     [field: SerializeField] public EnemyWalkPoint[] EnemyWalkPoints { get; private set; }
     [field: SerializeField] public bool IsPatrolPathClosed { get; private set; }

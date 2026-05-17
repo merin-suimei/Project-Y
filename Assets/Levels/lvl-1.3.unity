@@ -3145,6 +3145,10 @@ PrefabInstance:
       propertyPath: '<EnemyWalkPoints>k__BackingField.Array.data[3]'
       value: 
       objectReference: {fileID: 193358499}
+    - target: {fileID: 1593689665600123496, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3355401115949184097, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
       propertyPath: m_Name
       value: Enemy_bull
@@ -3194,7 +3198,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1583796763988527388, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7e98ee61eef11498b1615673907de7, type: 3}
@@ -15117,7 +15122,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   lowestSubdivLevelOverride: 0
-  highestSubdivLevelOverride: 7
+  highestSubdivLevelOverride: 3
   overridesSubdivLevels: 0
   mightNeedRebaking: 0
   cachedTransform:
@@ -15139,6 +15144,8 @@ MonoBehaviour:
     e33: 1
   cachedHashCode: -1218402821
   fillEmptySpaces: 0
+  version: 2
+  globalVolume: 0
 --- !u!1001 &753449283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52067,8 +52074,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundData: {fileID: 11400000, guid: eb85304cfd98c3946acc8b476f91d858, type: 2}
-  minDistance: 2.75
-  maxDistance: 12
+  minDistance: 10
+  maxDistance: 15
 --- !u!4 &1196274131591456150
 Transform:
   m_ObjectHideFlags: 0
@@ -52179,8 +52186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundData: {fileID: 11400000, guid: c06aa5e25fb3e354a9626d1509b398a3, type: 2}
-  minDistance: 2.75
-  maxDistance: 12
+  minDistance: 10
+  maxDistance: 15
 --- !u!114 &5155200313645558324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52194,8 +52201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundData: {fileID: 11400000, guid: 2856d8ae6710ba74a97021338c069ac7, type: 2}
-  minDistance: 3.5
-  maxDistance: 7
+  minDistance: 9
+  maxDistance: 15
 --- !u!1 &5386552120625005575
 GameObject:
   m_ObjectHideFlags: 0

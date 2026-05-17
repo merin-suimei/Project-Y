@@ -120,6 +120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8291362568987668087}
   - {fileID: 974315039383452477}
   - {fileID: 7282700930327644751}
   - {fileID: 3756311988425602384}
@@ -164,6 +165,8 @@ MonoBehaviour:
   turnSpeed: 0
   resetPoint: {x: 0, y: 0, z: 0}
   <type>k__BackingField: {fileID: 11400000, guid: 8e197a2eb40b2f1a9ac6784a0c8acdfd, type: 2}
+  <soundsData>k__BackingField: {fileID: 0}
+  needsLightToDetect: 0
   <EnemyEye>k__BackingField: {fileID: 3756311988425602384}
   <EnemyWalkPoints>k__BackingField: []
   <IsPatrolPathClosed>k__BackingField: 0
@@ -211,15 +214,14 @@ MonoBehaviour:
   viewMeshFilter: {fileID: 1646987377350132493}
   edgeLineMaterial: {fileID: 2100000, guid: 53a05bf60dd36074d9f9ed2d18e9b49b, type: 2}
   edgeLineWidth: 0.05
-  edgeLineColor: {r: 1, g: 1, b: 1, a: 0.9}
-  drawCenterSpine: 0
-  drawBottomArc: 1
-  drawTopArc: 0
-  drawLeftEdge: 0
-  drawRightEdge: 0
   drawLeftBottomRay: 1
   drawRightBottomRay: 1
+  drawBottomArc: 1
+  drawTopArc: 0
+  drawCenterLine: 0
+  drawLeftEdge: 0
   drawLeftTopRay: 0
+  drawRightEdge: 0
   drawRightTopRay: 0
 --- !u!114 &5741842105974442761
 MonoBehaviour:
@@ -486,6 +488,53 @@ MonoBehaviour:
   patternProj: {fileID: 1397039837093142}
   instanceMat: {fileID: 0}
   fillPattern: {fileID: 5693152466619777637}
+--- !u!1 &8361327434976370471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8291362568987668087}
+  - component: {fileID: 861505428871941985}
+  m_Layer: 7
+  m_Name: WalkSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8291362568987668087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8361327434976370471}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000030696388}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3864288329833242170}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861505428871941985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8361327434976370471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea9cf85106706c41a282c8f4abb97d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundData: {fileID: 11400000, guid: 3af504e1e8891c74bbdfc29184455624, type: 2}
+  minDistance: 10
+  maxDistance: 12
 --- !u!1001 &7105519764896443812
 PrefabInstance:
   m_ObjectHideFlags: 0

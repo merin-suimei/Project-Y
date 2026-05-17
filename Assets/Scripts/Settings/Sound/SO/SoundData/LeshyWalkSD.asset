@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LeshyWalkSD
   m_EditorClassIdentifier: 
   AudioResource: {fileID: 8300000, guid: 228f24d947d02704bb3616773ebea888, type: 3}
-  volume: 0.2
+  volume: 0.6
   IsLooping: 1
   PlayOnAwake: 0
   IsSFX: 1
