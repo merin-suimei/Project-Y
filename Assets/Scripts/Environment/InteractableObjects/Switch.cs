@@ -6,6 +6,7 @@ public class Switch : InteractableBase
 {
     [Header("Interaction Settings")]
     [SerializeField] protected GameObject promptUI; // UI подсказка над объектом
+    [SerializeField] protected GameObject spotLight;
     [SerializeField] protected SoundDataSO interactSound;
     [SerializeField] protected GameObject eventGO;
     [SerializeField] private bool isOn = false;
@@ -73,6 +74,7 @@ public class Switch : InteractableBase
         if (preventTurningOff)
         {
             SetHighlight(false);
+            spotLight.SetActive(false);
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
 
