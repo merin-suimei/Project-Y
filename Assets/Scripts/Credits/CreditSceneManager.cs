@@ -10,7 +10,7 @@ public class CreditSceneManager : MonoBehaviour
     [Header("Scene")]
     [SerializeField] private SceneField mainMenu;
 
-    [SerializeField] private SoundDataSO cutSceneSoundData;
+    //[SerializeField] private SoundDataSO cutSceneSoundData;
     [SerializeField] private SoundDataSO titreSoundData;
 
     [SerializeField] private RawImage cutSceneRawImage;
@@ -18,8 +18,8 @@ public class CreditSceneManager : MonoBehaviour
 
     [SerializeField] private GameObject creditsPopUp;
 
-    private SoundEmitter cutSceneEmitter;
-    private SoundEmitter creditsEmitter;
+    //private SoundEmitter cutSceneEmitter;
+    //private SoundEmitter creditsEmitter;
 
     private InputsTypes _input;
 
@@ -59,8 +59,8 @@ public class CreditSceneManager : MonoBehaviour
         if (cutSceneRawImage != null)
             cutSceneRawImage.gameObject.SetActive(true);
         creditsPopUp.gameObject.SetActive(false);
-        cutSceneEmitter = SoundManager.Instance.Get().Initialize(cutSceneSoundData);
-        cutSceneEmitter.Play();
+       // cutSceneEmitter = SoundManager.Instance.Get().Initialize(cutSceneSoundData);
+        //cutSceneEmitter.Play();
         videoPlayer.Play();
     }
 
@@ -72,7 +72,7 @@ public class CreditSceneManager : MonoBehaviour
 
     private void OnCutSceneEnd(VideoPlayer source)
     {
-        cutSceneEmitter.Stop();
+       // cutSceneEmitter.Stop();
         videoPlayer.Stop();
         cutSceneRawImage.gameObject.SetActive(false);
         StartCredits();
