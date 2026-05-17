@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerState
 {
+    
     public PlayerMoveState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -23,7 +24,7 @@ public class PlayerMoveState : PlayerState
             stateMachine.ChangeState(player.idleState);
             return;
         }
-
+        
         //Старое управление
         //player.SetVelocity(new Vector3(player.moveDir.x*player.MoveSpeed, player.rb.linearVelocity.y, player.moveDir.z * player.MoveSpeed));
 
@@ -42,6 +43,8 @@ public class PlayerMoveState : PlayerState
             player.AccelerationRate * Time.deltaTime
         );
         player.SetVelocity(smoothedVelocity);
+
+        player.stepsPlayer.LaunchRandomSound();
     }
 
     public override void Exit()
