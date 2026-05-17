@@ -16,6 +16,7 @@ public class EnemyConeView : MonoBehaviour
     [SerializeField] private float viewHeightOffset = 4.5f;
     [SerializeField] private float middleLine = 0.81f;
     [SerializeField] private float obstacleInset = 0.02f;
+    [SerializeField] private float startOffset = 0.0f;
     [SerializeField] public MeshFilter viewMeshFilter;
     Mesh viewMesh;
     private readonly List<Vector3> _viewPoints = new();
@@ -158,12 +159,14 @@ public class EnemyConeView : MonoBehaviour
             _bottomLocal.Add(transform.InverseTransformPoint(_viewPoints[i]));
         }
 
+        Vector3 startOffsetVector = startOffset * Vector3.forward;
+
         // ������� �����
         int vertexCountTop = _viewPoints.Count + 1;
         Vector3[] verticesTop = new Vector3[vertexCountTop];
         int[] trianglesTop = new int[(vertexCountTop - 2) * 3];
 
-        verticesTop[0] = Vector3.up * viewHeightOffset;
+        verticesTop[0] = Vector3.up * viewHeightOffset + startOffsetVector;
         // ������ ������ �����
         for (int i = 0; i < _viewPoints.Count; i++)
         {
@@ -193,7 +196,7 @@ public class EnemyConeView : MonoBehaviour
         Vector3[] verticesBottom = new Vector3[vertexCountBottom];
         int[] trianglesBottom = new int[(vertexCountBottom - 2) * 3];
 
-        verticesBottom[0] = Vector3.zero;
+        verticesBottom[0] = Vector3.zero + startOffsetVector;
         for (int i = 0; i < vertexCountBottom - 1; i++)
         {
             verticesBottom[i + 1] = _bottomLocal[i];
@@ -241,10 +244,10 @@ public class EnemyConeView : MonoBehaviour
         Vector3[] verticesLeftCap = new Vector3[4];
         int[] trianglesLeftCap = new int[6];
 
-        verticesLeftCap[0] = Vector3.zero;
+        verticesLeftCap[0] = Vector3.zero + startOffsetVector;
         verticesLeftCap[1] = _bottomLocal[0];
         verticesLeftCap[2] = _viewPointsTop[0];
-        verticesLeftCap[3] = Vector3.up * viewHeightOffset;
+        verticesLeftCap[3] = Vector3.up * viewHeightOffset + startOffsetVector;
 
         trianglesLeftCap[0] = 0;
         trianglesLeftCap[1] = 1;
@@ -260,8 +263,8 @@ public class EnemyConeView : MonoBehaviour
         Vector3[] verticesRightCap = new Vector3[4];
         int[] trianglesRightCap = new int[6];
 
-        verticesRightCap[0] = Vector3.zero;
-        verticesRightCap[1] = Vector3.up * viewHeightOffset;
+        verticesRightCap[0] = Vector3.zero + startOffsetVector;
+        verticesRightCap[1] = Vector3.up * viewHeightOffset + startOffsetVector;
         verticesRightCap[2] = _viewPointsTop[last];
         verticesRightCap[3] = _bottomLocal[last];
 
@@ -458,8 +461,8 @@ public class EnemyConeView : MonoBehaviour
 
         int last = bottomLocal.Count - 1;
 
-        Vector3 bottomApex = Vector3.zero;
-        Vector3 topApex = Vector3.up * viewHeightOffset;
+        Vector3 bottomApex = startOffset * Vector3.forward;
+        Vector3 topApex = bottomApex + Vector3.up * viewHeightOffset;
 
         SetOptionalPolyline(bottomArcLine, drawBottomArc, bottomLocal);
         SetOptionalPolyline(topArcLine, drawTopArc, topLocal);

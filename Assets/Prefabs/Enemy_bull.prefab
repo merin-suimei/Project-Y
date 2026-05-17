@@ -239,7 +239,7 @@ CapsuleCollider:
   m_Radius: 1.16
   m_Height: 4.45
   m_Direction: 1
-  m_Center: {x: -0, y: 2.22, z: -1.15}
+  m_Center: {x: -0, y: 2.22, z: 0}
 --- !u!114 &6163365397691716037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   viewHeightOffset: 2.45
   middleLine: 0.4
   obstacleInset: 0.02
+  startOffset: 1.2
   viewMeshFilter: {fileID: 1646987377350132493}
   edgeLineMaterial: {fileID: 2100000, guid: 53a05bf60dd36074d9f9ed2d18e9b49b, type: 2}
   edgeLineWidth: 0.05
@@ -561,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 283f152f8b248474e976501d4ac1f22a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.09
+      value: 4.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 283f152f8b248474e976501d4ac1f22a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -569,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 283f152f8b248474e976501d4ac1f22a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.47
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 283f152f8b248474e976501d4ac1f22a, type: 3}
       propertyPath: m_LocalRotation.w
