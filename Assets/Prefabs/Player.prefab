@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4247b0c8956372046b24431c5b6c02ed, type: 3}
   - {fileID: 8300000, guid: 259081683073257458e60948e28a79ab, type: 3}
   - {fileID: 8300000, guid: 4f7c03310a46f4d45ba2582baef2edc0, type: 3}
-  volume: 0.3
+  volume: 0.1
   delayBetweenSounds: 0.2
 --- !u!1 &531838682534771126
 GameObject:
