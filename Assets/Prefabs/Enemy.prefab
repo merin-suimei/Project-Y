@@ -535,6 +535,7 @@ MonoBehaviour:
   soundData: {fileID: 11400000, guid: 3af504e1e8891c74bbdfc29184455624, type: 2}
   minDistance: 10
   maxDistance: 12
+  is3DSound: 1
 --- !u!1001 &7105519764896443812
 PrefabInstance:
   m_ObjectHideFlags: 0

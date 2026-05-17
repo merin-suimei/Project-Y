@@ -4,7 +4,8 @@ public class Player : MonoBehaviour
 {
     [Header("Control Settings")]
     [SerializeField] private ControlScheme currentControlScheme;
-
+    [field: SerializeField] public RandomSoundsPlayer stepsPlayer { get; private set; }
+    [field: SerializeField] public float delayBetweenSteps = 0.1f;
     private bool isAllowedToRotate;
     public void SetRotationAllowed(bool isAllowed) => isAllowedToRotate = isAllowed;
     private StateMachine stateMachine;

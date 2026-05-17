@@ -133,6 +133,7 @@ MonoBehaviour:
   soundData: {fileID: 11400000, guid: ebb99a54ca6f14e4fb1b8b36a230dbff, type: 2}
   minDistance: 10
   maxDistance: 12
+  is3DSound: 1
 --- !u!1 &3355401115949184097
 GameObject:
   m_ObjectHideFlags: 0

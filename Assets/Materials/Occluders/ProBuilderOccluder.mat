@@ -161,7 +161,7 @@ Material:
     - _Color: {r: 0.8609609, g: 0.9150943, b: 0.85898006, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HitResult: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPosition: {r: 18.818197, g: 2.1049998, b: -18.007635, a: 0}
+    - _PlayerPosition: {r: 17.104303, g: 2.1050007, b: -10.695254, a: 0}
     - _SpecColor: {r: 0.19999993, g: 0.19999993, b: 0, a: 1}
     - _SphereCastResult: {r: -1.0169958, g: 5.8865337, b: -0.14774156, a: 0}
   m_BuildTextureStacks: []
