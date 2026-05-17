@@ -134,6 +134,7 @@ MonoBehaviour:
   minDistance: 10
   maxDistance: 12
   is3DSound: 1
+  waitTimeToLoad: 0
 --- !u!1 &3355401115949184097
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +174,7 @@ Transform:
   - {fileID: 7282700930327644751}
   - {fileID: 3756311988425602384}
   - {fileID: 6234721590882699821}
+  - {fileID: 4302201164488402425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &3558404529426656993
@@ -536,6 +538,56 @@ MonoBehaviour:
   patternProj: {fileID: 1397039837093142}
   instanceMat: {fileID: 0}
   fillPattern: {fileID: 5693152466619777637}
+--- !u!1 &6803285110552592574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4302201164488402425}
+  - component: {fileID: 5728858062223844272}
+  m_Layer: 7
+  m_Name: StepsSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4302201164488402425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803285110552592574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3864288329833242170}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5728858062223844272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803285110552592574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e84bb31b306df4b82f44270e7502e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 234f2f0b8c227c142abde7543b3626a1, type: 3}
+  - {fileID: 8300000, guid: 2a4ae2946c30bc84980b3266bc1922f8, type: 3}
+  volume: 1
+  distanceBetweenSounds: 1
+  delayBetweenSounds: 0
 --- !u!1001 &7105519764896443812
 PrefabInstance:
   m_ObjectHideFlags: 0
