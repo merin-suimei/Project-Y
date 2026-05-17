@@ -323,7 +323,7 @@ public class EnemyConeView : MonoBehaviour
         Vector3 rayOrigin = transform.position + Vector3.up * middleLine;
         RaycastHit hit;
 
-        if (Physics.Raycast(rayOrigin, dirFromAngle, out hit, detectionRange, ~raycastIgnore))
+        if (Physics.Raycast(rayOrigin, dirFromAngle, out hit, detectionRange, ~raycastIgnore, QueryTriggerInteraction.Ignore))
         {
             float adjustedDistance = Mathf.Max(0f, hit.distance - obstacleInset);
             Vector3 adjustedPoint = rayOrigin + dirFromAngle * adjustedDistance;
