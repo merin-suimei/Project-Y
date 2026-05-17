@@ -61,7 +61,7 @@ public class Enemy : Avatar
 
     public bool HasLineOfSight(Transform target)
     {
-        if (Physics.Raycast(EnemyEye.position, (target.position - EnemyEye.position).normalized,out RaycastHit hit, detectionRange*2, ~raycastIgnore))
+        if (Physics.Raycast(EnemyEye.position, (target.position - EnemyEye.position).normalized,out RaycastHit hit, detectionRange*2, ~raycastIgnore, QueryTriggerInteraction.Ignore))
             return hit.transform == target;
 
         return false;
