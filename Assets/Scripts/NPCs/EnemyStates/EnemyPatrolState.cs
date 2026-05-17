@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnemyPatrolState : EnemyState
 {
@@ -23,11 +24,8 @@ public class EnemyPatrolState : EnemyState
         base.Enter();
         currentPoint = enemy.enemyWalkPoints[pointIndex];
 
-        soundEmitter = SoundManager.Instance.Get().Initialize(enemy.soundsData.walkSoundData);
-        soundEmitter.Play();
-
         EventBus.Raise(EventType.OnMoveTo, enemy.id, currentPoint.transform.position);
-        EventBus.Raise(EventType.PlayEnemyMoveSound);
+        
 
         EventBus.Subscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
         EventBus.Subscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);
@@ -93,14 +91,14 @@ public class EnemyPatrolState : EnemyState
 
     public override void Exit()
     {
-        try
+        /*try
         {
             soundEmitter.Stop();
         }
         catch (Exception e)
         {
             Debug.LogWarning("Failed to stop soundEmitter in id " + enemy.id + "\n\n" + e.ToString());
-        }
+        }*/
 
         EventBus.Unsubscribe<int>(EventType.OnMoveToArrived, EnemyOnPoint);
         EventBus.Unsubscribe<int>(EventType.OnRotateToArrived, EnemyTurnedOnPoint);

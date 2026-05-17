@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyCatchSD
   m_EditorClassIdentifier: 
   AudioResource: {fileID: 8300000, guid: e2cc8058400ca8b46a5f7da72e801886, type: 3}
-  volume: 0.2
+  volume: 0.6
   IsLooping: 0
   PlayOnAwake: 0
   IsSFX: 1

@@ -63,7 +63,8 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = avaliableSoundEmittes.Count - 1; i >= 0; i--)
         {
-            avaliableSoundEmittes[i].Stop();
+            if (avaliableSoundEmittes[i] != null)
+                avaliableSoundEmittes[i].Stop();
         }
     }
 
@@ -71,7 +72,8 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = avaliableSoundEmittes.Count - 1; i >= 0; i--)
         {
-            avaliableSoundEmittes[i].Pause();
+            if (avaliableSoundEmittes[i] != null)
+                avaliableSoundEmittes[i].Pause();
         }
     }
 
@@ -79,10 +81,10 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = avaliableSoundEmittes.Count - 1; i >= 0; i--)
         {
-            avaliableSoundEmittes[i].UnPause();
+            if (avaliableSoundEmittes[i] != null)
+                avaliableSoundEmittes[i].UnPause();
         }
     }
-
     public void OnAllSoundsVolumeChanged(float value)
     {
         VolumeData.AllSoundsVolumeView = value;
@@ -112,13 +114,17 @@ public class SoundManager : MonoBehaviour
 
         for (int i = avaliableSoundEmittes.Count - 1; i >= 0; i--)
         {
-            if (avaliableSoundEmittes[i].soundData.IsSFX)
+            if (avaliableSoundEmittes[i] != null)
             {
-                avaliableSoundEmittes[i].ChangeVolume(actualSFXVolume);
-            }
-            else
-            {
-                avaliableSoundEmittes[i].ChangeVolume(actualMusicVolume);
+                if (avaliableSoundEmittes[i].soundData.IsSFX)
+                {
+                    avaliableSoundEmittes[i].ChangeVolume(actualSFXVolume);
+                }
+                else
+                {
+                    avaliableSoundEmittes[i].ChangeVolume(actualMusicVolume);
+                }
+
             }
         }
     }
@@ -138,6 +144,7 @@ public class SoundManager : MonoBehaviour
     private void OnReleaseSoundEmitter(SoundEmitter soundEmitter)
     {
         soundEmitter.gameObject.SetActive(false);
+        soundEmitter.transform.SetParent(transform);
         avaliableSoundEmittes.Remove(soundEmitter);
     }
 

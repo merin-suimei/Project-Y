@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a45457516c0b343978208c182695f6, type: 3}
-  m_Name: LevelTransitionSD
+  m_Name: GoatStepsSD
   m_EditorClassIdentifier: 
-  AudioResource: {fileID: 8300000, guid: 0dd1579cef8402348a0f8183e037562f, type: 3}
-  volume: 0.7
-  IsLooping: 0
+  AudioResource: {fileID: 8300000, guid: 958ff3f8d1af8b34c83a61193a18a615, type: 3}
+  volume: 1
+  IsLooping: 1
   PlayOnAwake: 0
   IsSFX: 1
