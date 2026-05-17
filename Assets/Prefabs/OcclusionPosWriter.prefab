@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OccluderMaterial: {fileID: 2100000, guid: 1f3c61dfbe2551e4a9202c3112e2ef4e, type: 2}
   MainCamera: {fileID: 0}
-  ShouldInterpolate: 0
+  ShouldInterpolate: 1
   InterpolationWithHitPoint: 0.3
   InterpolationWithPreviousPosition: 0.3
   SphereCastRadius: 0.05

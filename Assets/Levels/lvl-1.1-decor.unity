@@ -18977,6 +18977,10 @@ PrefabInstance:
       propertyPath: OccluderMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 98ca6652c2317a348a1d65605256581f, type: 2}
+    - target: {fileID: 9025664947514607389, guid: 0931748dc7c781ef5a661bf1bc3d34ba, type: 3}
+      propertyPath: ShouldInterpolate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
