@@ -57,7 +57,11 @@ public class SoundManager : MonoBehaviour
     }
 
     public SoundEmitter Get() { return soundEmitterPool.Get(); }
-    public void Release(SoundEmitter soundEmitter) { soundEmitterPool.Release(soundEmitter); }
+    public void Release(SoundEmitter soundEmitter) 
+    {
+        if (soundEmitter != null)
+            soundEmitterPool.Release(soundEmitter); 
+    }
 
     public void StopAllSounds()
     {

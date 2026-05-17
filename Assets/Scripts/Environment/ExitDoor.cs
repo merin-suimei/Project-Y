@@ -12,7 +12,7 @@ public class ExitDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EventBus.Raise(EventType.StopAllSound);
+            //EventBus.Raise(EventType.StopAllSound);
             LoadTargetScene();
         }
     }
