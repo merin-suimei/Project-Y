@@ -664,7 +664,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0cb9e6c990e0d344cb83a051a0ac9bd5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1b385b207cf2313418ef74de2a5a0f88, type: 2}
+      objectReference: {fileID: 2100000, guid: 66687ba3b25ff9743b7ca83f529763a7, type: 2}
     - target: {fileID: 919132149155446097, guid: 0cb9e6c990e0d344cb83a051a0ac9bd5, type: 3}
       propertyPath: m_Name
       value: Switch 1
